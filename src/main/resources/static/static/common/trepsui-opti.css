@@ -1,0 +1,4 @@
+body .mini-buttonedit-disabled .mini-buttonedit-border, body .mini-buttonedit-disabled .mini-buttonedit-input,
+body .mini-textbox-disabled .mini-textbox-border {
+    background-color:#ddd;
+}

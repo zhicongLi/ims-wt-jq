@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test jquery-ajax-cache</title>
+
+    <head>
+        <script language="JavaScript" src="js/jquery-1.9.1.min.js"></script>
+        <script language="JavaScript" src="js/jquery-ajax-cache.js"></script>
+        <script>
+
+			$ajaxCache.config({
+				// 业务逻辑判断请求是否缓存， res为ajax返回结果, options 为 $.ajax 的参数
+				cacheValidate: function (res, options) {    //选填，配置全局的验证是否需要进行缓存的方法,“全局配置” 和 ”自定义“，至少有一处实现cacheValidate方法
+
+					return true;  // 所有情况都缓存
+
+					// return res.state === 'ok'; // 满足某个条件才缓存
+
+					// return false; // 不缓存
+				},
+				storageType: 'localStorage', //选填，‘localStorage’ or 'sessionStorage', 默认‘localStorage’
+				timeout: 60 * 60, //选填， 单位秒。默认1小时
+				forceRefresh: true
+			});
+
+            $.ajax({
+                ajaxCache: true, 
+                type: "GET",
+                url: "https://api.github.com/repos/WQTeam/jquery-ajax-cache",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                }
+            })
+        </script>
+
+</html>

@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 30px修改为31px
+*/
+#leftdiv table,#leftdiv tr,#leftdiv td{
+    height:31px;
+}
+/*第一个表格样式*/
+.table01{
+    margin-top: 30px;
+}
+.ident03{
+    display: inline-block;
+    width: 25px;
+}
+
+.ident2 span{
+    display: inline-block;
+    width: 175px;
+}
+.date01 input{
+    width: 30px;
+}
+.date01 input:first-child{
+    width: 40px;
+}
+.work01 input{
+    width: 78%;
+    margin-right: 18px;
+}
+.work02 input{
+    width: 94%;
+    float: right;
+    margin-right: 18px;
+}
+.work03 input{
+    width: 88%;
+    float: right;
+    margin-right: 18px;
+}
+/*第二个表格样式*/
+.table02,.table04{
+    text-align: center;
+}
+.table02{
+    width: 23%;
+}
+.Measures td{
+    width: 50%;
+}
+.Measures02{
+    width: 54%;
+}
+.Measures02 i{
+    margin-left: 24px;
+}
+.ident2 input{
+    width: 20px;
+}
+.ident3{
+    text-indent: 28pt;
+}
+.table03{
+    margin-top: 36px;
+}
+.w-60p{
+    width: 60%;
+}
+.w-20p{
+    width: 20%;
+}
+.table09{
+    width: 100%;
+    float: right;
+}
+.table09-put{
+    width: 86%!important;
+    float: right;
+}
+.table02,.table04,.table06{
+    border-collapse: collapse;
+}

@@ -1,0 +1,54 @@
+/*闅愯棌a4鎵撳嵃銆佸垎椤�*/
+/*.page01-a4,.fenye-a4{*/
+    /*display: none;*/
+/*}*/
+
+#rightdiv table{
+    line-height:26px;
+}
+#leftdiv table,#leftdiv tr,#leftdiv td{
+    height:28px;
+}
+.table02 td{
+    height: 32px!important;
+}
+
+/*.date01 i{*/
+    /*font-style: normal;*/
+    /*display: inline-block;*/
+    /*width: 130px;*/
+/*}*/
+.table01,.table02{
+    text-align: center;
+}
+.table01 th{
+    font-weight: normal;
+}
+.table01 th:nth-child(1){
+    width: 30%;
+}
+.table01 th:nth-child(2){
+    width: 50%;
+}
+.table01 th:nth-child(3){
+    width: 20%;
+}
+/*绗竴涓〃鏍�*/
+/*閮ㄩ棬*/
+/*
+.department input{
+    width: 15%;
+}
+*/
+/*rightdiv鏍峰紡*/
+#rightdiv p{
+    margin-top: 62px;
+    /*padding-bottom: 20px;*/
+}
+.remarks input{
+    width: 575px;
+    float: right;
+}
+table{
+    border-collapse: collapse;
+}

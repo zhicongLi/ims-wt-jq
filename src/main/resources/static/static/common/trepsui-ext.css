@@ -1,0 +1,78 @@
+/*
+ \webapp\static\bootstrap-select\dist\css\bootstrap-select.css
+*/
+.bootstrap-select > .dropdown-toggle {
+    padding-right: 25px;
+    z-index: 1;
+}
+/*
+ \webapp\static\bootstrap-select\dist\css\bootstrap-select.css
+*/
+.selectize-input {
+    min-height: 0px !important;
+}
+#editform table {
+
+}
+.asLabel .mini-textbox-border,
+.asLabel .mini-textbox-input,
+.asLabel .mini-buttonedit-border,
+.asLabel .mini-buttonedit-input,
+.asLabel .mini-textboxlist-border
+{
+    border:0;background:none;cursor:default;
+}
+.asLabel .mini-buttonedit-button,
+.asLabel .mini-textboxlist-close
+{
+    display:none;
+}
+.asLabel .mini-textboxlist-item
+{
+    padding-right:8px;
+}
+html, body{
+    margin:0;padding:0;border:0;width:100%;height:100%;overflow:hidden;
+}
+body {
+    display: none;
+}
+.btn-primary,.btn-primary.disabled, .btn-primary[disabled] {
+    color: #403c3c;
+    background-color: #ccc;
+    background-image: none;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active  {
+    color: #fff;
+    background-color: #2fa4e7;
+}
+/*.mini-grid-cell-selected{ !*, .excel-cell-selected*!*/
+/*!* background:#dedede!important;*!*/
+
+/*    border: 3px solid;*/
+/*}*/
+
+/* ������� */
+body ._act_allowEdit{
+	background:#FFFF00!important;
+}
+/* �ύ���� */
+body ._act_flowEdit{
+	background:	#00FA9A!important;
+}
+/* ֻ�� */
+body ._act_readOnly{
+	background:#00CED1!important;
+}
+/* �ɿ� */
+body ._act_allowBlank{
+	background:	#FFC0CB!important;
+}
+/* ���ɼ� */
+body ._act_invisible{
+	background:#A9A9A9!important;
+}
+/* ���ɼ� */
+body ._act_clearData{
+	background:#CC3300!important;
+}

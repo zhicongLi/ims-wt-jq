@@ -1,0 +1,40 @@
+
+
+/* login-body */
+
+/*body {background: #FFF url(../imgs/login-bg.jpg) no-repeat  center -40px;overflow:hidden;}*/
+
+input,button{border:1px ;outline:none;}
+.logo {top:2em;left:3em;}
+.blk-center{width:100%;margin:0 auto;top:120px;position:relative; background:transparent;}
+/*.sumbit {width:584px;height:476px;margin:0 auto; background: transparent url(../imgs/box-bg.png) no-repeat top left;}*/
+.user-info {position:relative; top:13em;margin:0 auto; width:246px;height:130px;}
+
+.ip-s{position:relative; background:transparent url(../imgs/input-bg.png) no-repeat left;width:255px;height:44px;margin-top:1.2em;}
+.ip-s i.ico-user{position:absolute;top:12px;left:15px;background:transparent url(../imgs/ico-user.png) no-repeat left;width:20px;height:20px;}
+.ip-s i.ico-pw{position:absolute;top:12px;left:15px;background:transparent url(../imgs/ico-password.png) no-repeat left;width:20px;height:20px;}
+.ip-s:hover,
+.ip-s-active{background:transparent url(../imgs/input-bg-active.png) no-repeat left;width:255px;}
+.user-info input {margin-left:4em;line-height:44px;width:200px;color:#FFF;}
+	.user-info input,
+	.user-info input[type='text'],
+	.user-info input[type='password'],
+	.user-info input:after,
+	.user-info input[type='text']:after,
+	.user-info input[type='password']:after,
+	.user-info input:focus,
+	.user-info input[type='text']:focus,
+	.user-info input[type='password']:focus{background-color:transparent;border:0 none;outline:0;color:#FFF;height:44px;line-height:44px;}
+.user-btn{position:relative; top:13em;margin:0 auto;width:246px;height:35px;}
+.login-btn{background: transparent url(../imgs/login-btn.png) no-repeat;width:246px;height:35px;cursor: pointer;font-size:14px;font-weight:bold; }
+.user-sel{position:relative;top:13em;margin:0 auto;width:246px;height:35px;line-height:35px;text-align:center;color:#acdee7;}
+.login-footer{margin:0 auto;width:40%;height:90px;line-height:3.5em;text-align:center;font-size:12px;color:#fff;border-top:1px solid #ddd;}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+	-webkit-transition-delay: 9999s;
+}

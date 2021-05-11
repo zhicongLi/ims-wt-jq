@@ -1,0 +1,21 @@
+/* reset css */
+html, body, ul, li, ol, dl, dd, dt, p,tt, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img,tt { border:none; }
+img{display: block;}
+address, caption, cite, code, dfn, th, var,tt { font-style:normal; font-weight:normal; }
+ul, ol,tt { list-style:none; }
+input { padding-top:0; padding-bottom:0; font-family: 'Microsoft YaHei','微软雅黑','宋体';}
+input::-moz-focus-inner { border:none; padding:0;}/*火狐下垂直居中*/
+select, input { vertical-align:middle; }
+select, input, textarea { margin:0; }
+input[type='text'], input[type='password'], textarea { outline-style:none; -webkit-appearance:none;-moz-appearance:none; }
+textarea { resize:none; }
+table { border-collapse:collapse; }
+body { font-family:'Microsoft YaHei','微软雅黑','\5FAE\8F6F\96C5\9ED1','simsun','宋体','\5B8B\4F53',Arial,Soego UI,HELVETICA; background-color:#fff; font-size:14px;color:#333; }
+.clearfix:after { content:'.'; display:block; height:0; visibility:hidden; clear:both; }
+.clearfix { zoom:1; }
+.clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+a { color:#666; text-decoration:none; }
+a:visited { color:#333; }
+a:hover, a:active, a:focus { color:#3265d2; text-decoration:underline; }
+select,textarea{outline-style:none;}

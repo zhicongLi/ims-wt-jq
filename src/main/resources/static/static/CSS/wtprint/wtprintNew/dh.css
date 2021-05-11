@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    /*font-size: 12px;*/
+}
+#leftdiv table,#leftdiv tr,#leftdiv td{
+    height:35px;
+}
+/*#leftdiv,#rightdiv{*/
+    /*background: turquoise;*/
+/*}*/
+table:not(.dangerTable){
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+.table01 td,.table02 td{
+	border:1px solid black;
+    vertical-align: middle;
+    /*height: 35px;*/
+    width: 100%;
+   /*  overflow: hidden; */
+    text-overflow: ellipsis;
+    nowrap:false;
+}
+.table01 td{
+	text-align:left;
+}
+/*标题*/
+.title03{
+    font-size: 15px;
+    text-align: center;
+}
+.title04{
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 10pt;
+}
+.title05{
+
+    width: 60%;
+}
+.title06{
+    /*width: 40%;*/
+    margin-left: 15px;
+}
+
+.work04 input{
+    width:68%;
+    float: right;
+    margin-top: 3px;
+}
+.date02 input{
+    width: 30px;
+    text-align:center;
+}
+.date03 input{
+    width: 30px;
+}
+/*签名*/
+.img-name02{
+    width: 60px;
+    height: 21px;
+    /*background: #000;*/
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    margin-top: -2px;
+}
+.img-name02 img{
+    width: 60px;
+    height: 21px;
+}
+
+/*rightdiv*/
+
+.table02,.table02 tr,.table02 td{
+    height: 26pt!important;
+    padding: 2px 5px;
+    /*line-height: 26px;*/
+}
+.centerTr td{
+	text-align:center;
+}
