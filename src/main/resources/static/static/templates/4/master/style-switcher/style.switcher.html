@@ -1,0 +1,127 @@
+<!-- Style Switcher - Start -->
+<div id="styleSwitcher" class="style-switcher">
+
+	<a id="styleSwitcherOpen" class="style-switcher-open" href="#"><i class="fas fa-cogs"></i></a>
+
+	<div class="style-switcher-wrap">
+
+		<h4>风格切换</h4>
+
+		<h5>主颜色</h5>
+		<div class="input-group input-group-sm color-primary">
+			<input type="text" value="#0088cc" class="form-control" />
+			<span class="input-group-append"><span class="input-group-text input-group-addon"><i></i></span></span>
+		</div>
+
+		<h5>第二颜色</h5>
+		<div class="input-group input-group-sm color-secondary">
+			<input type="text" value="#E36159" class="form-control" />
+			<span class="input-group-append"><span class="input-group-text input-group-addon"><i></i></span></span>
+		</div>
+
+		<h5>第三颜色</h5>
+		<div class="input-group input-group-sm color-tertiary">
+			<input type="text" value="#2BAAB1" class="form-control" />
+			<span class="input-group-append"><span class="input-group-text input-group-addon"><i></i></span></span>
+		</div>
+
+		<h5>第四颜色</h5>
+		<div class="input-group input-group-sm color-quaternary">
+			<input type="text" value="#383f48" class="form-control" />
+			<span class="input-group-append"><span class="input-group-text input-group-addon"><i></i></span></span>
+		</div>
+
+		<h5>布局风格</h5>
+		<div class="options-links layout">
+			<a class="active" data-layout-type="wide" href="#">宽屏</a>
+			<a data-layout-type="boxed" href="#">盒式</a>
+		</div>
+
+		<h5>边框风格</h5>
+		<div class="options-links borders">
+			<a class="active" data-border-radius="4px" href="#">圆角</a>
+			<a data-border-radius="0" href="#">方角</a>
+		</div>
+
+		<h5>背景色</h5>
+		<div class="options-links background-color">
+			<a href="#" data-background-color="light" class="active">白色</a>
+			<a href="#" data-background-color="dark">黑色</a>
+		</div>
+
+		<div class="hidden-on-dark">
+
+			<h5>标题栏颜色</h5>
+			<div class="options-links header-color">
+				<a href="#" data-header-color="light" class="active">白色</a>
+				<a href="#" data-header-color="dark">黑色</a>
+			</div>
+
+		</div>
+
+		<div class="hidden-on-dark">
+
+			<h5>侧边栏颜色</h5>
+			<div class="options-links sidebar-color">
+				<a href="#" data-sidebar-color="light">白色</a>
+				<a href="#" data-sidebar-color="dark" class="active">黑色</a>
+			</div>
+
+		</div>
+
+		<h5>侧边栏大小</h5>
+		<div class="options-links sidebar-size">
+			<a href="#" data-sidebar-size="xs">小</a>
+			<a href="#" data-sidebar-size="sm">中</a>
+			<a href="#" data-sidebar-size="md" class="active">大</a>
+		</div>
+
+		<div class="style-switcher-buttons options-links">
+			<a href="#" class="reset">重置</a>
+			<a href="#getCSSModal" class="get-css"><i class="far fa-file-alt"></i> 获得风格内容</a>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal fade" id="getCSSModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="cssModalLabel">Skin CSS</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-info" id="addBoxedClassInfo">
+					Add the <strong>&quot;boxed&quot;</strong> class to the &lt;html&gt; element to activate the Boxed Layout.
+				</div>
+				<div class="alert alert-info" id="addDarkClassInfo">
+					Add the <strong>&quot;dark&quot;</strong> class to the &lt;html&gt; element to activate the Dark Color.
+				</div>
+				<div class="alert alert-info" id="addHeaderDarkClassInfo">
+					Add the <strong>&quot;header-dark&quot;</strong> class to the &lt;html&gt; element to activate the Header Dark Color.
+				</div>
+				<div class="alert alert-info" id="addSidebarLightClassInfo">
+					Add the <strong>&quot;sidebar-light&quot;</strong> class to the &lt;html&gt; element to activate the Sidebar Light Color.
+				</div>
+
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="nav-item"><a class="nav-link active" href="#tabAdmin" aria-controls="tabAdmin" role="tab" data-toggle="tab">Admin</a></li>
+					<li role="presentation" class="nav-item"><a class="nav-link" href="#tabExtension" aria-controls="tabExtension" role="tab" data-toggle="tab">Extension</a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane fade show active" id="tabAdmin">
+						<textarea id="getCSSTextarea" class="get-css" readonly></textarea>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="tabExtension">
+						<textarea id="getCSSTextareaExtension" class="get-css" readonly></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Style Switcher - End -->
