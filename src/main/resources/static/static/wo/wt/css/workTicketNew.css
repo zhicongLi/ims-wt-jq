@@ -1,0 +1,366 @@
+/*工作票通用css*/
+@CHARSET "UTF-8";
+
+* {
+    box-sizing: border-box;
+    color: #333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin:0;
+    padding:0;
+}
+
+/*
+工作票的公用样式
+*/
+/* body{
+    margin:8px!important;
+} */
+
+.print-content #printWoOt {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+.print-content{
+	position:relative;
+}
+/* 工作票标题 样式*/
+/* .print-content h3{ */
+/*     font-family: '宋体'; */
+/*     font-size: 24pt; */
+/*     line-height: 30pt; */
+/*     text-align: center; */
+/*     height: 50pt; */
+/* } */
+/* table  tr{
+   height: 25pt;
+   line-height:20pt;
+
+} */
+.print-content table ,.print-content  tr ,.print-content td {
+/* 	padding: 3px 5px; */
+    height: 29px;
+/*     height:28pt; */
+    /* border:1pt solid black; */
+}
+
+.print-content table {
+    width:100%!important;
+
+}
+/* 需要隐藏两个表格之间的重叠部分 */
+.print-content .whitetable{
+    border-top: 0pt solid white;
+}
+
+/* 设置时间的格式  */
+.print-content .spantime{
+    display: inline-block;
+    margin:2pt 5pt;
+    border-bottom:1pt solid #D3D3D3;
+
+}
+/* 当没有获取到时间数据时默认给一个样式 */
+.print-content .current{
+
+    width:10pt;
+
+}
+/* 部分需要居中的列 */
+.print-content .middletd{
+    /*width: 44%;*/
+    border-right: 0pt;
+    text-indent: 18pt;
+}
+.print-content input{
+/*     font-family:宋体; */
+/*     font-weight:lighter!important; */
+/*     font-size:medium; */
+    border:none;
+    border-bottom: 1px solid  	#000000;
+    /* border-bottom: 1px solid rgb(192,192,192); */
+}
+/*大框架*/
+#leftdiv, #rightdiv ,#twoleftdiv, #tworightdiv{
+    /*background: red;*/
+    /*height: 970px !important;*/
+    height: 988px !important;
+    vertical-align:top;
+/*     width:45%; */
+    /*overflow: hidden;*/
+}
+/* #leftdiv{
+    float: left;
+}
+#rightdiv{
+    float: right;
+} */
+/* #twoleftdiv {
+    float: left;
+}
+
+#tworightdiv {
+    float: right;
+} */
+
+/*表格通用样式*/
+/*table{*/
+    /*!*border-collapse: collapse;*!*/
+    /*border-collapse: separate;*/
+/*}*/
+/*table tr{*/
+    /*white-space: nowrap;*/
+/*}*/
+.print-content table th{
+    font-weight: normal;
+    text-align: center;
+}
+.print-content .table td{
+    border-right: 0pt;
+}
+/*段落次行缩进*/
+.print-content .ident-number1{
+    display: inline-block;
+    width: 20px;
+}
+.print-content .ident-number2{
+    display: inline-block;
+    width: 25px;
+}
+.print-content .ident1{
+    text-indent: 18pt;
+}
+/*.ident2 span{*/
+    /*margin-left:130px;*/
+/*}*/
+/*标题样式*/
+.print-content #leftdiv p{
+    text-align:center;
+}
+/*头部样式*/
+.print-content .header {
+
+    width: 100%;
+    text-align: right;
+    position: relative;
+    margin-bottom:20px;
+/*     margin-top:30px; */
+}
+.print-content .header .host {
+    height: 28px;
+    margin-bottom: 48px;
+}
+.print-content .header h1 {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.print-content header h2 {
+    font-weight: 400;
+/*     position: absolute; */
+    font-size:16px;
+	right: 0; 
+	padding-right:12px;/*为了对齐*/
+}
+.print-content header h2 span{
+    border-bottom: 1px solid #333;
+}
+/* .title01{
+    font-size:24px;
+} */
+.print-content .title01 span{
+    margin-left:30px;
+}
+.print-content .title01 input{
+    width:130px;
+}
+/*一二级动火标题样式*/
+.print-content .title02{
+    text-align: center;
+    font-size: 15px;
+}
+.print-content .title02 span{
+    font-size:20px;
+}
+/*图片签名样式*/
+.print-content .img-name{
+    width: 100px;
+    height: 21px;
+    /*background: #000;*/
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    /*margin-top: -2px;*/
+    margin: -2px auto 0px;
+    text-indent: 0pt;
+}
+.print-content .img-name img{
+    width: 100px;
+    height: 21px;
+    margin-left: 0px;
+}
+/*表格放图片*/
+.print-content .img-nametable{
+    width: 90px;
+    height: 26px;
+    display:block;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.print-content .img-nametable img{
+    width: 90px;
+    height: 26px;
+}
+/*分页*/
+.print-content .fenye-a3{
+    width: 100%;
+    height: 20px;
+    float: left;
+    text-align: center;
+    margin: 50px auto 0px;
+    /*overflow: hidden;*/
+    color: #7D7B6F;
+}
+.print-content .fenye-a3 span{
+    z-index: 200;
+    background-color: white;
+    color: #7D7B6F;
+}
+.hrx01{
+    border-bottom: 1px dashed #7D7B6F;
+    height: 1px;
+    position: relative;
+    top: -10px;
+    left: 0px;
+    z-index: -20;
+}
+/*时间年月日*/
+.date01 input{
+    width: 40px;
+    text-align:center;
+}
+.date01 input:first-child{
+    width: 60px;
+}
+.date01 span{
+    font-style: normal!important;
+    display: inline-block;
+    width: 150px;
+}
+/*3.4工作内容*/
+.work01 input{
+    width: 87%;
+    margin-top: 3px;
+    float: right;
+}
+.work02 input{
+    width: 97%;
+/*     margin-top: 3px; */
+    float: right;
+}
+.work03 input{
+    width: 100%;
+    margin-top: 3px;
+    /*float: right;*/
+}
+/**/
+#condition input{
+	width: 73%;
+    margin-top: 5px;
+    float: right;
+}
+
+.print-content .page,.page{
+    position: relative;
+}
+.print-content .page p:nth-child(2){
+   position: absolute;
+    right: 0;
+    margin:0;
+    top: -1px;
+
+}
+
+.center{
+	text-align:center;
+}
+/*已终结章位置*/
+#describe{
+    width: 90px;
+    height: 44px;
+    position: absolute;
+    right: 0;
+    top:75px;
+}
+#describe img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: none;*/
+}
+
+td,th{
+	word-wrap:break-word; 
+	word-break:break-all;
+}
+*{
+	font-family:STZhongsong,STSong,Microsoft YaHei;
+	font-size:14px;
+}
+h1{
+	font-family:SimHei;
+	font-size:22px;
+}
+table{
+	border-spacing:0px;
+}
+table td{
+	padding-left:5px;
+/* 	padding-right:8px; */
+	line-height:8mm;
+}
+
+.classPersons1{
+    width: 72%;
+    margin-top: 3px;
+/*     float: right; */
+}
+.classPersons2{
+    width: 86%;
+    margin-top: 3px;
+/*     float: right; */
+}
+
+.classPersons1_3{
+    width: 72%;
+    margin-top: 3px;
+/*     float: right; */
+}
+.classPersons2_3{
+    width: 86%;
+    margin-top: 3px;
+/*     float: right; */
+}
+.classPersons1_4{
+    width: 61%;
+    margin-top: 3px;
+/*     float: right; */
+}
+.classPersons3{
+    width: 84%;
+    margin-top: 3px;
+    margin-left: 20px;
+/*     float: right; */
+}
+.classPersons3_4{
+    width: 73%;
+    margin-top: 3px;
+    margin-left: 20px;
+/*     float: right; */
+}

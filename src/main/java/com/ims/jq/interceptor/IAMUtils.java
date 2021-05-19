@@ -17,7 +17,7 @@ import com.ims.jq.utils.Global;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+//@Slf4j
 public class IAMUtils {
 
     private static final String PREFIX= "bearer ";
@@ -91,7 +91,7 @@ public class IAMUtils {
             }
             JSONObject resultJson = JSONObject.parseObject(result);
             if (resultJson.containsKey("error")) {
-                log.error("iam.getTokenByCode error result:" + resultJson.toString());
+                //log.error("iam.getTokenByCode error result:" + resultJson.toString());
                 return null;
             } else {
                 return resultJson.getString("data");
@@ -126,7 +126,7 @@ public class IAMUtils {
             }
             JSONObject resultJson = JSONObject.parseObject(result);
             if (resultJson.containsKey("error")) {
-                log.error("iam.fromIamGetUserInfo error result:" + resultJson.toString());
+                //log.error("iam.fromIamGetUserInfo error result:" + resultJson.toString());
                 return null;
             } else {
                 // 获取userId

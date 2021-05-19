@@ -5,7 +5,7 @@
 	<div class="mini-toolbar" id="_tbForm" style="border-bottom:0;padding:0px;">
 		<table style="width:100%;">
 			<tr>
-				<td style="width:100%;">
+				<td style="width:100%;" id="toolbarformmain_td_"><!-- 新增id="toolbarformmain_td_"用于自定义按钮展示 -->
                 
 					<a class="mini-button" id="_tbForm_add"  iconCls=""  onclick="addFormByRow(null,null,'after')" plain="true" tooltip="新建"><i class="fa fa-plus-circle"></i> 新建</a>
 					<a class="mini-button" id="_tbForm_clone" iconCls="" onclick="cloneSelectFormRow()" plain="true" tooltip="复制"><i class="fa fa-copy"></i> 复制</a>

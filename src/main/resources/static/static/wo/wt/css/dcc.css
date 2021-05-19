@@ -1,0 +1,107 @@
+/*#leftdiv,#rightdiv{*/
+    /*background: aquamarine;*/
+/*}*/
+.title01 input{
+    font-size: 24px;
+    text-align: center;
+}
+
+/*
+  margin-right: 70px;
+*/
+.department span{
+    width: 30%;
+    margin-right: 50px;
+}
+.work04 input{
+    width: 72%;
+    margin-top: 3px;
+    float: right;
+}
+/*停运图片*/
+.outage{
+    line-height: 35px;
+}
+.img-outage{
+    width: 600px;
+    height: 503px;
+    overflow: hidden;
+    margin: 10px auto 0px;
+}
+.img-outage img{
+    width: 600px;
+    height: 503px;
+    margin-left: 0px;
+}
+/*rightdiv*/
+.work05{
+    width: 36%;
+    float: right;
+    border-right: 1px solid black;
+}
+.work06{
+    width: 30%;
+    margin-top: 3px;
+    float: right;
+}
+/*3.必须采取措施*/
+
+.table02{
+    border-collapse: collapse;
+    width: 100%;
+    border: 0px;
+    /*border-bottom: 1px solid black;*/
+}
+.table02 tr,.table02 td{
+    height: 40px;
+    border-bottom: 1px solid black;
+    vertical-align: bottom;
+}
+.border-left{
+    border-left: 1px solid black;
+    width: 30%;
+}
+.border-padd{
+    padding-left: 8pt;
+}
+
+.issue{
+    line-height: 60px;
+    height: 60px;
+    width: 100%;
+}
+.ident2 input:first-child{
+    width: 50px;
+}
+.img-name02{
+    width: 40px;
+    height: 21px;
+    /*background: #000;*/
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    /*margin-top: -2px;*/
+    margin: -2px auto 0px;
+    text-indent: 0pt;
+}
+.img-name02 img{
+    width: 40px;
+    height: 21px;
+    margin-left: 0px;
+}
+.ident3 input{
+    width: 22px;
+}
+.ident06{
+    text-indent: 22pt;
+}
+.work07 input{
+    width: 86%;
+    float: right;
+}
+.ident07 input{
+    text-align: center;
+}

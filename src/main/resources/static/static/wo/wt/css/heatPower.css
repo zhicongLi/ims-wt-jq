@@ -1,0 +1,126 @@
+/*一块表格的高度*/
+#rightdiv table, #rightdiv tr, #rightdiv td{
+    height:30px;
+}
+#leftdiv table,#leftdiv tr,#leftdiv td{
+    height:37px;
+}
+/*标题*/
+.title02{
+    text-align: center;
+    font-size: 24px;
+}
+.title02 input{
+    font-size: 24px;
+}
+.title03{
+    float: right;
+}
+/*缩进*/
+.ident03{
+    text-indent: 10pt;
+}
+.table01{
+    margin-top: 20px;
+}
+.table01 td{
+    padding-left: 8px;
+    text-align: left;
+}
+.ident1 i{
+    margin-left: 24px;
+}
+.table02{
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#rightdiv p{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.table03{
+    text-align: center;
+}
+.table03 td{
+    width: 20%;
+}
+.table04{
+    margin-top: 6px;
+}
+.date02 input{
+    width: 30px;
+}
+
+.date03 input{
+    width: 25px;
+}
+.ident2 input{
+    width: 40px;
+    text-align:center;
+}
+.ident4{
+    text-indent: 18pt;
+}
+/*tr间距*/
+.ident5{
+    height: 6px!important;
+}
+/*签名图片*/
+.img-name02{
+    width: 60px;
+    height: 21px;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    margin-top: -2px;
+}
+.img-name02 img{
+    width: 60px;
+    height: 21px;
+}
+.img-name03{
+    width: 48px;
+    height: 21px;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    margin-top: -2px;
+}
+.img-name03 img{
+    width: 48px;
+    height: 21px;
+}
+.img-name04{
+    width: 140px;
+    height: 21px;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: relative;
+    left: -2px;
+    top: 4px;
+    overflow: hidden;
+    margin-top: -2px;
+}
+.img-name04 img{
+    width: 140px;
+    height: 21px;
+}
+/*12.工作组成员安全交底签名*/
+.table05{
+    text-align: center;
+    width: 16.7%;
+}
+.table01,.table03,.table05{
+    border-collapse: collapse;
+}
+.table09-put{
+    width: 90%!important;
+    margin-top:5px;
+    float: right;
+}

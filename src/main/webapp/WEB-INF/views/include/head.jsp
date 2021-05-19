@@ -24,6 +24,15 @@ var _imsBucketName_ = '${_imsBucketName_}';
  var templateIndex =  "${fns:getConfig('sys.templateIndex')}";
  var _currUserStr_ = '${userinfoJson}';
  var _currUser_ = JSON.parse(_currUserStr_);
+ 
+ function iamCodeValue(){
+	  if(iamCode_){
+		  return iamCode_;
+	  }else{
+		  var code = getCookie("iamCode");
+		  return code;
+	  }	  	 
+ }
 </script>
 
 

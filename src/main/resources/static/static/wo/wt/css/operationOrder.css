@@ -1,0 +1,200 @@
+
+
+/* * {
+    box-sizing: border-box;
+    color: #333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body{
+  background-color: #f6f6f6;
+  position: relative;
+} */
+
+.dangerContent h1,.dangerContent h2,.dangerContent h3,.dangerContent h4,.dangerContent h5,.dangerContent h6,.dangerContent body {
+    margin: 0;
+}
+
+.dangerContent ul,.dangerContent ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dangerContent dl,.dangerContent dd {
+    margin: 0;
+    list-style: none;
+}
+
+.dangerContent img {
+    border: none;
+}
+
+.dangerContent a {
+    text-decoration: none;
+    color: #333;
+}
+
+.dangerContent s,.dangerContent i {
+    text-decoration: none;
+    font-style: normal;
+}
+
+/* button{ */
+/*     border: none; */
+/* } */
+
+.dangerContent .clearfix {
+    clear: both;
+}
+
+.dangerContent input,.dangerContent selec,.dangerContent ,.dangerContent option{
+    background: none;
+    border: none;
+}
+
+.dangerContent td,.dangerContent th{
+    border:0.01rem solid #333 ;
+}
+
+.header {
+
+    width: 100%;
+    text-align: right;
+    position: relative;
+    margin-bottom:40px;
+/*     margin-top:30px; */
+}
+.dangerContent .header.host {
+    height: 28px;
+    margin-bottom: 48px;
+}
+
+.dangerContent .header h1 {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.dangerContent header h2 {
+    font-weight: 400;
+    position: absolute;
+    font-size:14px;
+/*     right: 0; */
+}
+.dangerContent header p{
+    position: absolute;
+    left: 0;
+    bottom: -54px;
+    font-size: 16px;
+}
+.dangerContent header h2 span{
+    border-bottom: 1px solid #333;
+}
+.dangerContent .invar,.dangerContent .invarLine{
+	position:relative;
+}
+.dangerContent .invar .page,.dangerContent .invarLine .page{
+    position: relative;
+}
+.dangerContent .invar .page p:nth-child(2),.dangerContent .invarLine .page p:nth-child(2){
+   position: absolute;
+    right: 0;
+    top: -13px;
+
+}
+
+#printWoOt {
+    position: fixed;
+    top: 0;
+/*     left: 0; */
+    z-index: 999;
+}
+
+.dangerContent .footer {
+    /*font-size: 0.2rem;*/
+    padding-top: 10px;
+}
+
+.dangerContent .footer ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dangerContent .footer li {
+    line-height: 14px;
+}
+
+.dangerContent .footer span {
+    border-bottom: 0.01rem solid #333;
+    padding: 0 5px ;
+}
+
+.dangerContent .main .pageFooter {
+    font-size: 0.2rem;
+    text-align: center;
+}
+
+.dangerContent #describe{
+    width: 90px;
+    height: 44px;
+    position: absolute;
+    right: 0;
+}
+.dangerContent #describe img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: none;*/
+}
+
+.dangerContent #execute{
+    width: 72px;
+    height: 31px;
+    position: absolute;
+    right: 0;
+    top:100px;
+}
+
+.dangerContent #execute img{
+    position: absolute;
+    top:36px;
+    left: 0;
+    /*display: none;*/
+}
+
+.dangerContent .underline span{
+	text-decoration:underline;
+}
+
+.dangerContent .header h2.day {
+    right: 0;
+}
+
+
+
+.dangerContent table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #000;
+}
+
+.dangerContent  td, .dangerContent th {
+    border: 1px solid #000;
+    text-align: left;
+/*     padding: 3px 5px; */
+    height: 29px;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+    /* .invar td,.invarLine td,.invar th,.invarLine th {
+        border: 1px solid #000;
+        padding: 3px 5px;
+        height: 29px;
+    } */
+.dangerContent .invarLine td,.invarLine th {
+	text-align: center;
+}
+    

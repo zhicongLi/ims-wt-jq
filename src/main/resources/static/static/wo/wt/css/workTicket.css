@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+/*
+工作票的公用样式
+*/
+body{
+	
+	 margin:8px!important;
+}
+/* 打印按钮的样式 */
+button{
+    font-size: 16pt; 
+    margin-right:160pt;
+    margin-top: 5pt;
+}
+/* 工作票标题 样式*/
+h3{
+    font-family: '宋体'; 
+    font-size: 24pt; 
+    line-height: 30pt; 
+    text-align: center; 
+    height: 50pt"
+}
+/* table  tr{  
+   height: 25pt;
+   line-height:20pt;
+   
+} */
+ table , tr ,td {
+	height:28pt;
+	 /* border:1pt solid black; */ 
+} 
+
+table {
+   width:100%!important;
+	 
+}
+/* 需要隐藏两个表格之间的重叠部分 */
+.whitetable{
+  border-top: 0pt solid white;
+}
+
+/* 设置时间的格式  */
+.spantime{
+     display: inline-block;
+     margin:2pt 5pt;
+     border-bottom:1pt solid #D3D3D3;
+    
+        }
+/* 当没有获取到时间数据时默认给一个样式 */        
+.current{    
+    
+     width:10pt;
+     
+        }
+/* 部分需要居中额列 */  
+.middletd{
+    width: 50%; 
+    border-right: 0pt;
+    text-indent: 1em;
+}  
+input{
+	 font-family:宋体;
+	  font-weight:lighter!important;
+	 font-size:medium;
+	 border-left: 0; 
+	 border-right: 0;
+	 border-top: 0; 
+	 border-bottom: 1px solid  	#000000;
+	 /* border-bottom: 1px solid rgb(192,192,192); */
+}
+ #leftdiv,#rightdiv{     
+      display:inline-block;
+      vertical-align:top;
+      height:100%;         
+    } 
+    #leftdiv{       
+       width:46%;
+       margin-right:50px;
+    }
+     #rightdiv{       
+       width:49%;       
+    }
+     #rightdiv table{
+       line-height:26px;
+    } 
+
+

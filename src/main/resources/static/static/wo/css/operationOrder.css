@@ -1,0 +1,116 @@
+html {
+    /*width:210mm;*/
+}
+
+td,th{
+    border:0.01rem solid #333 ;
+}
+
+.header {
+
+    width: 100%;
+    text-align: right;
+    position: relative;
+    margin-bottom:40px;
+/*     margin-top:30px; */
+}
+.header.host {
+    height: 28px;
+    margin-bottom: 48px;
+}
+
+.header h1 {
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+header h2 {
+    font-weight: 400;
+    position: absolute;
+    font-size:14px;
+/*     right: 0; */
+}
+header p{
+    position: absolute;
+    left: 0;
+    bottom: -54px;
+    font-size: 16px;
+}
+header h2 span{
+    border-bottom: 1px solid #333;
+}
+.invar,.invarLine{
+	position:relative;
+}
+.invar .page,.invarLine .page{
+    position: relative;
+}
+.invar .page p:nth-child(2),.invarLine .page p:nth-child(2){
+   position: absolute;
+    right: 0;
+    top: -13px;
+
+}
+
+#printWoOt {
+    position: fixed;
+    top: 0;
+/*     left: 0; */
+    z-index: 999;
+}
+
+.footer {
+    /*font-size: 0.2rem;*/
+    padding-top: 10px;
+}
+
+.footer ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer li {
+    line-height: 14px;
+}
+
+.footer span {
+    border-bottom: 0.01rem solid #333;
+    padding: 0 5px ;
+}
+
+.main .pageFooter {
+    font-size: 0.2rem;
+    text-align: center;
+}
+
+#describe{
+    width: 135px;
+    height: 44px;
+    position: absolute;
+    right: 0;
+}
+#describe img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: none;*/
+}
+
+#execute{
+    width: 135px;
+    height: 44px;
+    position: absolute;
+    right: 0;
+    top:100px;
+}
+
+#execute img{
+    position: absolute;
+    top:36px;
+    left: 0;
+    /*display: none;*/
+}
+
+.underline span{
+	text-decoration:underline;
+}

@@ -1,0 +1,11 @@
+.header {
+
+}
+
+.header h2 {
+/*     right: 700px; */
+}
+
+.header h2.day {
+    right: 0;
+}

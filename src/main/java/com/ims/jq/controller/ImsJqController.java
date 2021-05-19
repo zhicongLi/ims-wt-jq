@@ -3,9 +3,11 @@ package com.ims.jq.controller;
 import com.ims.jq.interceptor.IAMUtils;
 import com.ims.jq.interceptor.TrepsException;
 import com.ims.jq.interceptor.User;
+import com.ims.jq.service.ImsJqService;
 import com.ims.jq.utils.Global;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@Slf4j
+//@Slf4j
 @Configurable
 public class ImsJqController {
-
+	@Autowired
+	private ImsJqService imsJqService;
     @RequestMapping("/")
     public String index(Model model) {
         this.handleCtx(model);
@@ -39,7 +42,7 @@ public class ImsJqController {
             // 如果已经登录，则跳转到管理首页
 //            System.out.println("redirectUrl:"+redirectUrl);
             String loginName = IAMUtils.fromIamGetUserInfo(iamAccessToken);
-            log.info("loginName:"+loginName);
+            //log.info("loginName:"+loginName);
             System.out.println("loginName:"+loginName);
 
             User user = new User();
@@ -107,7 +110,24 @@ public class ImsJqController {
     public String form(String view, Model model) {
 
         this.handleCtx(model);
-
+        return view;
+    }
+    
+    //获取后台接口数据用于工作票打印预览
+    @RequestMapping(value = "/form2")
+    public String form2(String view, Model model,String id,String wtType,String iamCode) {      	      
+    	model = imsJqService.findWoWt(id,wtType,iamCode, model);
+    	 this.handleCtx(model);
+    	//System.out.println(model);
+        return view;
+    }
+    
+  //获取后台接口数据用于工作票打印预览
+    @RequestMapping(value = "/form3")
+    public String form3(String view, Model model,String id,String iamCode) {      	      
+    	model = imsJqService.findWoWtTask(id,iamCode, model);
+    	 this.handleCtx(model);
+    	//System.out.println(model);
         return view;
     }
 

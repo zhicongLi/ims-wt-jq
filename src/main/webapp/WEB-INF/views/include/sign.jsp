@@ -71,7 +71,7 @@
 			<tr>
 				<td colspan="1">执行状态：</td>
 				<td colspan="11">
- 					<input name="execDesc1" id="execDesc1"  class="mini-combobox" vtype = ""  required="false" valueField="value" textField="label"  url="${ctx}/sys/dict/listDataStr?type=omLogMeetWork_exec_status" />
+ 					<input name="execDesc1" id="execDesc1"  class="mini-combobox" vtype = ""  required="false" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=omLogMeetWork_exec_status" />
 				</td>
 			</tr>
 			<tr>
@@ -184,8 +184,13 @@
 		var form = new mini.Form("#signform_");
 		form.reset();//清空内容
 		editWindow.show();
-		var userJson = getCurrUserInfo(false);
-		var user = mini.decode(userJson);
+		//原有获取当前登录者信息
+		//var userJson = getCurrUserInfo(false);
+		//var user = mini.decode(userJson);
+				
+		//现有微服务获取当前登录者信息
+		 var _currUserStr_ = '${userinfoJson}';
+		 var user = JSON.parse(_currUserStr_);
 		mini.get("signUserName_").setValue(user.loginName);
 		mini.get("signPassWord_").focus();
 	}
@@ -254,10 +259,10 @@
 		}
 		$.ajax({
 		        type: "POST",
-		        url: "${ctx}/wo/woWt/saveQueryResult",
+		        url: "${ctx}/wo-wt/wo/woWt/saveQueryResult",
 		        data : json,
 		        success: function (text) {
-		        	var o = mini.decode(text);
+		        	var o = mini.decode(text);		        	
 		        	if(o.type == "I"){
 		        		//var cell = mini.get(mini.get("buttonEditId_").getValue());
 		        		var uid = signCell.getValue();

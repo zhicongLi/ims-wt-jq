@@ -22,7 +22,7 @@ import com.ims.jq.utils.Global;
 import lombok.extern.slf4j.Slf4j;
 import sun.misc.BASE64Encoder;
 
-@Slf4j
+//@Slf4j
 @Component
 public class AuthorityInterceptor implements HandlerInterceptor {
 
@@ -41,14 +41,14 @@ public class AuthorityInterceptor implements HandlerInterceptor {
         String loginRedirect = Global.getConfig("login.redirect");
         String loginSuccessUrl = Global.getConfig("login.success.url");
         String redirectUrl = Global.getConfig("redirect.url");
-        log.info("redirectUrl:" + redirectUrl);
+        //log.info("redirectUrl:" + redirectUrl);
         System.out.println("redirectUrl:" + redirectUrl);
 
         if ("true".equalsIgnoreCase(loginRedirect)) {
             if (StringUtils.isBlank(loginSuccessUrl) || StringUtils.isBlank(redirectUrl)) {
                 throw new TrepsException("login.redirect、login.success.url、redirect.url不能为空！");
             }
-            log.info("SystemAuthorizingRealm.Principal:===");
+            //log.info("SystemAuthorizingRealm.Principal:===");
             System.out.println("SystemAuthorizingRealm.Principal:===");
 //            User user = map.get(key);
 //            if(user != null){
@@ -110,7 +110,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
                     response.sendRedirect("/logout");
                     return false;
                 }
-                log.info("loginUser:" + userInfo.toString());
+                //log.info("loginUser:" + userInfo.toString());
                 request.setAttribute("userInfo", userInfo);
                 setUserInfoStr(request,userInfo);
                 //把token写入到cookie
@@ -168,7 +168,7 @@ public class AuthorityInterceptor implements HandlerInterceptor {
             }
             JSONObject resultJson = JSONObject.parseObject(result);
             if (resultJson.containsKey("error")) {
-                log.error("iam.fromIamGetUserInfo error result:" + resultJson.toString());
+                //log.error("iam.fromIamGetUserInfo error result:" + resultJson.toString());
                 return null;
             } else {
                 // 获取userId
