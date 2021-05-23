@@ -23,323 +23,93 @@
 			<sys:toolbargridmain objId="WoWt" permissionEdit="wo:woWt:edit"></sys:toolbargridmain>			
 			<sys:searchadv></sys:searchadv>
 			<div class="mini-fit">
-				<div id="datagridMain" class="mini-datagrid"
-					style="width: 100%; height: 100%;"
-					url="${ctx}/wo/woWt/data?baseQuery=a.is_standard=${isStandard}"
-					idField="id" allowResize="true" pageSize="10"
-					allowCellSelect="true" multiSelect="false"
-					editNextOnEnterKey="true" editNextRowCell="true"
-					allowAlternating="true" showFilterRow="true"
-					showColumnsMenu="false">
+				<div id="datagridMain" class="mini-datagrid" style="width: 100%; height: 100%;"
+					url="${ctx}/wo/woWt/data?baseQuery=a.is_standard=${param.isStandard}"
+					idField="id" allowResize="true" pageSize="10" allowCellSelect="true" multiSelect="false"
+					editNextOnEnterKey="true" editNextRowCell="true" allowAlternating="true" showFilterRow="true" showColumnsMenu="false">
 					<div property="columns">
-						<div name="action" width="120" headerAlign="center" align="center"
-							renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
-						<div name="id" field="id" vtype="required" headerAlign="center"
-							allowSort="true" width="64" visible="false" hideable="true">
-							编号 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="id-Filter"
-								name="mini-column-filter" property="filter" class="mini-textbox"
-								style="width: 100%;" onvaluechanged="onFilterChanged"
-								showClose="true" oncloseclick="onFilterClose(this)" />
+						<div name="action" width="120" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
+						<div name="id" field="id" vtype="required" headerAlign="center" allowSort="true" width="64" visible="false" hideable="true">编号 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="id-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>											
+						<div name="wtCode" field="wtCode" vtype="" headerAlign="center" allowSort="true" width="200">工作票号 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="wtCode-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="woId" field="woId" vtype="" headerAlign="center"
-							allowSort="true" width="64" visible="false" hideable="true">
-							工单id <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="woId-Filter"
-								name="mini-column-filter" property="filter" class="mini-textbox"
-								style="width: 100%;" onvaluechanged="onFilterChanged"
-								showClose="true" oncloseclick="onFilterClose(this)" />
-						</div>						
-						<div name="wtCode" field="wtCode" vtype="" headerAlign="center"
-							allowSort="true" width="200">
-							工作票号 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="wtCode-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">动火工作内容 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="content" field="content" vtype=""
-							headerAlign="center" allowSort="true" width="300">
-							动火工作内容 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="content-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="false" width="100" sortField="a.status">状态 
+							<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/wo-wt/sys/dict/listDataStr?type=wo_wt_status" /> 
+							<input id="status-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label" multiSelect="true"
+							  url="${ctx}/wo-wt/sys/dict/listDataStr?type=wo_wt_status" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="status" field="status" vtype="" type="comboboxcolumn"
-							headerAlign="center" allowSort="false" width="100"
-							sortField="a.status">
-							状态 <input property="editor" class="mini-combobox"
-								style="width: 100%;" valueField="value" textField="label"
-								url="${ctx}/wo-wt/sys/dict/listDataStr?type=wo_wt_status" /> <input
-								id="status-Filter" name="mini-column-filter" property="filter"
-								class="mini-combobox" valueField="value" textField="label"
-								multiSelect="true"
-								url="${ctx}/wo-wt/sys/dict/listDataStr?type=wo_wt_status"
-								style="width: 100%;" onvaluechanged="onFilterChanged"
-								showClose="true" oncloseclick="onFilterClose(this)" />
+						<div name="orgName" field="orgName" vtype="" headerAlign="center" allowSort="true" width="300">部门 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="orgName" field="orgName" vtype=""
-							headerAlign="center" allowSort="true" width="300">
-							部门 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="content-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="wtType" field="wtType" vtype="" headerAlign="center" type="comboboxcolumn" allowSort="false" width="145" visible="false" hideable="true">类型 
+							<input property="editor" class="mini-combobox" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_user_wt_type" style="width: 100%;" /> 
+							<input id="wtType-Filter" name="mini-column-filter" property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="wtType" field="wtType" vtype="" headerAlign="center"
-							type="comboboxcolumn" allowSort="false" width="145"
-							visible="false" hideable="true">
-							类型 <input property="editor" class="mini-combobox"
-								valueField="value" textField="label"
-								url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_user_wt_type"
-								style="width: 100%;" /> <input id="wtType-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-combobox" multiSelect="true" valueField="value"
-								textField="label" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="specName" field="specName" vtype=""
-							headerAlign="center" allowSort="true" width="300">
-							专业<input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="content-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="specName" field="specName" vtype="" headerAlign="center" allowSort="true" width="300">专业
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>							
-						<div name="woWtFire.fireMode" field="woWtFire.fireMode" vtype=""
-							headerAlign="center" allowSort="true" width="184"
-							sortField="wwf.fire_mode" hideable="true" visible="false">
-							工作方式 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="woWtFire.fireMode-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="woWtFire.fireMode" field="woWtFire.fireMode" vtype="" headerAlign="center" allowSort="true" width="184" sortField="wwf.fire_mode" hideable="true" visible="false">工作方式 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="woWtFire.fireMode-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="descr" field="descr" vtype="" headerAlign="center"
-							allowSort="true" width="100" hideable="true" visible="false">
-							描述 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="descr-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="true" width="100" hideable="true" visible="false">描述 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="descr-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="location" field="location" vtype=""
-							headerAlign="center" allowSort="true" width="200" hideable="true" visible="false">
-							工作地点 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="location-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="location" field="location" vtype="" headerAlign="center" allowSort="true" width="200" hideable="true" visible="false">工作地点 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="location-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="planStartTime" field="planStartTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160"  hideable="true">
-							申请动火时间开始时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="planStartTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="planStartTime" field="planStartTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160"  hideable="true">申请动火时间开始时间 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="planStartTime-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="planEndTime" field="planEndTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160"  hideable="true">
-							申请动火时间结束时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="planEndTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="planEndTime" field="planEndTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160"  hideable="true">申请动火时间结束时间 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="planEndTime-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>						
+						<div name="workLeaderName" field="workLeaderName" vtype="" headerAlign="center" allowSort="true" width="100">工作负责人 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="workLeaderName-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="workLeader" field="workLeader" vtype=""
-							headerAlign="center" allowSort="true" width="64"
-							hideable="true" visible="false">
-							工作负责人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="workLeader-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="wtSigner" field="wtSigner" vtype="" headerAlign="center" allowSort="true" width="64" hideable="true" visible="false">工作票签发人
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="wtSigner-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="workLeaderName" field="workLeaderName" vtype=""
-							headerAlign="center" allowSort="true" width="100">
-							工作负责人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="workLeaderName-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="wtSignerName" field="wtSignerName" vtype="" headerAlign="center" allowSort="true" width="100">工作票签发人 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="wtSignerName-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="wtSigner" field="wtSigner" vtype=""
-							headerAlign="center" allowSort="true" width="64"
-							hideable="true" visible="false">
-							工作票签发人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="wtSigner-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="wtSignDate" field="wtSignDate" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160" hideable="true" visible="false">工作票签发时间 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="wtSignDate-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>						
+						<div name="woWtFire.endExecByName" field="woWtFire.endExecByName" vtype="" headerAlign="center" allowSort="true" width="100" sortField="wwf.end_exec_by_name" visible="false" hideable="true">动火执行人 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="woWtFire.endExecByName-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="wtSignerName" field="wtSignerName" vtype=""
-							headerAlign="center" allowSort="true" width="100">
-							工作票签发人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="wtSignerName-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
+						<div name="woWtFire.endFiremanByName" field="woWtFire.endFiremanByName" vtype="" headerAlign="center" allowSort="true" width="100" sortField="wwf.end_fireman_by_name" visible="false" hideable="true">消防监护人 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="woWtFire.endFiremanByName-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>						
+						<div name="woWtFire.workTickets" field="woWtFire.workTickets" vtype="" headerAlign="center" allowSort="true" width="64" sortField="wwf.work_tickets" visible="false" hideable="true">备注 
+							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+							<input id="woWtFire.workTickets-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="wtSignDate" field="wtSignDate" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160" hideable="true" visible="false">
-							工作票签发时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="wtSignDate-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="pcSigner" field="pcSigner" vtype=""
-							headerAlign="center" allowSort="true" width="64"
-							hideable="true" visible="false">
-							点检签发人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="pcSigner-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="wtReceiver" field="wtReceiver" vtype=""
-							headerAlign="center" allowSort="true" width="64"
-							hideable="true" visible="false">
-							工作票接收人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="wtReceiver-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="appStartTime" field="appStartTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160" visible="false" hideable="true">
-							批准工作开始时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="appStartTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="appEndTime" field="appEndTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160" visible="false" hideable="true">
-							批准工作结束时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="appEndTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="permitByName" field="permitByName" vtype=""
-							headerAlign="center" allowSort="true" width="100">
-							运行许可人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="permitByName-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="permitStartTime" field="permitStartTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160">
-							许可开始工作时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="permitStartTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="actEndTime" field="actEndTime" vtype=""
-							dateFormat="yyyy-MM-dd HH:mm" headerAlign="center"
-							allowSort="true" width="160">
-							工作终结时间 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="actEndTime-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="woWtFire.endExecByName"
-							field="woWtFire.endExecByName" vtype="" headerAlign="center"
-							allowSort="true" width="100" sortField="wwf.end_exec_by_name" visible="false" hideable="true">
-							动火执行人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input
-								id="woWtFire.endExecByName-Filter" name="mini-column-filter"
-								property="filter" class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="woWtFire.endFiremanByName"
-							field="woWtFire.endFiremanByName" vtype="" headerAlign="center"
-							allowSort="true" width="100"
-							sortField="wwf.end_fireman_by_name" visible="false" hideable="true">
-							消防监护人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input
-								id="woWtFire.endFiremanByName-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="endWorkLeaderName" field="endWorkLeaderName" vtype=""
-							headerAlign="center" allowSort="true" width="100"
-							sortField="a.end_work_leader_name" visible="false" hideable="true">
-							工作负责人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input id="endWorkLeaderName-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="woWtFire.endPermitByName"
-							field="woWtFire.endPermitByName" vtype="" headerAlign="center"
-							allowSort="true" width="100" sortField="wwf.end_permit_by_name" visible="false" hideable="true">
-							工作许可人 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input
-								id="woWtFire.endPermitByName-Filter" name="mini-column-filter"
-								property="filter" class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="woWtFire.workTickets" field="woWtFire.workTickets"
-							vtype="" headerAlign="center" allowSort="true" width="64"
-							sortField="wwf.work_tickets" visible="false" hideable="true">
-							备注 <input property="editor" class="mini-textbox"
-								style="width: 100%;" /> <input
-								id="woWtFire.workTickets-Filter" name="mini-column-filter"
-								property="filter" class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-						<div name="remarks" field="remarks" vtype=""
-							headerAlign="center" allowSort="true" width="255"
-							sortField="a.remarks" visible="false" hideable="true">
-							其他事项 <input property="editor" class="mini-textarea"
-								style="width: 100%;" /> <input id="remarks-Filter"
-								name="mini-column-filter" property="filter"
-								class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true"
-								oncloseclick="onFilterClose(this)" />
-						</div>
-							
+						<div name="remarks" field="remarks" vtype="" headerAlign="center" allowSort="true" width="255" sortField="a.remarks" visible="false" hideable="true"> 其他事项 
+							<input property="editor" class="mini-textarea" style="width: 100%;" /> 
+							<input id="remarks-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true"	oncloseclick="onFilterClose(this)" />
+						</div>							
 					</div>
 				</div>
 			</div>
@@ -388,23 +158,18 @@
 							<input class="mini-hidden" name="woJobId" id="woJobId" />
 							<input type="hidden" name="videoServer" id="videoServer" value="${param.videoServer}"/>
 							<!-- 动火方式 -->
-							<input class="mini-hidden" name="woWtFire.fireMode" id="woWtFire.fireMode" />
-							
+							<input class="mini-hidden" name="woWtFire.fireMode" id="woWtFire.fireMode" />							
 							<input type="hidden" name="canEdit" id="canEdit" value="${canEdit}"/>
 							<input class="mini-hidden" name="examineTime" id="examineTime" />
 							<input class="mini-hidden" name="randomCode" id="randomCode" />
-							<input class="mini-hidden" name="serialNumber" id="serialNumber" />
-							
-							<input class="mini-hidden" name="isTop" id="isTop" />
-							
+							<input class="mini-hidden" name="serialNumber" id="serialNumber" />							
+							<input class="mini-hidden" name="isTop" id="isTop" />							
 							<input class="mini-hidden" name="isClose" id="isClose" />
 							<input class="mini-hidden" name="cancelDutyLeader" id="cancelDutyLeader" />
-							<input class="mini-hidden" name="cancelDutyLeaderName" id="cancelDutyLeaderName" />
-													
+							<input class="mini-hidden" name="cancelDutyLeaderName" id="cancelDutyLeaderName" />													
 							<!-- 许可人部门及终结许可人部门  -->
 							<input class="mini-hidden" name="permitByOrgId" id="permitByOrgId" />
-							<input class="mini-hidden" name="endPermitByOrgId" id="endPermitByOrgId" />
-							
+							<input class="mini-hidden" name="endPermitByOrgId" id="endPermitByOrgId" />							
 							<!-- 是否进行过延期或者负责人变更 1：是 0：否  -->
 							<input class="mini-hidden" name="woWtDelay.isDelay" id="woWtDelay.isDelay" />
 							<input class="mini-hidden" name="woWtLC.isLeaderChange" id="woWtLC.isLeaderChange" />
@@ -412,10 +177,13 @@
 							<table class="formtable">
 								<tr>
 									<td style="padding-left: 5px;">一级动火工作票No：</td>
-									<td><input name="wtCode" id="wtCode" class="mini-textbox" readonly="readonly" width="200px"/></td>
+									<td>
+									  <input name="wtCode" id="wtCode" class="mini-textbox" readonly="readonly" width="200px"/>
+									</td>
 									<td>状态</td>
 									<td>
-									    <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="false" required="false" valueField="value" textField="label" vtype="" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
+									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="false" required="false" valueField="value" textField="label" vtype="" 
+									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
 									</td>
 									<td>专业:</td>
 									<td>
@@ -425,75 +193,75 @@
 								<tr>
 									<td>所属设备KKS：</td>
 									<td>
-									    <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="true" class="mini-buttonedit" vtype="" required="false" width="200px"
+									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="true" class="mini-buttonedit" vtype="" required="false" width="200px"
 										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)" onvaluechanged="updateEquip()" />
 									</td>
 									<td align="left">所属设备名称：</td>
-									<td><input name="equipName" id="equipName" class="mini-textbox" readonly="readonly" /></td>
+									<td>
+									  <input name="equipName" id="equipName" class="mini-textbox" readonly="readonly" />
+									</td>
 									<td align="left">所属设备编码：</td>
-									<td><input name="equipId" id="equipId" class="mini-textbox" readonly="readonly" /></td>
+									<td>
+									  <input name="equipId" id="equipId" class="mini-textbox" readonly="readonly" />
+									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">部门：</td>
 									<td >
-									    <input name="orgId" id="orgId" textName="orgName" required="true" class="mini-buttonedit" width="200px"
+									  <input name="orgId" id="orgId" textName="orgName" required="true" class="mini-buttonedit" width="200px"
 										onbuttonclick="popLov(this,'选择部门',false,true,'${ctx}/sys/sysOrg/list?classId=0',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
 									</td>
 									<td>班组：</td>
 									<td >
-									    <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype=""
-										required="false" width="150px" allowInput="false" onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
-									</td>
-									<!-- <td>机组:</td>
-									<td ><input name="plantUnit" id="plantUnit" class="mini-combobox"
-										allowInput="false" enabled="true" required="false"
-										valueField="value" textField="label" vtype="" width="150"
-										url="${ctx}/sys/dict/listDataStr?type=wo_plant_unit" /></td> -->
+									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false" 
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+									</td>									
 									<td></td>	
 									<td></td>	
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火负责人签名：</td>
 									<td colspan="5">
-									    <input name="workLeaderName" id="workLeaderName" class="mini-textbox" allowInput="false" width="200px"/>
+									  <input name="workLeaderName" id="workLeaderName" class="mini-textbox" allowInput="false" width="200px"/>
 									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火执行人签名：</td>
 									<td>										
-										<input name="woWtFire.execByName" id="woWtFire.execByName" class="mini-textbox" allowInput="true" width="200px"\/>
+									  <input name="woWtFire.execByName" id="woWtFire.execByName" class="mini-textbox" allowInput="true" width="200px"\/>
 									</td>
 									<td align="left">证件编号：</td>
-									<td colspan="3"><input name="woWtFire.execByIdNumber" id="woWtFire.execByIdNumber" class="mini-textbox" /></td>
+									<td colspan="3">
+									  <input name="woWtFire.execByIdNumber" id="woWtFire.execByIdNumber" class="mini-textbox" />
+									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火执行人签名：</td>
 									<td>										
-										<input name="woWtFire.execByName2" id="woWtFire.execByName2" class="mini-textbox" allowInput="true" width="200px"/>
+									  <input name="woWtFire.execByName2" id="woWtFire.execByName2" class="mini-textbox" allowInput="true" width="200px"/>
 									</td>
 									<td align="left">证件编号：</td>
-									<td colspan="3"><input name="woWtFire.execByIdNumber2" id="woWtFire.execByIdNumber2" class="mini-textbox" /></td>
+									<td colspan="3">
+									  <input name="woWtFire.execByIdNumber2" id="woWtFire.execByIdNumber2" class="mini-textbox" />
+									</td>
 								</tr>
 								<tr>
 									<td>动火地点及设备名称：</td>
 									<td colspan="5">
-									    <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true"
+									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true"
 										onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
 									</td>
 								</tr>
 								<tr>
 									<td>动火工作内容（必要时可附页绘图说明）：</td>
-									<td colspan="5"><input name="content" id="content" class="mini-textarea" vtype="" required="false" width="100%" /></td>
+									<td colspan="5">
+									  <input name="content" id="content" class="mini-textarea" vtype="" required="false" width="100%" />
+									</td>
 								</tr>
 								<tr>
-									<td>动火方式</td>									
-									<%-- <td colspan="3">
-									    <input name="woWtFire.fireModeId" id="woWtFire.fireModeId" allowInput="true" required="true" class="mini-combobox" width="200px"
-										valueField="value" textField="label" vtype="" textName="woWtFire.fireMode" url="${ctx}/sys/dict/listDataStr?type=wo_wt_firemode" />
-									</td>	 --%>
+									<td>动火方式</td>																		
 									<td colspan="3" >									     
-										<div id="woWtFire.fireModeId" name="woWtFire.fireModeId"  class="mini-checkboxlist" repeatItems="6" repeatLayout="table"
-											 textField="label" valueField=value 
+										<div id="woWtFire.fireModeId" name="woWtFire.fireModeId"  class="mini-checkboxlist" repeatItems="6" repeatLayout="table"  textField="label" valueField=value 
 											 url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_firemode" >
 										</div>
 									</td>
@@ -503,41 +271,30 @@
 								<tr>
 									<td>申请动火时间：</td>
 									<td colspan="5" align="left">
-									            自：<input name="planStartTime" id="planStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="200px" /> 
-										至： <input name="planEndTime" id="planEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="200px" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
+									  自：<input name="planStartTime" id="planStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="200px" /> 
+									  至： <input name="planEndTime" id="planEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="200px" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
 									</td>
-								</tr>								
-								
-								<tr id="sotID">
-									
+								</tr>																
+								<tr id="sotID">									
 									<td>许可部门：</td>
 									<td colspan="3">
-									    <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_is_fuel_run" />
+									  <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
+									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_is_fuel_run" />
 									</td>	
-								</tr>
-								
+								</tr>								
 								<tr>
 								    <td>是否风险区域：</td>
-									<td colspan="5"><input name="areaName" id="areaName"
-									textName="areaName" class="mini-buttonedit" vtype=""
-									required="false" allowInput="false" width="40%"
-									onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/em/emRiskArea/list',850,500,'areaName','areaName')" /></td>
+									<td colspan="5">
+									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="40%"
+									    onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/em/emRiskArea/list',850,500,'areaName','areaName')" /></td>
 								</tr>								
 							</table>
-							<div class="mini-panel" title="运行部门应采取的安全措施：" width="auto"
-								id="tabWoWtsmList" name="tabWoWtsmList"
-								showCollapseButton="false" onbuttonclick="onPanelButtonClick"
-								showFooter="true">
+							<div class="mini-panel" title="运行部门应采取的安全措施：" width="auto" id="tabWoWtsmList" name="tabWoWtsmList" showCollapseButton="false" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm" class="mini-datagrid sGrid"
-									style="width: 99.999%;"
+								<div id="gridWoWtsm" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=7"
-									idField="id" allowResize="false" showPager="false"
-									pageSize="1000" allowCellSelect="true" allowCellEdit="true"
-									allowCellWrap="true" editNextOnEnterKey="true"
-									editNextRowCell="true" showFilterRow="false"
-									allowAlternating="true" showColumnsMenu="true"
-									multiSelect="true">
+									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true" allowCellWrap="true" editNextOnEnterKey="true"
+									editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
 									<div property="columns">
 										<div type="checkcolumn"></div>
 										<div type="indexcolumn" width="30">序号</div>
@@ -549,30 +306,16 @@
 										</div>
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="600" sortField="a.descr">运行部门应采取的安全措施 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />											
-										</div>
-										<!-- <div name="execRes" field="execRes" vtype=""
-											headerAlign="center" allowCellWrap="true" allowSort="false"
-											width="200">
-											执行情况<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div> -->
+										</div>										
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="动火部门应采取的安全措施：" width="auto"
-								id="tabWoWtsm6List" name="tabWoWtsm6List"
-								showCollapseButton="false" onbuttonclick="onPanelButtonClick"
-								showFooter="true">
-								<sys:toolbargridsub girdId="gridWoWtsm6"
-									permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm6" class="mini-datagrid sGrid"
-									style="width: 99.999%;"
+							<div class="mini-panel" title="动火部门应采取的安全措施：" width="auto" id="tabWoWtsm6List" name="tabWoWtsm6List"showCollapseButton="false" onbuttonclick="onPanelButtonClick" showFooter="true">
+								<sys:toolbargridsub girdId="gridWoWtsm6" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
+								<div id="gridWoWtsm6" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=6"
-									idField="id" allowResize="false" showPager="false"
-									pageSize="1000" allowCellSelect="true" allowCellEdit="true"
-									allowCellWrap="true" editNextOnEnterKey="true"
-									editNextRowCell="true" showFilterRow="false"
-									allowAlternating="true" showColumnsMenu="true"
-									multiSelect="true">
+									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true" allowCellWrap="true" editNextOnEnterKey="true"
+									editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
 									<div property="columns">
 										<div type="checkcolumn"></div>
 										<div type="indexcolumn" width="30">序号</div>
@@ -584,12 +327,7 @@
 										</div>
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="600">动火部门应采取的安全措施 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
-										<!-- <div name="execRes" field="execRes" vtype=""
-											headerAlign="center" allowCellWrap="true" allowSort="false"
-											width="200">
-											执行情况<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div> -->
+										</div>										
 									</div>
 								</div>
 							</div>
@@ -600,47 +338,36 @@
 								</tr>
 								<tr>
 									<td align="right">动火工作票签发人：</td>
-									<td>
-										<!-- <input name="wtSignerName" id="wtSignerName" class="mini-textbox" allowInput="false"/>
-							  	        <a class="mini-button"  id="wtSignerName_" name="wtSignerName_" value="2" onClick="sign(this.name,this.value)">签字</a> -->
-										<input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									<td>										
+									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 									<td align="right">签发日期：</td>
 									<td>
-									    <input name="wtSignDate" id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="wtSignDate" id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
 									</td>
 								</tr>								
-								<tr>
-									<!-- <td align="right">动火部门负责人：</td>
-									<td>										
-										<input name="woWtFire.appCompLeader"
-										id="woWtFire.appCompLeaderName_"
-										textName="woWtFire.appCompLeaderName"
-										onbuttonclick="sign_('woWtFire.appCompLeaderName_','99')"
-										allowInput="false" class="mini-buttonedit defSign_" vtype=""
-										required="true" />
-									</td> -->
+								<tr>									
 									<td align="right">消防管理部门负责人：</td>
 									<td>										
-										<input name="woWtFire.sfDeptLeader" id="woWtFire.sfDeptLeaderName_" textName="woWtFire.sfDeptLeaderName"
-										 onbuttonclick="sign_('woWtFire.sfDeptLeaderName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+									  <input name="woWtFire.sfDeptLeader" id="woWtFire.sfDeptLeaderName_" textName="woWtFire.sfDeptLeaderName"
+									    onbuttonclick="sign_('woWtFire.sfDeptLeaderName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">安健环部负责人：</td>
 									<td>										
-										<input name="woWtFire.appCompSafeHealth" id="woWtFire.appCompSafeHealthName_" textName="woWtFire.appCompSafeHealthName"
-										 onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="woWtFire.appCompSafeHealth" id="woWtFire.appCompSafeHealthName_" textName="woWtFire.appCompSafeHealthName"
+									    onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 								</tr>
 								<tr>
 									<td align="right">分管安全生产的领导或总工程师：</td>
 									<td style="text-align: left;">										
-										<input name="woWtFire.appCompProcLeader" id="woWtFire.appCompProcLeaderName_" textName="woWtFire.appCompProcLeaderName"
-										 onbuttonclick="sign_('woWtFire.appCompProcLeaderName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="woWtFire.appCompProcLeader" id="woWtFire.appCompProcLeaderName_" textName="woWtFire.appCompProcLeaderName"
+										onbuttonclick="sign_('woWtFire.appCompProcLeaderName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 									<td align="right">批准动火时间：</td>
 									<td>									
-									            自 <input name="appStartTime" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 
-									            至 <input name="appEndTime" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
+									    自 <input name="appStartTime" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 
+									    至 <input name="appEndTime" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
 									</td>
 								</tr>
 								<tr>
@@ -649,44 +376,32 @@
 								<tr>
 									<td align="right">运行许可动火时间：</td>
 									<td>
-									    <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
 									</td>
 									<td align="right">运行许可人签名：</td>
 									<td style="text-align: left;">										
-										<input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader"
-										 onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader"
+										onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									     <!--检修负责人  新工作票没用 attachTab.jsp中的 padWorkLeader（）方法填充值需要这个字段 -->
 									</td>
-								</tr>
-								<!-- <tr>
-									<td colspan="4" style="height: 28px;">检修部应采取的安全措施已全部执行完毕</td>
-								</tr> -->
+								</tr>								
 								 <tr style="display: none;">
 									<td align="right">检修负责人签名：</td>
 									<td style="text-align: left;">
-									    <input name="smDutyPrincipal" id="smDutyPrincipalName_" textName="smDutyPrincipalName"
-										 onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="smDutyPrincipal" id="smDutyPrincipalName_" textName="smDutyPrincipalName"
+									    onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 								</tr> 
 								<tr>
 									<td colspan="6" style="height: 28px;">应配备的消防设施和采取的消防措施、安全措施已符合要求。可燃性、易爆气体含量或粉尘浓度合格。</td>
 								</tr>
 							 </table>
-							 <div class="mini-panel" title="可燃性、易爆气体含量或粉尘浓度测定：" width="auto"
-								id="tabWoWtMeasureList" name="tabWoWtMeasureList"
-								showCollapseButton="false" onbuttonclick="onPanelButtonClick"
-								showFooter="true">
-								<sys:toolbargridsub girdId="gridWoWtMeasure"
-									permissionEdit="wo:woWt:edit"></sys:toolbargridsub>
-								<div id="gridWoWtMeasure" class="mini-datagrid sGrid"
-									style="width: 99.999%;"
+							 <div class="mini-panel" title="可燃性、易爆气体含量或粉尘浓度测定：" width="auto" id="tabWoWtMeasureList" name="tabWoWtMeasureList" showCollapseButton="false" onbuttonclick="onPanelButtonClick" showFooter="true">
+								<sys:toolbargridsub girdId="gridWoWtMeasure" permissionEdit="wo:woWt:edit"></sys:toolbargridsub>
+								<div id="gridWoWtMeasure" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtMeasure/allData?woWtType=${param.wtType}"
-									idField="id" allowResize="false" showPager="false"
-									pageSize="1000" allowCellSelect="true" allowCellEdit="true"
-									allowCellWrap="true" editNextOnEnterKey="true"
-									editNextRowCell="true" showFilterRow="false"
-									allowAlternating="true" showColumnsMenu="true"
-									multiSelect="true">
+									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true" allowCellWrap="true" editNextOnEnterKey="true"
+									editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
 									<div property="columns">
 										<div type="checkcolumn"></div>
 										<div type="indexcolumn" width="30">序号</div>
@@ -721,88 +436,80 @@
 								<tr>
 									<td align="right">动火执行人签名：</td>
 									<td colspan="2">
-									   <input name="woWtFire.safeExecByName" id="woWtFire.safeExecByName" class="mini-textbox" allowInput="true" /> 
+									  <input name="woWtFire.safeExecByName" id="woWtFire.safeExecByName" class="mini-textbox" allowInput="true" /> 
 									</td>
                                     <td align="right">消防监护人签名：</td>
 									<td colspan="2">										
-										<input style="width: 180px" name="woWtFire.safeFiremanBy" id="woWtFire.safeFiremanBy" textName="woWtFire.safeFiremanByName" allowInput="false"
-										required="false" class="mini-buttonedit" onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.safeFiremanBy,woWtFire.safeFiremanByName')" />
+									  <input style="width: 180px" name="woWtFire.safeFiremanBy" id="woWtFire.safeFiremanBy" textName="woWtFire.safeFiremanByName" allowInput="false" required="false" class="mini-buttonedit" 
+									    onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.safeFiremanBy,woWtFire.safeFiremanByName')" />
 									</td>
 								</tr>								
 								<tr>
 									<td align="right">动火工作负责人签名：</td>
 									<td colspan="2">
-									    <input name="woWtFire.safeWorkLeaderName" id="woWtFire.safeWorkLeaderName" class="mini-textbox" allowInput="true" /> 
-									    <!-- <a class="mini-button"  id="woWtFire.safeWorkLeaderName_" name="woWtFire.safeWorkLeaderName_" value="1" onClick="sign(this.name,this.value)">签字</a> -->
+									  <input name="woWtFire.safeWorkLeaderName" id="woWtFire.safeWorkLeaderName" class="mini-textbox" allowInput="true" /> 									    
 									</td>
 									<td align="right">动火部门负责人签名：</td>
 									<td colspan="2">										
-										<input style="width: 180px" name="woWtFire.safeDeptLeaderName" id="woWtFire.safeDeptLeaderName" textName="woWtFire.safeDeptLeaderName" allowInput="false"
-										 required="false" class="mini-buttonedit" onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.safeDeptLeader,woWtFire.safeDeptLeaderName')" />										
+									  <input style="width: 180px" name="woWtFire.safeDeptLeaderName" id="woWtFire.safeDeptLeaderName" textName="woWtFire.safeDeptLeaderName" allowInput="false"  required="false" class="mini-buttonedit" 
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.safeDeptLeader,woWtFire.safeDeptLeaderName')" />										
 									</td>
 								</tr>
 								<tr>
 								    <td align="right">消防管理部门负责人：</td>
 									<td colspan="2">										
-										<input style="width: 180px" name="woWtFire.endsfDeptLeaderName" id="woWtFire.endsfDeptLeaderName" textName="woWtFire.endsfDeptLeaderName" allowInput="false"
-										required="false" class="mini-buttonedit" onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.endsfDeptLeader,woWtFire.endsfDeptLeaderName')" />									
+									  <input style="width: 180px" name="woWtFire.endsfDeptLeaderName" id="woWtFire.endsfDeptLeaderName" textName="woWtFire.endsfDeptLeaderName" allowInput="false" required="false" class="mini-buttonedit" 
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','woWtFire.endsfDeptLeader,woWtFire.endsfDeptLeaderName')" />									
 									</td>
 									<td align="right">安健环部负责人：</td>
 									<td colspan="2">										
-										<input style="width: 180px" name="woWtFire.safeCompSafeHealthName" id="woWtFire.safeCompSafeHealthName" textName="woWtFire.safeCompSafeHealthName" allowInput="false"
-										required="false" class="mini-buttonedit" onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?baseFilter=a.org_id=1963',850,500,'id,name','woWtFire.safeCompSafeHealth,woWtFire.safeCompSafeHealthName')" />										
+									  <input style="width: 180px" name="woWtFire.safeCompSafeHealthName" id="woWtFire.safeCompSafeHealthName" textName="woWtFire.safeCompSafeHealthName" allowInput="false" required="false" class="mini-buttonedit" 
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?baseFilter=a.org_id=1963',850,500,'id,name','woWtFire.safeCompSafeHealth,woWtFire.safeCompSafeHealthName')" />										
 									</td>									
 								</tr>
 								<tr>
 								    <td align="right">公司领导：</td>
 									<td colspan="2">										
-										<input style="width: 180px" name="woWtFire.safeCompProcLeaderName" id="woWtFire.safeCompProcLeaderName" textName="woWtFire.safeCompProcLeaderName" allowInput="false"
-										 required="false" class="mini-buttonedit" onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?baseFilter=a.org_id=1956',850,500,'id,name','woWtFire.safeCompProcLeader,woWtFire.safeCompProcLeaderName')" />										
+									  <input style="width: 180px" name="woWtFire.safeCompProcLeaderName" id="woWtFire.safeCompProcLeaderName" textName="woWtFire.safeCompProcLeaderName" allowInput="false" required="false" class="mini-buttonedit" 
+									    onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?baseFilter=a.org_id=1956',850,500,'id,name','woWtFire.safeCompProcLeader,woWtFire.safeCompProcLeaderName')" />										
 									</td>
 									<td align="right">允许动火时间：</td>
 									<td colspan="2">
-									    <input name="woWtFire.safeFireTime" id="woWtFire.safeFireTime" class="mini-datepicker"
-										 showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="woWtFire.safeFireTime" id="woWtFire.safeFireTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
 									</td>																
 								</tr>
 								<tr>
 									<td colspan="6" style="height: 28px;" _emptyName="动火工作全部结束时间">动火结束时间：动火工作于 
-									    <input name="actEndTime" id="actEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 全部结束。
+									  <input name="actEndTime" id="actEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 全部结束。
 									</td>
 								</tr>
 								<tr>
 									<td align="right">动火执行人签名：</td>
-									<td colspan="2">										
-										<!-- <input name="woWtFire.endExecBy" id="woWtFire.endExecByName_" textName="woWtFire.endExecByName"
-										onbuttonclick="sign_('woWtFire.endExecByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" /> -->
-										<input name="woWtFire.endExecByName" id="woWtFire.endExecByName" class="mini-textbox" allowInput="true"/>
+									<td colspan="2">																				
+									  <input name="woWtFire.endExecByName" id="woWtFire.endExecByName" class="mini-textbox" allowInput="true"/>
 									</td>
 									<td align="right">消防监护人签名：</td>
-									<td colspan="2">
-										<!-- <input name="woWtFire.endFiremanByName" id="woWtFire.endFiremanByName" class="mini-textbox" allowInput="true"/>
-							  	        <a class="mini-button"  id="woWtFire.endFiremanByName_" name="woWtFire.endFiremanByName_" value="99" onClick="sign(this.name,this.value)">签字</a> -->
-										<input name="woWtFire.endFiremanBy" id="woWtFire.endFiremanByName_" textName="woWtFire.endFiremanByName"
-										 onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									<td colspan="2">										
+									  <input name="woWtFire.endFiremanBy" id="woWtFire.endFiremanByName_" textName="woWtFire.endFiremanByName"
+										onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 								</tr>
 								<tr>
 									<td align="right">动火工作负责人签名：</td>
-									<td colspan="2">
-										<!-- <input name="endWorkLeaderName" id="endWorkLeaderName" class="mini-textbox" allowInput="true"/>
-							            <a class="mini-button"  id="endWorkLeaderName_" name="endWorkLeaderName_" value="1" onClick="sign(this.name,this.value)">签字</a>  -->
-										<input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
-										 onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									<td colspan="2">										
+									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
+									    onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td>
 									<td align="right">运行许可人签名：</td>
 									<td colspan="2">								
-										<input name="endPermitBy" id="endPermitByName_" textName="endPermitByName"
-										 onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName"
+										onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
 									</td> 									
 								</tr>								
 								<tr>
 									<td>备注：</td>
 									<td colspan="5">
-									    <input name="remarks" id="remarks" class="mini-textarea" vtype="" required="false" width="100%" height="200px" />
+									  <input name="remarks" id="remarks" class="mini-textarea" vtype="" required="false" width="100%" height="200px" />
 									</td>
 								</tr>
 							</table>
@@ -969,30 +676,30 @@
 		}
 
 		function addButton(){
-			sysToolBar_.addButtonOption({
-				"buttonId":'test',
-				"functionStr":'test',/* 对应按钮的点击事件 */
-				/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
-				"name":'打印预览'
-			});
-		       // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
+		sysToolBar_.addButtonOption({
+			"buttonId":'test',
+			"functionStr":'test',/* 对应按钮的点击事件 */
+			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
+			"name":'打印预览'
+		});
+	       // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
+	  }
+	  
+	  function test(){
+		  var id = mini.get("id").getValue();
+		  var wtType = mini.get("wtType").getValue();
+		  var dutyOrgId = mini.get("dutyOrgId").getValue();	  
+		  var menuItem = null; 
+		  if (id == "" || id == null) {
+			mini.alert("请先保存再点击打印按钮！");
+			return;
 		  }
-		  
-		  function test(){
-			  var id = mini.get("id").getValue();
-			  var wtType = mini.get("wtType").getValue();
-			  var dutyOrgId = mini.get("dutyOrgId").getValue();	  
-			  var menuItem = null; 
-			  if (id == "" || id == null) {
-				mini.alert("请先保存再点击打印按钮！");
-				return;
-			  }
-			  wowtPrint();
-		  }
-		  
-		  $(function(){
-			   addButton();
-		   });			    
+		  wowtPrint();
+	  }
+	  
+	  $(function(){
+		   addButton();
+	   });			    
 </script>
 </body>
 </html>

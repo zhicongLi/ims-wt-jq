@@ -107,8 +107,7 @@
 		</c:otherwise>
 	</c:choose>
 	</div>
-	 <div class="pageHeader"></div> 
-<%-- <%@ include file="/WEB-INF/views/modules/wo/woWtProducePrint.jsp"%> --%>
+	<div class="pageHeader"></div> 
     <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrintNew.jsp"%>
 	<div class="pageFooter"></div>
 	<div class="pageBreak"></div>
@@ -116,9 +115,7 @@
 	<div class="print-content">		
 		<header class="host header">
 		    <h1>国家能源集团宿迁发电有限公司</h1>
-	        <h1 style="font-size:35px;">二级动火工作票&nbsp;</h1>
-	        <%-- <h2 >编号:<span>${WoWt.wtCode}</span></h2> 
-	        <h2 >对应的工作票编号:<span>${WoWt.mainTicketCode}</span></h2>  --%>	
+	        <h1 style="font-size:35px;">二级动火工作票&nbsp;</h1>	        
 		</header>
 		<table class="table01">		   
 			<tr>
@@ -131,8 +128,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="title05" colspan="6" style="border:0;">
-				
+				<td class="title05" colspan="6" style="border:0;">				
 				<span style="float: right;margin-right: 10px">
            		   对应工作票编号：
 				<input  size="30" readonly="true" value="${WoWt.mainTicketCode }"/>
@@ -201,13 +197,7 @@
 							<input  readonly="true" value="${fn:escapeXml(contentList[i])}"/>
 						</td>
 					</tr>					
-			</c:forEach>
-			<%-- <tr class="work01">
-				<td class="widthValue" colspan="2" >				 	
-               		 <span class="ident-number1">6.</span>动火方式：<input readonly="true"  value="${woWtFire.fireMode}"/>
-				</td>
-			</tr> --%>
-							
+			</c:forEach>				
 		<table class="table01">	
 			<tr>
 				<td width="100px">				 	
@@ -225,10 +215,7 @@
 						</c:if>
 						${dict.label }
 					</label>
-				</c:forEach>
-				
-
-				<%-- <input readonly="true"  value="${woWtFire.fireMode}"/> --%>
+				</c:forEach>				
 				</td>
 			</tr>
 			<tr>
@@ -317,16 +304,17 @@
 			<tr class="date02">							
 				<td colspan="2">
 				<span class="ident-number1">9.</span>申请动火时间： 
-				自 <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+				自 
+				 <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 			       至
 			     <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 				</td>
 			</tr>
@@ -345,22 +333,14 @@
 			<tr>
 		        <td><span class="ident-number2">10.</span>审批</td>
 		    </tr>
-			<tr >
-				<%-- <td class="middletd">消防管理部门人员：
-					<input size="10" readonly="true" value="${woWtFire.sfDeptLeaderName}"/>
-				</td> --%>
+			<tr >				
 				<td class="middletd" colspan="2">
 				            动火部门安监人员：
 					<input size="10" readonly="true" value="${woWtFire.appCompSafeHealthName}"/>
 				    <span style="margin-left:80px;"></span>动火部门负责人或技术负责人：
 					<input size="10" readonly="true" value="${woWtFire.appDeptLeaderName}"/>
 				</td>
-			</tr>
-			<%-- <tr >
-				<td class="middletd" colspan="2">动火部门负责人或技术负责人：
-					<input size="10" readonly="true" value="${woWtFire.appDeptLeaderName}"/>
-				</td>				
-			</tr> --%>
+			</tr>			
 			<tr class="date02">
 				<td colspan="2" class="middletd">批准动火时间：自<input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.appStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
 			           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
@@ -412,62 +392,21 @@
 					<c:when test="${i==0}">
 						<tr >
 				         <td class="ident2">
-						   首次动火前：<input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-				           <input readonly="true"   placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
+						   首次动火前：
+						  <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+				          <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+				          <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+				          <input readonly="true"   placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+				          <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 						  </td>
 						  <td>${measureList[i].material }</td>
 						  <td>${measureList[i].standardValue }</td>
 						  <td>${measureList[i].measureValue }</td>
-						  <td>${measureList[i].measureByName }</td>	
-						   <!--  <td class="ident2">
-						      首次动火前：<input style="width:40px;" readonly="true" />年
-				           <input readonly="true" />月
-				           <input readonly="true" />日
-				           <input readonly="true" />时
-				           <input readonly="true" />分
-						  </td>
-						  <td></td>
-						  <td></td>
-						  <td></td>
-						  <td></td>		 -->			
+						  <td>${measureList[i].measureByName }</td>							  		
 			            </tr>			
-			        </c:when>
-			       <%--  <c:otherwise>
-					    <tr>
-				          <td class="ident2">第${i+1}次：
-				           <span style="margin-left:30px;"><input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='yyyy' />"/>年
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='MM' />"/>月
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='dd' />"/>日
-				           <input readonly="true"   placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='HH' />"/>时
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='mm' />"/>分
-				          </td>
-				          <td>${measureList[i].material }</td>
-						  <td>${measureList[i].standardValue }</td>
-						  <td>${measureList[i].measureValue }</td>
-						  <td>${measureList[i].measureByName }</td>							
-			            </tr>					
-			       </c:otherwise> --%>
+			        </c:when>			      
 		       </c:choose>					
-			</c:forEach>
-			<%-- <c:if test="${5<fn:length(measureList)}">
-				<c:forEach begin="5" end="${fn:length(measureList)-1}" var="i" varStatus="status">					
-				          <td class="ident2">第${i+1}次：
-						   <span style="margin-left:30px;"><input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='yyyy' />"/>年
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='MM' />"/>月
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='dd' />"/>日
-				           <input readonly="true"   placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='HH' />"/>时
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='mm' />"/>分
-						  </td>
-						  <td>${measureList[i].material }</td>
-						  <td>${measureList[i].standardValue }</td>
-						  <td>${measureList[i].measureValue }</td>
-						  <td>${measureList[i].measureByName }</td>					
-			            </tr>						       
-				</c:forEach>
-			</c:if>			 --%>	
+			</c:forEach>			
 		</table>
 					
 		<table>
@@ -496,16 +435,16 @@
 			</tr> 			
 			<tr class="middletd">			
 				<td class="ident2" colspan="3">允许动火时间：
-					   <%-- <input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='yyyy' />"/>年
-			           <input readonly="true"  placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='MM' />"/>月
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='dd' />"/>日
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='HH' />"/>时
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='mm' />"/>分 --%>
-			           <input style="width:40px;" readonly="true" />年
-			           <input readonly="true"  />月
-			           <input readonly="true" />日
-			           <input readonly="true" />时
-			           <input readonly="true" />分
+				   <%-- <input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='yyyy' />"/>年
+		           <input readonly="true"  placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='MM' />"/>月
+		           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='dd' />"/>日
+		           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='HH' />"/>时
+		           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='mm' />"/>分 --%>
+		           <input style="width:40px;" readonly="true" />年
+		           <input readonly="true"  />月
+		           <input readonly="true" />日
+		           <input readonly="true" />时
+		           <input readonly="true" />分
 				</td>				
 			</tr>
 		</table>
@@ -525,22 +464,7 @@
 			</tr>					   		
 						
 			<c:forEach  var="i" begin="0" end="4" varStatus="vs">											
-				<c:choose>
-					<%-- <c:when test="${i==0}">
-						<tr >
-				          <td class="ident2">
-						   首次动火前：<input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='yyyy' />"/>年
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='MM' />"/>月
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='dd' />"/>日
-				           <input readonly="true"   placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='HH' />"/>时
-				           <input readonly="true"  placeholder="<fmt:formatDate value='${measureList[i].measureTime}' pattern='mm' />"/>分
-						  </td>
-						  <td>${measureList[i].material }</td>
-						  <td>${measureList[i].standardValue }</td>
-						  <td>${measureList[i].measureValue }</td>
-						  <td>${measureList[i].measureByName }</td>					
-			            </tr>			
-			        </c:when> --%>
+				<c:choose>					
 			        <c:when test="${i>0}">
 					    <tr>
 				          <td class="ident2">第${i+1}次：
@@ -560,18 +484,18 @@
 			</c:forEach>
 			<c:if test="${5<fn:length(measureList)}">
 				<c:forEach begin="5" end="${fn:length(measureList)-1}" var="i" varStatus="status">					
-				          <td class="ident2">第${i+1}次：
-						   <span><input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
-				           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
-						  </td>
-						  <td>${measureList[i].material }</td>
-						  <td>${measureList[i].standardValue }</td>
-						  <td>${measureList[i].measureValue }</td>
-						  <td>${measureList[i].measureByName }</td>					
-			            </tr>						       
+			          <td class="ident2">第${i+1}次：
+					   <span><input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+			           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+			           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+			           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+			           <input readonly="true"  placeholder="<fmt:parseDate value='${measureList[i].measureTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
+					  </td>
+					  <td>${measureList[i].material }</td>
+					  <td>${measureList[i].standardValue }</td>
+					  <td>${measureList[i].measureValue }</td>
+					  <td>${measureList[i].measureByName }</td>					
+		            </tr>						       
 				</c:forEach>
 			</c:if>		
 		</table>

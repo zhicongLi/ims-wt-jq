@@ -19,11 +19,8 @@
 			 <div class="mini-fit">
 				<div id="datagridMain" class="mini-datagrid" style="width:100%;height:100%;"
 					 url="${ctx}/wo-wt/wo/woWtTask/data" idField="id"
-					 allowResize="true" pageSize="20"
-					 allowCellSelect="true" multiSelect="false"
-					 editNextOnEnterKey="true"  editNextRowCell="true"
-					 allowAlternating="true" showFilterRow="true"  showColumnsMenu="false"
-				>
+					 allowResize="true" pageSize="20" allowCellSelect="true" multiSelect="false"
+					 editNextOnEnterKey="true"  editNextRowCell="true" allowAlternating="true" showFilterRow="true"  showColumnsMenu="false">
 					<div property="columns">
 						<div name="action" width="60"  headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
 							<div name="id"  field="id" vtype="required"  headerAlign="center" allowSort="true" width="64"  visible="false">id
@@ -587,29 +584,27 @@
    }
    //////////子表格操作菜单项点击事件方法/////////
 
-function addButton(){
-  sysToolBar_.addButtonOption({
-	"buttonId":'test',
-	"functionStr":'test',/* 对应按钮的点击事件 */
-	/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
-	"name":'打印预览'
-  });
-      
-}
- 
-function test(){
-  var id = mini.get("id").getValue();	
-  var iamCode = iamCodeValue();
-  if (id == "" || id == null) {
-	mini.alert("请先保存再点击打印按钮！");
-	return;
-  }
-  window.open("${ctxRoot}/form3?view=/wo/woWtTaskSq&id="+id+"&iamCode="+iamCode);	  
-}
- 
-$(function(){
-   addButton();
-  });	
+   function addButton(){
+	 sysToolBar_.addButtonOption({
+		"buttonId":'test',
+		"functionStr":'test',/* 对应按钮的点击事件 */
+		/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
+		"name":'打印预览'
+	 });	      
+   }	 
+   function test(){
+	 var id = mini.get("id").getValue();	
+	 var iamCode = iamCodeValue();
+	 if (id == "" || id == null) {
+	  mini.alert("请先保存再点击打印按钮！");
+	  return;
+	 }
+	 window.open("${ctxRoot}/form3?view=/wo/woWtTaskSq&id="+id+"&iamCode="+iamCode);	  
+   }
+	 
+   $(function(){
+	 addButton();
+   });	
 </script>
 </body>
 </html>

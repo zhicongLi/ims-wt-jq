@@ -1,4 +1,3 @@
-<%-- <%@ page contentType="text/html;charset=UTF-8" %><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><meta name="author" content="http://treps.com/"/> --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <!doctype html>
@@ -76,27 +75,23 @@
 </style>
 
 <body>
-	<div style="text-align:left;" id="printWoOt">
+<div style="text-align:left;" id="printWoOt">
 	<c:choose>
 		<c:when test="${display==true}"></c:when>
 		<c:otherwise>
 			<button  onclick="javascript:printWoOt()">打印</button>
 		</c:otherwise>
 	</c:choose>
-	</div>
-	<div style="text-align:right;" id="printWoOt1">
+</div>
+<div style="text-align:right;" id="printWoOt1">
 	<c:choose>
 		<c:when test="${display==true}"></c:when>
 		<c:otherwise>
 			<button  onclick="javascript:exitPreForm()">退出</button>
 		</c:otherwise>
 	</c:choose>
-	</div>
+</div>
 <div class="pageHeader"></div>
-<%-- <%@ include file="/WEB-INF/views/modules/wo/woWtProducePrint.jsp"%>
-<div class="pageFooter"></div>
-<div class="pageBreak"></div>
-<div class="pageHeader"></div> --%>
 <!-- 危险点预控措施 -->
 <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrintNew.jsp"%> 
 <div class="pageFooter"></div>
@@ -109,7 +104,7 @@
 	    <h2 >编号:<span>${WoWt.wtCode}</span></h2>	  
 	</header>
 	<table class="table01" id="wowtFirstTable">	
-	   <tbody>	  
+	  <tbody>	  
 		<tr>
 			<td colspan="2" class="department"><span class="ident-number1">1.</span>部门：
 				<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
@@ -196,23 +191,23 @@
 		<tr class="date01">
 			<td colspan="3"><span class="ident-number1">6.</span>计划工作时间：自		        
 		         <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 			     至
 			     <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-		         <input  readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
 		         <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.planEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 			</td>
 		</tr>		
 		<tr>
 			<td colspan="3" ><span class="ident-number1">7.</span>安全措施（必要时可附页绘图说明）：</td>
 		</tr>		
-	   </tbody>
-       </table>
+	  </tbody>
+    </table>
 
 	<table  border="1" cellspacing="0" cellpadding="0" class="table02">			
 	   <thead>	
@@ -225,7 +220,7 @@
 			<td style="width:50%;">已拉断路器(开关)和隔离开关(刀闸)(注明编号) </td>
 		</tr>	
 	   </thead>
-		<c:forEach items="${kgMap}" var="i" varStatus="status">
+	   <c:forEach items="${kgMap}" var="i" varStatus="status">
 			<tr>
 				<td class="table03-l" >
 					${status.index + 1}.${i.value[0]} 
@@ -273,11 +268,11 @@
 		</c:if>
 		<c:if test="${7 == fn:length(kgMap)}">
 			<tr>
-					<td class="table03-l" >
-					</td>
-					<td class="table03-s" >
-					</td>
-				</tr>
+				<td class="table03-l" >
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
 		</c:if>
 		<tr>
 			<td id="dx1" class="table03-l widthValue">应装设接地线及应合上接地刀闸（注明装设地点）</td> 
@@ -331,11 +326,11 @@
 		</c:if>
 		<c:if test="${3 == fn:length(dxMap)}">
 			<tr>
-					<td class="table03-l" >
-					</td>
-					<td class="table03-s" >
-					</td>
-				</tr>
+				<td class="table03-l" >
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
 		</c:if>
 		<tr>  
 			<td class="widthValue" id="zl">应设遮栏、应挂标示牌</td>
@@ -389,11 +384,11 @@
 		</c:if>
 		<c:if test="${2 == fn:length(zlMap)}">
 			<tr>
-					<td class="table03-l" >
-					</td>
-					<td class="table03-s" >
-					</td>
-				</tr>
+				<td class="table03-l" >
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
 		</c:if>
 		<tr> 
 			<td class="widthValue" id="bcSm" colspan="2" >工作地点保留带电部分、注意事项或应补充安全措施（由值班负责人或值长填写）</td>
@@ -428,23 +423,17 @@
 		</c:if>	
 		<c:if test="${3 == fn:length(bcMap)}">
 			<tr>
-					<td class="table03-l" >
-					</td>
-					<td class="table03-s" >
-					</td>
-				</tr>
+				<td class="table03-l" >
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
 		</c:if>		
 	</table>	
 	<table  class="table07">
 		<tbody>
 		<tr>
-			<td ><san class="ident-number1">8.</san>工作票签发时间：
-	           <%-- <input style="width: 40px;text-align:center;"  readonly="true"  placeholder="<fmt:formatDate value='${WoWt.wtSignDate}' pattern='yyyy' />"/>年
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:formatDate value='${WoWt.wtSignDate}' pattern='MM' />"/>月
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:formatDate value='${WoWt.wtSignDate}' pattern='dd' />"/>日
-	           <input style="width: 20px;text-align:center;" readonly="true"   placeholder="<fmt:formatDate value='${WoWt.wtSignDate}' pattern='HH' />"/>时
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:formatDate value='${WoWt.wtSignDate}' pattern='mm' />"/>分 --%>
-	           
+			<td ><san class="ident-number1">8.</san>工作票签发时间：	           
 	           <input style="width: 40px;text-align:center;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.wtSignDate}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
 		       <input style="width: 20px;text-align:center;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.wtSignDate}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		       <input style="width: 20px;text-align:center;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.wtSignDate}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
@@ -481,17 +470,17 @@
 			<td class="middletd">工作负责人： <input size="10" readonly="true"  value=""/></td>
 		</tr>
 		<tr class="date01">
-					<td colspan="2" style="line-height: 30px;"><san class="ident-number2">11.</san>工作负责人变更：自					  
-			           <input style="width: 40px;"  readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-			           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
-			           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-			           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
-			           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
-								 原工作负责人离去，现变更为
-				        	<input style=" width:50px;" size="20" readonly="true" value="${leaderChangeList[0].nowWorkLeaderName }" />
-						担任工作负责人。
-					</td>
-			</tr>
+			<td colspan="2" style="line-height: 30px;"><san class="ident-number2">11.</san>工作负责人变更：自					  
+	           <input style="width: 40px;"  readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+	           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+	           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+	           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+	           <input readonly="true"  placeholder="<fmt:parseDate value='${leaderChangeList[0].changeTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
+			     原工作负责人离去，现变更为
+		       <input style=" width:50px;" size="20" readonly="true" value="${leaderChangeList[0].nowWorkLeaderName }" />
+				担任工作负责人。
+			</td>
+		</tr>
 		<tr>
 			<td class="middletd">工作票签发人：
 			<c:forEach
@@ -518,7 +507,7 @@
 		</tr>
 		<tr>
 			<td class="middletd">工作负责人：
-		        	<input size="10" readonly="true" value="${woWtDelayList[0].workLeaderName }" />
+		       <input size="10" readonly="true" value="${woWtDelayList[0].workLeaderName }" />
 			</td>
 			<td>	           
 	           <input style="width: 40px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].workLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
@@ -530,7 +519,7 @@
 		</tr>
 		<tr>
 			<td class="middletd">值长（或运行值班负责人）：
-					<input size="10" readonly="true" value="${woWtDelayList[0].dutyLeaderName }" />
+			   <input size="10" readonly="true" value="${woWtDelayList[0].dutyLeaderName }" />
 			</td>
 			<td>	          
 	           <input style="width: 40px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
@@ -541,8 +530,7 @@
            </td>
 		</tr>
 		<tr>
-			<td colspan="2"><span class="ident-number2">13.</span>
-			工作终结：</td>
+			<td colspan="2"><span class="ident-number2">13.</span>工作终结：</td>
 		</tr>		
 		<tr class="date01">
 			<td colspan="2" class="middletd">全部工作于
@@ -642,47 +630,47 @@
 	上边距2.5厘米约等于94像素，下边距2厘米约76像素。总高度1123-170=953
  */
  var A4 = 953;// + 94
-	    window.onload = function(){
-	    	setRow1Content("content1","工作内容:占");
-	    	setRow1Content("location1","工作地点:占");
-	    	setRow1Content("dangerContent1","工作内容:占");
-	    	setRow1Content("dangerLocation1","工作地点:占");	    	
-	    	setRow1Content("remark1","备注:占");	    	
-	    	setRow1Content("workperson0","工作班人员:占");	
-	    	
-	    	/* var a=GetQueryString("a");	    	
-	    	var iamCode = iamCodeValue();    	
-	    	if(a=="1"){
-	    		var wtType=GetQueryString("wtType");
-	    		var  fields=$(".widthValue");
-	    		 for (var i = 0, l = fields.length; i < l; i++) {
-	    			var c = fields[i];
-	    	   		$.ajax({
-	    	   		        type: "POST",
-	    	   		        url: "${ctx}/wo-wt/wo/woWtChangeLineConf/saveWidth&iamCode="+iamCode,
-	    	   		        async: false,	    	   		       
-	    	   		        data:{
-	    	   		        	"name":c.id+"width1",
-	    	   		        	"fontSize":10,
-	    	   		        	"width":c.clientWidth,
-	    	   		        	"autoId":""+c.id,
-	    	   		        	"wtType":wtType
-	    		       		},
-	    	   		        success: function (text) {
-	    	   		        	var o=JSON.parse(text)
-	    	   		        	if(o.type == "I"){
-	    	   						console.log(o.message);
-	    	   		        	}if(o.type == "W"){
-	    	   		        		console.log(o.message);
-	    	   		        	}if(o.type == "E"){
-	    	   		        		console.log(o.message);
-	    	   		        	} 
-	    	   		        }
-	    	   		    }) 
-	     		} 
-	    	} */
-	    	loadDangerInfo();		    
-	    } 
+ window.onload = function(){
+ 	setRow1Content("content1","工作内容:占");
+ 	setRow1Content("location1","工作地点:占");
+ 	setRow1Content("dangerContent1","工作内容:占");
+ 	setRow1Content("dangerLocation1","工作地点:占");	    	
+ 	setRow1Content("remark1","备注:占");	    	
+ 	setRow1Content("workperson0","工作班人员:占");	
+ 	
+ 	/* var a=GetQueryString("a");	    	
+ 	var iamCode = iamCodeValue();    	
+ 	if(a=="1"){
+ 		var wtType=GetQueryString("wtType");
+ 		var  fields=$(".widthValue");
+ 		 for (var i = 0, l = fields.length; i < l; i++) {
+ 			var c = fields[i];
+ 	   		$.ajax({
+ 	   		        type: "POST",
+ 	   		        url: "${ctx}/wo-wt/wo/woWtChangeLineConf/saveWidth&iamCode="+iamCode,
+ 	   		        async: false,	    	   		       
+ 	   		        data:{
+ 	   		        	"name":c.id+"width1",
+ 	   		        	"fontSize":10,
+ 	   		        	"width":c.clientWidth,
+ 	   		        	"autoId":""+c.id,
+ 	   		        	"wtType":wtType
+ 		       		},
+ 	   		        success: function (text) {
+ 	   		        	var o=JSON.parse(text)
+ 	   		        	if(o.type == "I"){
+ 	   						console.log(o.message);
+ 	   		        	}if(o.type == "W"){
+ 	   		        		console.log(o.message);
+ 	   		        	}if(o.type == "E"){
+ 	   		        		console.log(o.message);
+ 	   		        	} 
+ 	   		        }
+ 	   		    }) 
+  		} 
+ 	} */
+ 	loadDangerInfo();		    
+ } 
 
-   </script>
+</script>
 </html>
