@@ -179,11 +179,15 @@
 												<tr>
 													<td style="text-align:right;">风险等级：</td>
 													<td>
-													  <!--  <input name="riskGradeName" id="riskGradeName" class="mini-textbox"  vtype = ""  required="false" /> -->
-													  <input name="riskGradeCode" id="riskGradeCode" property="editor" textName="riskGradeName"
+													  
+													 <%--  <input name="riskGradeCode" id="riskGradeCode" property="editor" textName="riskGradeName"
 															class="mini-combobox" tyle="width: 40px;" required="false"
 															valueField="code" textField="name"
-															url="${ctx}/wo/woDangerRiskGrade/dictData" />
+															url="${ctx}/wo/woDangerRiskGrade/dictData" /> --%>
+													 <input name="riskGradeCode" id="riskGradeCode" property="editor" textName="riskGradeName"
+															class="mini-combobox" tyle="width: 40px;" required="false"
+															valueField="value" textField="label"
+															url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_risk_type" />
 													</td>
 													<td style="text-align:right;">危害后果：</td>
 													<td>

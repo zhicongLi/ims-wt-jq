@@ -8,6 +8,7 @@
 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 <jsp:include page="borderCss.jsp"></jsp:include>
 <script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
+<script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
 <style>
    /* 动火方式多选框样式 */
    .mini-checkboxlist table td{
@@ -338,7 +339,7 @@
 								<tr>
 									<td align="right">动火工作票签发人：</td>
 									<td colspan="2">										
-									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">签发日期：</td>
 									<td colspan="2">
@@ -349,12 +350,12 @@
 									<td align="right">动火部门安监人员：</td>
 									<td colspan="2">										
 									  <input name="woWtFire.appCompSafeHealth" id="woWtFire.appCompSafeHealthName_" textName="woWtFire.appCompSafeHealthName"
-										onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">动火部门负责人（或技术负责人）签名：</td>
 									<td colspan="2">										
 									  <input name="woWtFire.appDeptLeader" id="woWtFire.appDeptLeaderName_" textName="woWtFire.appDeptLeaderName"
-									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','5')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','5')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 								</tr>								
 								<tr>									
@@ -374,14 +375,14 @@
 									</td>
 									<td align="right">运行许可人签名：</td>
 									<td colspan="2">										
-									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />									    									     
+									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />									    									     
 									</td>
 								</tr>								
 								<tr style="display: none;">
 									<td align="right">检修负责人签名：</td>
 									<td style="text-align: left;">
 									  <input name="smDutyPrincipal" id="smDutyPrincipalName_" textName="smDutyPrincipalName"
-										onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 								</tr> 
 								<tr>
@@ -473,19 +474,19 @@
 									<td align="right">消防监护人签名：</td>
 									<td colspan="2">										
 									  <input name="woWtFire.endFiremanBy" id="woWtFire.endFiremanByName_" textName="woWtFire.endFiremanByName"
-										onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 								</tr>
 								<tr>
 									<td align="right">动火工作负责人签名：</td>
 									<td colspan="2">										
 									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
-									    onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									    onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">运行许可人签名：</td>
 								    <td colspan="2">									    
 									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName"
-										onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td> 									
 								</tr>								
 								<tr>
@@ -510,11 +511,13 @@
 		<!-- 加载作业安全措施票 -->
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>		
 	</div>
-
+    <!-- 新流程方式引入 -->
+	<sys:workflow flowKey="woWt6"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
 	<jsp:include page="permitNew.jsp"></jsp:include>
 	<jsp:include page="attachTabNew.jsp" flush="true" />
+	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -525,8 +528,8 @@
 			initInsertUrl : "${ctx}/wo-wt/wo/woWt/initInsert?wtType=${param.wtType}&isStandard=${param.isStandard}",
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
-			exportUrl : "${ctx}/wo-wt/wo/woWt/export"
-			
+			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
+			onAfterLoadRecord: onAfterLoadRecord
 		});
 
 		initChilds(
@@ -685,7 +688,13 @@
 	  
 	    $(function(){
 		   addButton();
-	    });				
+	    });	
+	    
+	    function onAfterLoadRecord(o) {	   
+	        wfAfterLoad(o);
+	    }
+	    
+	    editControl.loadEditList('woWt');
 </script>
 </body>
 </html>

@@ -46,11 +46,11 @@ body {
     color: #fff;
     background-color: #2fa4e7;
 }
-/*.mini-grid-cell-selected{ !*, .excel-cell-selected*!*/
-/*!* background:#dedede!important;*!*/
+.mini-grid-cell-selected{ /*, .excel-cell-selected*/
+/* background:#dedede!important;*/
 
-/*    border: 3px solid;*/
-/*}*/
+    border: 2px solid;
+}
 
 /* ������� */
 body ._act_allowEdit{

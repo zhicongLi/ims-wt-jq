@@ -3,7 +3,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/common/editControl.js"></script>
 <%@ attribute name="flowKey" type="java.lang.String" required="true" description="工作流key"%>
 
-<div id="bpmPopBox" style="display: none;background-color: transparent;z-index: 10001;width: 950px;height: 700px;position:fixed;top:0;right:0;left:0;bottom:0;margin:auto;">
+<div id="bpmPopBox" style="display: none;background-color: transparent;z-index: 10001;width: 900px;height: 600px;position:fixed;top:0;right:0;left:0;bottom:0;margin:auto;">
 	<div class="content">
 		<iframe id="flowIframe" src="" frameborder="none" style="width:100%;height:100%;"></iframe>
 	</div>
@@ -89,6 +89,7 @@
 			}
 			return;
 		} else if('flowDataLoaded' === eventName ) {
+			debugger;
 			editControl.afterFlowLoad(msg);
 			//页面加载成功，添加页面button
 			var buttonList = msg.buttonList;

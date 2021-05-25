@@ -10,10 +10,10 @@
 	 	}
 	 	
 	 	.formtable td{
-	 		/* padding-left: 5px; */
+	 		/* padding-left: 5px; */	 		
 	 	}
 </style>
-	 <c:if test="${woWt.border!='0' }">
+	 <c:if test="${param.border!='0' }">
 	 	<style type="text/css">
 	 	.formtable td
 		  {

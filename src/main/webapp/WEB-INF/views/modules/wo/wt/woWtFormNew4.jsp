@@ -7,6 +7,7 @@
 <meta name="decorator" content="default" />
 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
+<script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
 <jsp:include page="borderCss.jsp"></jsp:include>
 </head>
 <body>
@@ -177,7 +178,7 @@
 									</td>
 									<td>专业:</td>
 									<td>
-									  <input name="specId" id="specId" textName="specName" allowInput="false" class="mini-buttonedit" vtype="" required="true" onbuttonclick="selectSpec" />
+									  <input name="specId" id="specId" textName="specName" allowInput="false" class="mini-buttonedit" vtype="" required="false" onbuttonclick="selectSpec" />
 									</td>
 								</tr>
 								<tr>
@@ -263,7 +264,7 @@
 								</tr>								
 							</table>
 							<div class="mini-panel" title="应断开" width="auto" id="tabWoWtsm9List" name="tabWoWtsm9List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
-								<sys:toolbargridsub girdId="gridWoWtsm1" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub> 								
+								<sys:toolbargridsub girdId="gridWoWtsm9" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub> 								
 								<div id="gridWoWtsm9" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=9"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
@@ -287,7 +288,7 @@
 								</div>
 							</div>
 							<div class="mini-panel" title="应关闭" width="auto" id="tabWoWtsm10List" name="tabWoWtsm10List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
-								<sys:toolbargridsub girdId="gridWoWtsm1" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>								
+								<sys:toolbargridsub girdId="gridWoWtsm10" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>								
 								<div id="gridWoWtsm10" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=10"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
@@ -389,7 +390,7 @@
 								<tr>
 									<td>工作票签发人：</td>
 									<td colspan="2">										
-									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td>签发时间：</td>
 									<td colspan=2>
@@ -399,7 +400,7 @@
 								<tr>
 									<td>工作票接收人：</td>
 									<td colspan="2">										
-									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName" onbuttonclick="sign_('wtReceiveName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName" onbuttonclick="sign_('wtReceiveName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td>接票时间：</td>
 									<td colspan=2>
@@ -449,7 +450,7 @@
 								<tr>
 									<td align="right">值长(或单元长)：</td>
 									<td colspan="2">										
-									  <input name="appDutyLeader" id="appDutyLeaderName_" textName="appDutyLeaderName" onbuttonclick="sign_('appDutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="appDutyLeader" id="appDutyLeaderName_" textName="appDutyLeaderName" onbuttonclick="sign_('appDutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">时间：</td>
 									<td colspan="2">
@@ -465,11 +466,11 @@
 									<td align="right">工作许可人：</td>
 									<td colspan="3">										
 									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" 
-									    onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									    onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 								    <td align="right">工作负责人：</td>
 									<td colspan="3">										
-									  <input name="workLeaderSign" id="workLeaderSignName_" textName="workLeaderSignName" onbuttonclick="sign_('workLeaderSignName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="workLeaderSign" id="workLeaderSignName_" textName="workLeaderSignName" onbuttonclick="sign_('workLeaderSignName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 								</tr>							
 								<tr>
@@ -482,11 +483,11 @@
 								<tr>
 									<td align="right">工作票签发人签名:</td>
 									<td colspan="2">										
-									  <input name="woWtLC.wtSigner" id="woWtLC.wtSignerName_" textName="woWtLC.wtSignerName" onbuttonclick="sign_('woWtLC.wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="woWtLC.wtSigner" id="woWtLC.wtSignerName_" textName="woWtLC.wtSignerName" onbuttonclick="sign_('woWtLC.wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">工作票许可人签名:</td>
 									<td colspan="2">										
-									  <input name="woWtLC.permitBy" id="woWtLC.permitByName_" textName="woWtLC.permitByName" onbuttonclick="sign_('woWtLC.permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="woWtLC.permitBy" id="woWtLC.permitByName_" textName="woWtLC.permitByName" onbuttonclick="sign_('woWtLC.permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 								</tr>
 								<tr>
@@ -498,7 +499,7 @@
 									<td align="right">值长(或单元长):</td>
 									<td colspan="2">										
 									  <input name="woWtDelay.dutyLeader" id="woWtDelay.dutyLeaderName_" textName="woWtDelay.dutyLeaderName"
-										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 									<td align="right">值长(或单元长)签字时间：</td>
 									<td colspan="2">
@@ -508,7 +509,7 @@
 								<tr>
 									<td align="right">运行值班负责人:</td>
 									<td colspan="2">										
-									  <input name="woWtDelay.permitBy" id="woWtDelay.permitByName1_" textName="woWtDelay.permitByName" onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="woWtDelay.permitBy" id="woWtDelay.permitByName1_" textName="woWtDelay.permitByName" onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 									<td align="right">运行值班负责人签字时间：</td>
 									<td colspan="2">
@@ -519,7 +520,7 @@
 									<td align="right">工作负责人:</td>
 									<td colspan="2">										
 									  <input name="woWtDelay.workLeader" id="woWtDelay.workLeaderName_" textName="woWtDelay.workLeaderName"
-										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">工作负责人签字时间：</td>
 									<td colspan="2">
@@ -534,11 +535,11 @@
 								<tr>
 									<td align="right">工作许可人签名：</td>
 									<td colspan="2">										
-									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName" onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName" onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td> 
 									<td align="right">工作负责人签名：</td>
 									<td colspan="2">										
-									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName" onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName" onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 								</tr>								
 							</table>
@@ -637,10 +638,13 @@
 		<!-- 加载作业安全措施票 -->
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>		
 	</div>
+	<!-- 新流程方式引入 -->
+	<sys:workflow flowKey="woWt4"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
 	<jsp:include page="permitNew.jsp"></jsp:include>
 	<jsp:include page="attachTabNew.jsp" flush="true" />
+	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -652,8 +656,8 @@
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
-			importUrl:"${ctx}/wo-wt/wo/woWt/import"
-			
+			importUrl:"${ctx}/wo-wt/wo/woWt/import",
+			onAfterLoadRecord: onAfterLoadRecord
 		});
 
 		initChilds(
@@ -883,7 +887,13 @@
 	  
 	   $(function(){
 		   addButton();
-	   });		
+	   });	
+	   
+	   function onAfterLoadRecord(o) {	   
+	        wfAfterLoad(o);
+	    }
+	    
+	    editControl.loadEditList('woWt');
 </script>
 </body>
 </html>

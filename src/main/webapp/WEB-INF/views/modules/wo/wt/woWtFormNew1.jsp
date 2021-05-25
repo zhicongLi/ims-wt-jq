@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <html>
 <head>
 <title>工作票</title>
 <meta name="decorator" content="default" />
-<%@ include file="/WEB-INF/views/include/head.jsp"%>
-<link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
-<script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
+<link href="${ctxStatic}/static/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="${ctxStatic}/static/common/sysToolBar.js"></script>
+<script type="text/javascript" src="${ctxStatic}/static/common/editControl.js"></script>
 <jsp:include page="borderCss.jsp"></jsp:include>
 </head>
 <body>
@@ -267,9 +267,9 @@
 								</tr>															
 							</table>
 
-							<div class="mini-panel" title="应拉断路器" width="auto" id="tabWoWtsm1List" name="tabWoWtsm1List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应拉断路器" width="auto" height="auto" id="tabWoWtsm1List" name="tabWoWtsm1List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm1" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>																						
-								<div id="gridWoWtsm1" class="mini-datagrid sGrid" style="width: 99.999%;"
+								<div id="gridWoWtsm1" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=1"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true"
@@ -292,9 +292,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="应装接地线" width="auto" id="tabWoWtsm2List" name="tabWoWtsm2List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应装接地线" width="auto" height="auto" id="tabWoWtsm2List" name="tabWoWtsm2List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm2" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm2" class="mini-datagrid sGrid" style="width: 99.999%;"
+								<div id="gridWoWtsm2" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=2"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true"showColumnsMenu="true" multiSelect="true">
@@ -322,9 +322,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="应设遮栏、应挂标示牌" width="auto" id="tabWoWtsm3List" name="tabWoWtsm3List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应设遮栏、应挂标示牌" width="auto" height="auto" id="tabWoWtsm3List" name="tabWoWtsm3List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm3" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm3" class="mini-datagrid sGrid" style="width: 99.999%;"
+								<div id="gridWoWtsm3" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=3"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
@@ -346,9 +346,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="工作地点保留带电部分和补充安全措施" width="auto" id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="工作地点保留带电部分和补充安全措施" width="auto" height="auto" id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm4" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm4" class="mini-datagrid sGrid" style="width: 99.999%;"
+								<div id="gridWoWtsm4" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=4"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
@@ -528,12 +528,12 @@
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>		
 	</div>
 	<!-- 新流程方式引入 -->
-	<sys:workflow flowKey="yhgl"></sys:workflow>
+	<sys:workflow flowKey="woWt1"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
 	<jsp:include page="permitNew.jsp"></jsp:include>
 	<jsp:include page="attachTabNew.jsp" flush="true" />
-	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
+	<%-- <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -546,7 +546,7 @@
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
 			importUrl:"${ctx}/wo-wt/wo/woWt/import",
-			onAfterLoadRecord: onAfterLoadRecord,
+			onAfterLoadRecord: onAfterLoadRecord
 			
 		});
 				

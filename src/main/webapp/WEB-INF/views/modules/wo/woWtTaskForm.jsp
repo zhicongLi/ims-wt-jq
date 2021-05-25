@@ -9,6 +9,7 @@
 	 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 	 <jsp:include page="/WEB-INF/views/modules/wo/wt/borderCss.jsp"></jsp:include>
 	 <script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
+     <script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
 </head>
 <body>
 
@@ -272,8 +273,11 @@
 				 <jsp:include page="/WEB-INF/views/include/sign.jsp"></jsp:include>		       
 	    </div>       
  </div>
+<!-- 新流程方式引入 -->
+<sys:workflow flowKey="woWtTask"></sys:workflow>
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
+	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 <script type="text/javascript">
 
 	initBase(
@@ -284,7 +288,8 @@
 				saveUrl:"${ctx}/wo-wt/wo/woWtTask/save",
 				removeUrl:"${ctx}/wo-wt/wo/woWtTask/remove",
 				exportUrl:"${ctx}/wo-wt/wo/woWtTask/export",
-				initInsertUrl : "${ctx}/wo-wt/wo/woWtTask/initInsert"				
+				initInsertUrl : "${ctx}/wo-wt/wo/woWtTask/initInsert",
+				onAfterLoadRecord: onAfterLoadRecord
 			 }
 	       );
 
@@ -604,7 +609,13 @@
 	 
    $(function(){
 	 addButton();
-   });	
+   });
+   
+   function onAfterLoadRecord(o) {	   
+       wfAfterLoad(o);
+   }
+   
+   editControl.loadEditList('woWtTask');
 </script>
 </body>
 </html>

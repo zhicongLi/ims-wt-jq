@@ -111,7 +111,7 @@
 				        </div> <!--clearfix-->
 				     </div> <!--container-->
 				  </div> <!--editform-->
-		        <div class="mini-fit">
+		 <%--        <div class="mini-fit">
 						 <div id="tabsSub" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;">
 							<div class="mini-panel" title="危险源" width="auto"  id="tabEmEquipLogicDangerList" name="tabEmEquipLogicDangerList"
 								 showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true" >
@@ -163,7 +163,7 @@
 						    	</div>
 							</div>
 						 </div>
-		        </div><!--fit-->
+		        </div> --%><!--fit-->
 			</div>
 			</div>
 			</div>
@@ -198,7 +198,7 @@
 
 	initChilds( "#editform", "tabsMain" ,
                       [
-                    	  {  
+                    	 /*  {  
                     		id:"gridEmEquipLogicDanger",
               			    objId:"EmEquipLogicDanger",
 	              			FKLinks:[
@@ -214,7 +214,7 @@
               				saveUrl:"${ctx}/em/emEquipLogicDanger/save",
               				removeUrl:"${ctx}/em/emEquipLogicDanger/remove",
               				exportUrl:"${ctx}/em/emEquipLogicDanger/export"
-              			 }
+              			 } */
 	                   ]
 	);
 

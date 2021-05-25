@@ -7,6 +7,7 @@
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
+<script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
 <jsp:include page="borderCss.jsp"></jsp:include>
 </head>
 <body>
@@ -442,11 +443,13 @@
 		</div>		
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>				
     </div>
+    <!-- 新流程方式引入 -->
+	<sys:workflow flowKey="woWt2"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
 	<jsp:include page="permitNew.jsp" flush="true" />
 	<jsp:include page="attachTabNew.jsp" flush="true" />
-
+    <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -458,8 +461,8 @@
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
-			importUrl:"${ctx}/wo-wt/wo/woWt/import"		
-			
+			importUrl:"${ctx}/wo-wt/wo/woWt/import",		
+			onAfterLoadRecord: onAfterLoadRecord
 		});
 
 		function getWoWtSm() {
@@ -628,7 +631,12 @@
 	    $(function(){
 		   addButton();
 	    });
-			
+	    
+	    function onAfterLoadRecord(o) {	   
+	        wfAfterLoad(o);
+	    }
+	    
+	    editControl.loadEditList('woWt');	
 </script>
 </body>
 </html>

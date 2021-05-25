@@ -7,6 +7,7 @@
 <meta name="decorator" content="default" />
 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
+<script type="text/javascript" src="${ctxStatic}/common/editControl.js"></script>
 <jsp:include page="borderCss.jsp"></jsp:include>
 </head>
 <body>
@@ -440,7 +441,7 @@
 									<td align="right">值长(或单元长):</td>
 									<td colspan="2">										
 									  <input name="woWtDelay.dutyLeader" id="woWtDelay.dutyLeaderName_" textName="woWtDelay.dutyLeaderName"
-										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 									<td align="right">值长(或单元长)签字时间：</td>
 									<td colspan="2">
@@ -451,7 +452,7 @@
 									<td align="right">运行值班负责人:</td>
 									<td colspan="2">										
 									  <input name="woWtDelay.permitBy" id="woWtDelay.permitByName1_" textName="woWtDelay.permitByName"
-										onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>									
 									<td align="right">运行值班负责人签字时间：</td>
 									<td colspan="2">
@@ -462,7 +463,7 @@
 									<td align="right">工作负责人:</td>
 									<td colspan="2">										
 									  <input name="woWtDelay.workLeader" id="woWtDelay.workLeaderName_" textName="woWtDelay.workLeaderName"
-										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" />
+										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
 									</td>
 									<td align="right">工作负责人签字时间：</td>
 									<td colspan="2">
@@ -578,12 +579,14 @@
 		<!-- 加载作业安全措施票 -->
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>				
 	</div>
-
+    <!-- 新流程方式引入 -->
+	<sys:workflow flowKey="woWt3"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
 	<!-- 对应加载的方法（加载，新增。。。） -->
 	<jsp:include page="permitNew.jsp"></jsp:include>
 	<jsp:include page="attachTabNew.jsp" flush="true" />
+	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -595,7 +598,8 @@
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
-			importUrl:"${ctx}/wo-wt/wo/woWt/import"			
+			importUrl:"${ctx}/wo-wt/wo/woWt/import",
+			onAfterLoadRecord: onAfterLoadRecord
 		});
 
 		initChilds(
@@ -778,7 +782,12 @@
 	    $(function(){
 		   addButton();
 	    });
-						
+		
+	    function onAfterLoadRecord(o) {	   
+	        wfAfterLoad(o);
+	    }
+	    
+	    editControl.loadEditList('woWt');
 </script>
 </body>
 </html>
