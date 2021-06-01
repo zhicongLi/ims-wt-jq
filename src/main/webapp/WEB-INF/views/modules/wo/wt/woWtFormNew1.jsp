@@ -9,6 +9,13 @@
 <script type="text/javascript" src="${ctxStatic}/static/common/sysToolBar.js"></script>
 <script type="text/javascript" src="${ctxStatic}/static/common/editControl.js"></script>
 <jsp:include page="borderCss.jsp"></jsp:include>
+<style type="text/css">
+/* .mini-panel-body .mini-grid-rows .mini-grid-rows-view
+{
+   height:auto;
+   _height:auto;   
+}  */  
+</style>
 </head>
 <body>
 
@@ -221,6 +228,13 @@
 									<td>2.工作班人员：</td>
 									<td colspan="4">
 									  <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" />
+									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
+											   	onbuttonclick="popLovJson2(this)" selectOnFocus=
+											   	   expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
+									  />  
+									     
+									<input id="tbl1" class="mini-textboxlist" name="tbl" textName="tblName" required="true" style="width:250px;"/>
+                                    <a class="mini-menubutton " menu="#popupMenu" onclick="popLovJson1(this)">选择...</ a>
 									</td>
 									<td><span>共： <input name=personNum id="personNum" class="mini-spinner" allowNull="true" />人</span></td>
 								</tr>
@@ -233,8 +247,8 @@
 								<tr>
 									<td>4.工作地点：</td>
 									<td colspan="2">
-									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
-									    onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/wo-wt/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
+								      <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
+									    onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/wo-wt/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />							
 									</td>
 									<td></td>									
 									<td>机组:</td>
@@ -267,9 +281,9 @@
 								</tr>															
 							</table>
 
-							<div class="mini-panel" title="应拉断路器" width="auto" height="auto" id="tabWoWtsm1List" name="tabWoWtsm1List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应拉断路器" width="auto"  id="tabWoWtsm1List" name="tabWoWtsm1List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm1" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>																						
-								<div id="gridWoWtsm1" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
+								<div id="gridWoWtsm1" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=1"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true"
@@ -292,9 +306,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="应装接地线" width="auto" height="auto" id="tabWoWtsm2List" name="tabWoWtsm2List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应装接地线" width="auto"  id="tabWoWtsm2List" name="tabWoWtsm2List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm2" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm2" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
+								<div id="gridWoWtsm2" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=2"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true"showColumnsMenu="true" multiSelect="true">
@@ -322,9 +336,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="应设遮栏、应挂标示牌" width="auto" height="auto" id="tabWoWtsm3List" name="tabWoWtsm3List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="应设遮栏、应挂标示牌" width="auto" id="tabWoWtsm3List" name="tabWoWtsm3List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm3" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm3" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
+								<div id="gridWoWtsm3" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=3"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
@@ -346,9 +360,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="工作地点保留带电部分和补充安全措施" width="auto" height="auto" id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="工作地点保留带电部分和补充安全措施" width="auto"  id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm4" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>
-								<div id="gridWoWtsm4" class="mini-datagrid sGrid" style="width: 99.999%;height:auto;"
+								<div id="gridWoWtsm4" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=4"
 									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
 									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
@@ -535,6 +549,7 @@
 	<jsp:include page="attachTabNew.jsp" flush="true" />
 	<%-- <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 	<script type="text/javascript">
+	   
 		initBase({
 			id : "datagridMain",
 			objId : "WoWt",
@@ -546,7 +561,10 @@
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
 			importUrl:"${ctx}/wo-wt/wo/woWt/import",
-			onAfterLoadRecord: onAfterLoadRecord
+			onAfterNewRecord:addNewReword,
+            onAfterLoadRecord: onAfterLoadRecord,          
+            onBeforeSaveCheck: onBeforeSaveCheck
+           
 			
 		});
 				
@@ -737,6 +755,13 @@
 			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
 			"name":'打印预览'
 		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'test1',
+			"functionStr":'test1',/* 对应按钮的点击事件 */
+			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
+			"name":'检修围栏'
+		  });
           // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
 	    }
 	  
@@ -750,18 +775,129 @@
 			mini.alert("请先保存再点击打印按钮！");
 			return;
 		  }
-		  wowtPrint();
+		  wowtPrint();		     			  
+	    }
+	    
+	    function test1(){
+		  var id = mini.get("id").getValue();		 
+		  if (id == "" || id == null) {
+			mini.alert("请先保存再点击打印按钮！");
+			return;
+		  }
+		  debugger;
+		  var form = new mini.Form("#editform");   
+		  var woWtData = form.getData();
+		  var wtId = woWtData.id;
+		  console.log(woWtData.id);
+ 		  var iamCode = iamCodeValue();
+	     //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode +"&woWtData="+encodeURIComponent(woWtData),true);
+	     //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode,true); 
+ 		window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
 	    }
 	  
 	    $(function(){
 		   addButton();
 	    });
 		
-	    function onAfterLoadRecord(o) {	   
-	        wfAfterLoad(o);
+	    function onBeforeSaveCheck(o){
+	        editControl.beforeSave(o);
+	        return true;
 	    }
 	    
+	    function addNewReword(o){
+	    	editControl.afterLoad(o);//页面编辑权限控制
+	    }
+	    
+	    function onAfterLoadRecord(o) {	   	    	
+	        wfAfterLoad(o);//加载流程
+	        editControl.afterLoad(o);//页面编辑权限控制	 
+	        	
+	    }
+	    	    
 	    editControl.loadEditList('woWt');
+	    //运行值班负责人签名自动带入工作负责人签名
+	    function inputReceiveWorkLeader(){
+			var workLeader = mini.get("workLeader").getValue();
+			var workLeaderName = mini.get("workLeader").getText();
+			mini.get("receiveWorkLeaderName_").setValue(workLeader);
+			mini.get("receiveWorkLeaderName_").setText(workLeaderName);
+	    }
+	    
+	    function onCloseClick(e) {
+            var obj = e.sender;
+            obj.setText("");
+            obj.setValue("");
+        }
+	    //选择用户（分页多选）
+	    /* function popLovJson2(e) {         
+            var param = {
+                obj: e,
+                title: "人员选择",
+                multiSel: true,
+                readOnly: true,
+                url: "${ctxRoot}/form?view=/sys/misUserList",
+                width: 800,
+                height: 600,
+                selFields: "id,name",
+                refFields: "locationId,location",
+                refGridId: null,
+                actionLovValid: null,
+                //actionLov: returnSelectData3,
+                actionClose: null,
+                gridId: "datagridSelected",
+                allowDblclickSelect: true
+            };
+            popLov2(param);
+        } */
+	    
+	    function popLovJson1(e) {
+            debugger;
+           // var createCompany=mini.get("createCompany").getValue();
+            var param = {
+                obj: null,
+                title: "人员选择",
+                multiSel: true,
+                readOnly: true,
+                url: "${ctxRoot}/form?view=/sys/misUserList",
+                width: 1000,
+                height: 600,
+                selFields: "id,name",
+                refFields: "",
+                refGridId: null,
+                actionLovValid: null,
+                actionLov: returnSelectData3,
+                actionClose: null,
+                gridId: "datagridSelected",
+                allowDblclickSelect: true
+            };
+            popLov2(param);
+        }
+        
+        
+        function returnSelectData3(data) {
+         if(!data||!data.length){
+          return;
+         }
+            if (data.length == 0) {
+               return;
+            }
+            var ids="";
+            var names = "";
+            
+            for(var i=0;i<data.length;i++){
+             if(i==0){
+              ids=data[i].id;
+              names=data[i].name;
+             }else{
+              ids+=","+data[i].id;
+              names+=","+data[i].name;
+             }
+            }
+            
+            mini.get("tbl1").setValue(ids);   //人员id
+            mini.get("tbl1").setText(names);   //人员
+        }
 </script>
+
 </body>
 </html>
