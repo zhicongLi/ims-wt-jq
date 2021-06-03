@@ -58,7 +58,7 @@ AA.prototype.afterLoad = function(o){
 	if(!secList){
 		return true;
 	}
-	debugger;
+	//debugger;
 	this.currObj=o;
 	var newSecList = new Array();
 	var newAfterSecList = new Array();
@@ -110,7 +110,7 @@ AA.prototype.afterLoad = function(o){
 }
 
 AA.prototype.afterFlowLoad = function(flowData){
-	debugger;
+	//debugger;
 	if(!flowData){
 		return true;
 	}

@@ -1390,7 +1390,12 @@ input.mini-textarea
     text-align:left;    
     width:auto;
     overflow:auto;
-    clear:both;
+    clear:both;   
+}
+.mini-panel-body .mini-grid-rows .mini-grid-rows-view
+{
+   height:auto;
+   _height:auto;   
 }
 .mini-messagebox-content table
 {
@@ -3559,9 +3564,8 @@ a:hover.mini-calendar-menu-year
     position:relative;z-index:9;
     overflow:auto;height:100%;
     width:auto;
-    _width:100%;
-    
-    
+    _width:100%;  
+     
 }
 .mini-grid-rows-content
 {

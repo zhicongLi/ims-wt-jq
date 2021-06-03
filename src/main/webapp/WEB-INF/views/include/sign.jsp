@@ -257,22 +257,17 @@
 		}else{
 			var json = {"userName":userName,"passWord":passWord,"typeVariable":typeVariable,"wtType":wtType,"signType":signType};
 		}
-		$.ajax({
+		/* $.ajax({
 		        type: "POST",
 		        url: "${ctx}/wo-wt/wo/woWt/saveQueryResult",
 		        data : json,
 		        success: function (text) {
 		        	var o = mini.decode(text);		        	
-		        	if(o.type == "I"){
-		        		//var cell = mini.get(mini.get("buttonEditId_").getValue());
+		        	if(o.type == "I"){		        	
 		        		var uid = signCell.getValue();
 		        		if(oper == "sign")
 		        		{
-		        			/* if(objIsNotNull(uid) && signCell != o.data.id)
-		        			{
-		        				mini.alert("需先清除签名信息！");
-		        				return;
-		        			} */
+		        			
 		        			signCell.setText(o.data.name);
 		        			signCell.setValue(o.data.id);
 							if(objIsNotNull(signCell.doValueChanged))
@@ -298,7 +293,120 @@
 		        	}
 					
 		        }
-		    })
+		    }) */
+			$.ajax({
+	          type: "POST",
+	          url: "${ctx}/wo-wt/wo/woWt/saveQueryResult",
+	          data : json,
+	          success: function (text) {
+	        	var o = mini.decode(text);
+	        	if(o.type == "I"){
+	        		//判断签发人，如果签发人和工作负责人为同一个人，则不允许签字
+	        		if(typeVariable == "2")
+	        		{	if(mini.get("workLeader").getValue()!=null&&mini.get("workLeader").getValue()!=""){
+	        			if(o.data.id == mini.get("workLeader").getValue())
+		        			{
+		        				showMessageBox("提醒","签发人不能和工作负责人相同","warring");
+		        				//mini.get(""+nameVariable2+"").setValue("");
+								//mini.get(""+nameVariable1+"").setValue("");
+								return;
+		        			}
+	        			}
+	        			if(mini.get("wtSignerName_").getValue()!=null&&mini.get("wtSignerName_").getValue()!=""){
+		        			if(o.data.id != mini.get("wtSignerName_").getValue())
+		        			{
+		        				showMessageBox("提醒","工作签发人必须一致","warring");
+		        				//mini.get(""+nameVariable2+"").setValue("");
+								//mini.get(""+nameVariable1+"").setValue("");
+								return;
+		        			}
+	        			}
+	        			
+	        			
+	        		}else if(typeVariable=="1"){		        			
+	        			if(mini.get("woWtLC.nowWorkLeader")!=undefined){
+	        				if(mini.get("woWtLC.nowWorkLeader").getValue()!=null&&mini.get("woWtLC.nowWorkLeader").getValue()!=""){
+	        					if(o.data.id != mini.get("woWtLC.nowWorkLeader").getValue())
+			        			{	
+			        				showMessageBox("提醒","工作负责人必须一致！","warring");
+			        				//mini.get(""+nameVariable2+"").setValue("");
+									//mini.get(""+nameVariable1+"").setValue("");
+									return;
+			        			}
+		        			}else{
+		        				if(mini.get("workLeader").getValue()!=null&&mini.get("workLeader").getValue()!=""){
+			        				if(o.data.id != mini.get("workLeader").getValue())
+				        			{	
+				        				showMessageBox("提醒","工作负责人必须一致！","warring");
+				        				//mini.get(""+nameVariable2+"").setValue("");
+										//mini.get(""+nameVariable1+"").setValue("");
+										return;
+				        			}
+			        			}
+		        			}
+	        			}else{
+	        				if(mini.get("workLeader").getValue()!=null&&mini.get("workLeader").getValue()!=""){
+		        				if(o.data.id != mini.get("workLeader").getValue())
+			        			{	
+			        				showMessageBox("提醒","工作负责人必须一致！","warring");
+			        				//mini.get(""+nameVariable2+"").setValue("");
+									//mini.get(""+nameVariable1+"").setValue("");
+									return;
+			        			}
+		        			}
+	        			}
+	        		}else if(typeVariable == "99"){
+	        			if(mini.get("workLeader").getValue()!=null&&mini.get("workLeader").getValue()!=""){
+	        				if(o.data.id == mini.get("workLeader").getValue())
+		        			{	
+	        					if(mini.get("buttonEditId_")!=undefined){
+	        						var buttonId = mini.get("buttonEditId_").getValue();
+	        						if(buttonId=="woWtFire.endExecByName_"||buttonId=="woWtFire.execByName_"){
+	        							showMessageBox("提醒","动火执行人和动火负责人不能为同一人！","warring");
+				        				//mini.get(""+nameVariable2+"").setValue("");
+										//mini.get(""+nameVariable1+"").setValue("");
+										return;
+	        						}
+	        					}
+		        				
+		        			}
+	        			}
+	        		}
+	        		//var cell = mini.get(mini.get("buttonEditId_").getValue());
+	        		var uid = signCell.getValue();
+	        		if(oper == "sign")
+	        		{
+	        			/* if(objIsNotNull(uid) && signCell != o.data.id)
+	        			{
+	        				mini.alert("需先清除签名信息！");
+	        				return;
+	        			} */
+	        			signCell.setText(o.data.name);
+	        			signCell.setValue(o.data.id);
+						if(objIsNotNull(signCell.doValueChanged))
+						{
+							signCell.doValueChanged();
+						}
+						showTipM("info","提示",o.message);
+	        		}
+	        		else if(oper == 'clear')
+	        		{
+	        			if(objIsNotNull(uid) && uid != o.data.id)
+	        			{
+	        				mini.alert("您不能清除他人签名！");
+	        				return;
+	        			}
+	        			clearSign_();
+	        		}
+	        		closeSign_();
+	        	}if(o.type == "W"){
+	        		showMessageBox("提醒",o.message,"warring");
+	        	}if(o.type == "E"){
+	        		showMessageBox("错误",o.message,"error");
+	        	}
+				
+	        }
+	    })
 	}
 
 	function closeSign_() {

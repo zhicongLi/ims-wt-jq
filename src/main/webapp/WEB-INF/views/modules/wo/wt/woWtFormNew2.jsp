@@ -215,7 +215,7 @@
 									</td>
 									<td>专业:</td>
 									<td>
-									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="true" allowInput="false"  onbuttonclick="selectSpec" />
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="false"  onbuttonclick="selectSpec" />
 									</td>
 								</tr>
 
@@ -227,7 +227,7 @@
 									</td>
 									<td>班组：</td>
 									<td>
-									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="true" width="150px" allowInput="false"
+									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false"
 										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/ims-ext/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>
 									<td>工作负责人(监护人)：</td>

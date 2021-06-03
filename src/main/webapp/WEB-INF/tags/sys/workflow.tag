@@ -89,7 +89,6 @@
 			}
 			return;
 		} else if('flowDataLoaded' === eventName ) {
-			debugger;
 			editControl.afterFlowLoad(msg);
 			//页面加载成功，添加页面button
 			var buttonList = msg.buttonList;

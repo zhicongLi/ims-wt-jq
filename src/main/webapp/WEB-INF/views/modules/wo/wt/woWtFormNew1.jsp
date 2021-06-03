@@ -227,14 +227,10 @@
 								<tr>
 									<td>2.工作班人员：</td>
 									<td colspan="4">
-									  <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" />
-									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
-											   	onbuttonclick="popLovJson2(this)" selectOnFocus=
-											   	   expandOnLoad="true" showClose="true" oncloseclick="onCloseClick"
-									  />  
-									     
-									<input id="tbl1" class="mini-textboxlist" name="tbl" textName="tblName" required="true" style="width:250px;"/>
-                                    <a class="mini-menubutton " menu="#popupMenu" onclick="popLovJson1(this)">选择...</ a>
+									  <!-- <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" /> -->
+									  <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:900px;"/>
+                                     <!--  <a id="choosePerson" class="mini-menubutton " menu="#popupMenu" onclick="popLovJson1(this)">选择...</ a>	 -->	
+                                      <a id="choosePerson" class="mini-button " menu="#popupMenu" onclick="popLovJson1(this)">选择...</ a>							
 									</td>
 									<td><span>共： <input name=personNum id="personNum" class="mini-spinner" allowNull="true" />人</span></td>
 								</tr>
@@ -758,19 +754,13 @@
 		  
 		  sysToolBar_.addButtonOption({
 			"buttonId":'test1',
-			"functionStr":'test1',/* 对应按钮的点击事件 */
-			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
+			"functionStr":'test1',/* 对应按钮的点击事件 */			
 			"name":'检修围栏'
-		  });
-          // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
+		  });         
 	    }
 	  
 	    function test(){
-		  var id = mini.get("id").getValue();
-		  var wtType = mini.get("wtType").getValue();
-		  var dutyOrgId = mini.get("dutyOrgId").getValue();
-		  //var myChilds = getWoWtSm2();
-		  var menuItem = null; 
+		  var id = mini.get("id").getValue();		 
 		  if (id == "" || id == null) {
 			mini.alert("请先保存再点击打印按钮！");
 			return;
@@ -783,16 +773,15 @@
 		  if (id == "" || id == null) {
 			mini.alert("请先保存再点击打印按钮！");
 			return;
-		  }
-		  debugger;
+		  }		
 		  var form = new mini.Form("#editform");   
 		  var woWtData = form.getData();
 		  var wtId = woWtData.id;
 		  console.log(woWtData.id);
  		  var iamCode = iamCodeValue();
-	     //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode +"&woWtData="+encodeURIComponent(woWtData),true);
-	     //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode,true); 
- 		window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
+	      //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode +"&woWtData="+encodeURIComponent(woWtData),true);
+	      //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode="+ iamCode,true); 
+ 		  window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
 	    }
 	  
 	    $(function(){
@@ -850,16 +839,14 @@
             popLov2(param);
         } */
 	    
-	    function popLovJson1(e) {
-            debugger;
-           // var createCompany=mini.get("createCompany").getValue();
+	    function popLovJson1(e) {           
             var param = {
                 obj: null,
                 title: "人员选择",
                 multiSel: true,
                 readOnly: true,
                 url: "${ctxRoot}/form?view=/sys/misUserList",
-                width: 1000,
+                width: 800,
                 height: 600,
                 selFields: "id,name",
                 refFields: "",
@@ -894,9 +881,10 @@
              }
             }
             
-            mini.get("tbl1").setValue(ids);   //人员id
-            mini.get("tbl1").setText(names);   //人员
+            mini.get("workClassPersonIds").setValue(ids);   //人员id
+            mini.get("workClassPersonIds").setText(names);   //人员
         }
+      
 </script>
 
 </body>

@@ -545,6 +545,7 @@
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save?woWtType=5",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
+			onBeforeSaveForm : onBeforeSaveForm,
 			onAfterLoadRecord: onAfterLoadRecord
 		});
 
@@ -709,7 +710,13 @@
 	        wfAfterLoad(o);
 	    }
 	    
-	    editControl.loadEditList('woWt');
+	  editControl.loadEditList('woWt');
+	  
+	  function onBeforeSaveForm() {	    	   	
+    	var fire = mini.get("woWtFire.fireModeId").getText();
+    	mini.get("woWtFire.fireMode").setValue(fire);		
+		return true;
+	  }
 </script>
 </body>
 </html>
