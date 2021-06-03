@@ -259,6 +259,11 @@ AA.prototype.setEdit=function(newSecList){
 						var myform = new mini.Form(formId); 
 						field = mini.getByName(secl.fieldName,myform);
 					}
+					//解决id name 不一致问题
+					if(!field){
+						field = mini.get(secl.fieldName);
+					}
+					
 					if(field){
 						if(secl.isEdit=='1'){
 							field.setEnabled(true);
