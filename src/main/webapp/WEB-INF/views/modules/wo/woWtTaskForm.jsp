@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
-<%@ include file="/WEB-INF/views/include/head.jsp"%>
+
 <html>
 <head>
 	 <title>工作任务单</title>
@@ -152,7 +152,7 @@
 								  <tr>
 									<td style="padding-left: 5px;">编号：</td>
 									<td>
-									  <input name="wtCode" id="wtCode" class="mini-textbox" width="200px"/>
+									  <input name="wtCode" id="wtCode" class="mini-textbox" width="200px" readonly="readonly"/>
 									</td>
 									<td>状态:</td>
 									<td colspan="3">
@@ -179,7 +179,9 @@
 								  <tr>
 									<td>2.工作班人员：</td>
 									<td colspan="4">
-									  <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" />
+									  <!-- <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" /> -->
+									   <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:600px;"/>                                   
+                                      <a id="choosePerson" class="mini-button " plain="true" onclick="popLovJson1(this)">选择...</ a>							
 									</td>
 									<td>
 									  <span>共 <input name=personNum id="personNum" class="mini-spinner" allowNull="true" />人</span>
@@ -224,7 +226,7 @@
 								    <td>7.交底人</td>
 								    <td colspan="3">
 								      <input style="width: 180px" name="proReplyBy" id="proReplyBy" required="false" textName="proReplyByName" class="mini-buttonedit" allowInput="false"
-										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','proReplyBy,proReplyByName')" onvaluechanged="update(this)" />
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','proReplyBy,proReplyByName')" onvaluechanged="update(this)" />
 									</td>
 									<td>许可部门：</td>
 									<td>
@@ -251,7 +253,7 @@
 								  </tr>
 								  <tr>
 									<td colspan="6" style="height: 28px;">10.工作结束：全部工作于
-										<input name="endDutyPrincipalTime" allowInput="false" id="endDutyPrincipalTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 结束，工作人员已全部撤离，现场已清理完毕。
+										<input name="endDutyPrincipalTime" allowInput="false" id="endDutyPrincipalTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 结束，工作人员已全部撤离，现场已清理完毕。
 									</td>
 								  </tr>
 								  <tr>
@@ -277,7 +279,6 @@
 <sys:workflow flowKey="woWtTask"></sys:workflow>
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
-	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
 <script type="text/javascript">
 
 	initBase(
@@ -287,9 +288,11 @@
 				getUrl:"${ctx}/wo-wt/wo/woWtTask/get",
 				saveUrl:"${ctx}/wo-wt/wo/woWtTask/save",
 				removeUrl:"${ctx}/wo-wt/wo/woWtTask/remove",
-				exportUrl:"${ctx}/wo-wt/wo/woWtTask/export",
-				initInsertUrl : "${ctx}/wo-wt/wo/woWtTask/initInsert",
-				onAfterLoadRecord: onAfterLoadRecord
+				exportUrl:"${ctx}/wo-wt/wo/woWtTask/export?status=1",
+				initInsertUrl : "${ctx}/wo-wt/wo/woWtTask/initInsert",				
+				onAfterNewRecord:addNewReword,
+	            onAfterLoadRecord: onAfterLoadRecord,          
+	            onBeforeSaveCheck: onBeforeSaveCheck
 			 }
 	       );
 
@@ -578,7 +581,7 @@
      
    }
    
-   function afterLoad(){
+ /*   function afterLoad(){
 	  var procInsId = mini.get("procInsId").getValue();
 	  var workLeader = mini.get("workLeader").getValue();
 	// _loadEditLimit(procInsId,"woWtTask","node1",workLeader);
@@ -586,14 +589,13 @@
    }
    function flowAction(){
 	  return _submitValidate();
-   }
+   } */
    //////////子表格操作菜单项点击事件方法/////////
-
+ 
    function addButton(){
 	 sysToolBar_.addButtonOption({
 		"buttonId":'test',
-		"functionStr":'test',/* 对应按钮的点击事件 */
-		/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
+		"functionStr":'test',/* 对应按钮的点击事件  */		
 		"name":'打印预览'
 	 });	      
    }	 
@@ -609,13 +611,72 @@
 	 
    $(function(){
 	 addButton();
-   });
+   }); 
    
-   function onAfterLoadRecord(o) {	   
-       wfAfterLoad(o);
+   
+   function onBeforeSaveCheck(o){
+       editControl.beforeSave(o);
+       return true;
    }
    
-   editControl.loadEditList('woWtTask');
+   function addNewReword(o){
+   	editControl.afterLoad(o);//页面编辑权限控制
+   }
+   
+   function onAfterLoadRecord(o) {	   	    	
+       wfAfterLoad(o);//加载流程
+       editControl.afterLoad(o);//页面编辑权限控制	 
+       	
+   }
+   
+   editControl.loadEditList('woWtTask'); 
+   
+   //选择用户（分页多选）
+   function popLovJson1(e) {           
+       var param = {
+           obj: null,
+           title: "人员选择",
+           multiSel: true,
+           readOnly: true,
+           url: "${ctxRoot}/form?view=/sys/misUserList",
+           width: 800,
+           height: 600,
+           selFields: "id,name",
+           refFields: "",
+           refGridId: null,
+           actionLovValid: null,
+           actionLov: returnSelectData3,
+           actionClose: null,
+           gridId: "datagridSelected",
+           allowDblclickSelect: true
+       };
+       popLov2(param);
+   }
+   
+   
+   function returnSelectData3(data) {
+    if(!data||!data.length){
+     return;
+    }
+       if (data.length == 0) {
+          return;
+       }
+       var ids="";
+       var names = "";
+       
+       for(var i=0;i<data.length;i++){
+        if(i==0){
+         ids=data[i].id;
+         names=data[i].name;
+        }else{
+         ids+=","+data[i].id;
+         names+=","+data[i].name;
+        }
+       }
+       
+       mini.get("workClassPersonIds").setValue(ids);   //人员id
+       mini.get("workClassPersonIds").setText(names);   //人员
+   }
 </script>
 </body>
 </html>

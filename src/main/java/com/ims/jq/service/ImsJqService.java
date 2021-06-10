@@ -13,6 +13,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSON;
 import com.ims.jq.interceptor.IAMUtils;
+import com.ims.jq.utils.Global;
 
 @Service
 public class ImsJqService {
@@ -29,7 +30,10 @@ public class ImsJqService {
 	   headers.add(IAMUtils.CODE,iamCode);
 	   HttpEntity req = new HttpEntity(form, headers);
 	  // String uploadUrl = systemProperties.getDocUploadUrl()+"/documentCenter/onlyOfficePutObject";
-	   String uploadUrl = "http://192.168.0.171:18600/wo-wt/wo/woWt/listWtType"+wtType+"Print";
+	   //String uploadUrl = "http://192.168.0.171:18600/wo-wt/wo/woWt/listWtType"+wtType+"Print";
+	   //获取网关路径
+	   String gatewayUrl =  Global.getConfig("gateway.url");
+	   String uploadUrl ="http://"+ gatewayUrl+"/wo-wt/wo/woWt/listWtType"+wtType+"Print";
 	   try {
 	      ResponseEntity<String> responseEntity = restTemplate.postForEntity(uploadUrl, req, String.class);
 	      String str = responseEntity.getBody();
@@ -56,18 +60,17 @@ public class ImsJqService {
 	   headers.setConnection("Keep-Alive");
 	   headers.setCacheControl("no-cache");
 	   headers.add(IAMUtils.CODE,iamCode);
-	   HttpEntity req = new HttpEntity(form, headers);
-	  // String uploadUrl = systemProperties.getDocUploadUrl()+"/documentCenter/onlyOfficePutObject";
-	   String uploadUrl = "http://192.168.0.171:18600/wo-wt/wo/woWtTask/viewWoWtTask";
+	   HttpEntity req = new HttpEntity(form, headers);	   
+	   //String uploadUrl = "http://192.168.0.171:18600/wo-wt/wo/woWtTask/viewWoWtTask";
+	   //获取网关路径
+	   String gatewayUrl =  Global.getConfig("gateway.url");
+	   String uploadUrl = "http://"+ gatewayUrl+"/wo-wt/wo/woWtTask/viewWoWtTask";
 	   try {
 	      ResponseEntity<String> responseEntity = restTemplate.postForEntity(uploadUrl, req, String.class);
 	      String str = responseEntity.getBody();
-	      System.out.println(str);
-	      //JSONObject jsonObject = JsonMapper.getInstance().fromJson(str,JSONObject.class);
-	      //boolean isSuccess = jsonObject.getBoolean("success");	  
+	      System.out.println(str);	    	  
 	      HashMap hashMap = JSON.parseObject(str, HashMap.class);
-	      model.addAllAttributes(hashMap);
-	      //model.addAttribute("woWtList", aa);
+	      model.addAllAttributes(hashMap);	     
 	   } catch (Exception e) {	      
 	      e.printStackTrace();
 	   }

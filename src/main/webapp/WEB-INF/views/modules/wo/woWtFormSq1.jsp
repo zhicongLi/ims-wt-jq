@@ -91,9 +91,10 @@
 		</c:otherwise>
 	</c:choose>
 </div>
+
 <div class="pageHeader"></div>
 <!-- 危险点预控措施 -->
-<%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrintNew.jsp"%> 
+<%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
 <div class="pageFooter"></div>
 <div class="pageBreak"></div>
 <div class="pageHeader"></div>
@@ -621,6 +622,11 @@
 	</table>
 </div>
 <input type="hidden" id="wtCode"  value="${WoWt.wtCode}">
+<div class="pageHeader"></div>
+<!-- 危险点预控措施 -->
+<%-- <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%> 
+<div class="pageFooter"></div>
+<div class="pageBreak"></div> --%>
 </body>
  <script type="text/javascript">
  //A4 = 794×1123;//采用96dpi

@@ -32,6 +32,12 @@
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="wtCode-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
+						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
+							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
+							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
+								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
+							/>
+						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">工作内容 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
@@ -164,6 +170,8 @@
 							<!-- 是否进行过延期或者负责人变更 1：是 0：否  -->
 							<input class="mini-hidden" name="woWtDelay.isDelay" id="woWtDelay.isDelay" />
 							<input class="mini-hidden" name="woWtLC.isLeaderChange" id="woWtLC.isLeaderChange" />
+							 <!-- 票来源 -->
+							<input class="mini-hidden" name="sourceType" id="sourceType" /> 
 							
 							<table class="formtable">
 								<tr>
@@ -178,13 +186,14 @@
 									</td>
 									<td>专业:</td>
 									<td>
-									  <input name="specId" id="specId" textName="specName" allowInput="false" class="mini-buttonedit" vtype="" required="false" onbuttonclick="selectSpec" />
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="true" allowInput="true" 
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
 									</td>
 								</tr>
 								<tr>
 									<td>所属设备KKS：</td>
 									<td>
-									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="false" class="mini-buttonedit" vtype="" required="false" width="200px"
+									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="false" class="mini-buttonedit" vtype="" required="false" width="200px" readonly="readonly"
 										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)" onvaluechanged="updateEquip()" />
 									</td>
 									<td align="left">所属设备名称：</td>
@@ -199,19 +208,19 @@
 								<tr>
 									<td>部门：</td>
 									<td>
-									  <input name="orgId" id="orgId" textName="orgName" class="mini-buttonedit" width="200px"
+									  <input name="orgId" id="orgId" textName="orgName" class="mini-buttonedit" width="200px" readonly="readonly"
 									    onbuttonclick="popLov(this,'选择部门',false,true,'${ctx}/sys/sysOrg/list?classId=0',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
 									</td>
 									<td>班组：</td>
 									<td colspan="3">
-									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false" 
+									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false" readonly="readonly"
 										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">1.工作负责人：</td>
 									<td colspan="">
-									  <input style="" name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" width="200px"
+									  <input style="" name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" width="200px" readonly="readonly"
 									    onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
 									</td>									
 									<td>机组:</td>
@@ -224,7 +233,9 @@
 								<tr>
 									<td>2．工作组成员安全交底签名：</td>
 									<td colspan="2" align="left">
-									  <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" />
+									  <!-- <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" /> -->
+									   <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:500px;"/>                                   
+                                      <a id="choosePerson" class="mini-button " plain="true" onclick="popLovJson1(this)">选择...</ a>							
 									</td>
 									<td colspan="3">共：<input style="width: 100px;" name="personNum"id="personNum" class="mini-spinner" vtype="" allowNull="true" />人</td>									
 								</tr>
@@ -258,7 +269,7 @@
 									</td>
 									<td align="right">是否风险区域：</td>
 									<td colspan="2">
-									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%"
+									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%" readonly="readonly"
 									    onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/em/emRiskArea/list',850,500,'areaName','areaName')" />
 									</td>
 								</tr>								
@@ -394,7 +405,7 @@
 									</td>
 									<td>签发时间：</td>
 									<td colspan=2>
-									  <input name="wtSignDate" allowInput="false" id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" vtype="" required="false" />
+									  <input name="wtSignDate" allowInput="false" id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" vtype="" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 								<tr>
@@ -404,7 +415,7 @@
 									</td>
 									<td>接票时间：</td>
 									<td colspan=2>
-									  <input name="wtReceiveTime" allowInput="false" id="wtReceiveTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="wtReceiveTime" allowInput="false" id="wtReceiveTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 							</table>
@@ -440,11 +451,11 @@
 									<td>10．批准工作时间：</td>									
 									<td align="right">开始时间：</td>
 									<td>
-									  <input name="appStartTime" allowInput="false" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="appStartTime" allowInput="false" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 									<td align="right">结束时间：</td>
 									<td colspan="2">
-									  <input name="appEndTime" allowInput="false" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
+									  <input name="appEndTime" allowInput="false" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
 									</td>	
 								</tr>
 								<tr>
@@ -454,12 +465,12 @@
 									</td>
 									<td align="right">时间：</td>
 									<td colspan="2">
-									  <input  allowInput="false" name="appDutyLeaderTime" id="appDutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="MM-dd" required="false" /><br />
+									  <input  allowInput="false" name="appDutyLeaderTime" id="appDutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="MM-dd" required="false" style="width: 180px;"/><br />
 									</td> 
 								</tr>
 								<tr>
 									<td colspan="8" style="height: 28px;" _emptyName="开始工作时间">11.上述安全措施已全部执行，从
-									  <input name="permitStartTime" id="permitStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 开始工作。
+									  <input name="permitStartTime" id="permitStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 开始工作。
 									</td>
 								</tr>								
 								<tr>								   
@@ -475,7 +486,7 @@
 								</tr>							
 								<tr>
 									<td colspan="6">12.工作负责人变更：自 
-									  <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 原工作负责人离去，变更为
+									  <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 原工作负责人离去，变更为
 									  <input style="width: 180px" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />担任工作负责人。
 									</td>
@@ -492,7 +503,7 @@
 								</tr>
 								<tr>
 									<td colspan="6" style="height: 28px;">13.工作票延期：有效期延长到 
-									  <input name="woWtDelay.delayTime" id="woWtDelay.delayTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" /> 结束。
+									  <input name="woWtDelay.delayTime" id="woWtDelay.delayTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 结束。
 									</td>
 								</tr>								
 								<tr>
@@ -503,7 +514,7 @@
 									</td>									
 									<td align="right">值长(或单元长)签字时间：</td>
 									<td colspan="2">
-									  <input name="woWtDelay.dutyLeaderTime" allowInput="false" id="woWtDelay.dutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="woWtDelay.dutyLeaderTime" allowInput="false" id="woWtDelay.dutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 								<tr>
@@ -513,7 +524,7 @@
 									</td>									
 									<td align="right">运行值班负责人签字时间：</td>
 									<td colspan="2">
-									  <input name="woWtDelay.permitByTime" allowInput="false" id="woWtDelay.permitByTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="woWtDelay.permitByTime" allowInput="false" id="woWtDelay.permitByTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 								<tr>									
@@ -524,7 +535,7 @@
 									</td>
 									<td align="right">工作负责人签字时间：</td>
 									<td colspan="2">
-									  <input name="woWtDelay.workLeaderTime" allowInput="false" id="woWtDelay.workLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" />
+									  <input name="woWtDelay.workLeaderTime" allowInput="false" id="woWtDelay.workLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 								<tr>
@@ -559,7 +570,7 @@
 											  onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 										</div>
 										<div name="tryWorkTime" field="tryWorkTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" mallowSort="true" width="160">允许试运时间 
-											<input property="editor" showTime="true" class="mini-datepicker" style="width: 100%;" /> 
+											<input property="editor" showTime="true" class="mini-datepicker" style="width: 100%;" allowInput="false"/> 
 											<input id="tryWorkTime-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
 								              onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 										</div>
@@ -596,7 +607,7 @@
 											 <input id="id-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 										</div>
 										<div name="recoverWorkTime" field="recoverWorkTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160">恢复工作时间 
-											<input property="editor" showTime="true" class="mini-datepicker" style="width: 100%;" /> 
+											<input property="editor" showTime="true" class="mini-datepicker" style="width: 100%;" allowInput="false"/> 
 											<input id="recoverWorkTime-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
 											  onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 										</div>									
@@ -642,9 +653,9 @@
 	<sys:workflow flowKey="woWt4"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
-	<jsp:include page="permitNew.jsp"></jsp:include>
-	<jsp:include page="attachTabNew.jsp" flush="true" />
-	<script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
+	<jsp:include page="permit.jsp"></jsp:include>
+	<jsp:include page="attachTab.jsp" flush="true" />
+	<%-- <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -657,7 +668,9 @@
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
 			importUrl:"${ctx}/wo-wt/wo/woWt/import",
-			onAfterLoadRecord: onAfterLoadRecord
+			onAfterNewRecord:addNewReword,
+            onAfterLoadRecord: onAfterLoadRecord,          
+            onBeforeSaveCheck: onBeforeSaveCheck
 		});
 
 		initChilds(
@@ -888,12 +901,7 @@
 	   $(function(){
 		   addButton();
 	   });	
-	   
-	   function onAfterLoadRecord(o) {	   
-	        wfAfterLoad(o);
-	    }
-	    
-	    editControl.loadEditList('woWt');
+	   	  
 </script>
 </body>
 </html>

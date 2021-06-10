@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <style type="text/css">
+         
 	 	 .formtable{
-	 		 border-collapse:collapse;
+	 		 border-collapse:collapse;	 		
 		  }
 	 	.formtable{
 	 		width:100%;
@@ -17,7 +18,8 @@
 	 	<style type="text/css">
 	 	.formtable td
 		  {
-		  border: 1px solid black;
+		   border: 1px solid black; 		 
+		   line-height:28px;
 		  }
 		   .sGrid .mini-grid-cell{
         	border-right:1px solid black;

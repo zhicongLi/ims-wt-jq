@@ -31,7 +31,10 @@ public class Global {
 	/**
 	 * 属性文件加载对象
 	 */
+	//正式环境配置
 	private static PropertiesLoader loader = new PropertiesLoader("config.properties");
+	//本地开发环境配置
+	//private static PropertiesLoader loader = new PropertiesLoader("config2.properties");
 
 	/**
 	 * 显示/隐藏

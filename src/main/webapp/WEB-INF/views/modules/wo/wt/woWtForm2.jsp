@@ -31,6 +31,12 @@
 							 <input id="wtCode-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
 								onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
+						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
+							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
+							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
+								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
+							/>
+						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">工作内容 
 							<input property="editor" class="mini-textbox"style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
@@ -201,6 +207,8 @@
 							<!-- 是否进行过延期或者负责人变更 1：是 0：否  -->
 							<input class="mini-hidden" name="woWtDelay.isDelay" id="woWtDelay.isDelay" />
 							<input class="mini-hidden" name="woWtLC.isLeaderChange" id="woWtLC.isLeaderChange" />
+							 <!-- 票来源 -->
+							<input class="mini-hidden" name="sourceType" id="sourceType" /> 
 							
 							<table class="formtable">
 								<tr>
@@ -215,31 +223,32 @@
 									</td>
 									<td>专业:</td>
 									<td>
-									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="false"  onbuttonclick="selectSpec" />
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="true" allowInput="true" 
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
 									</td>
 								</tr>
 
 								<tr>
 									<td>1.部门：</td>
 									<td>
-									  <input name="orgId" id="orgId" textName="orgName" class="mini-buttonedit" width="200px"
+									  <input name="orgId" id="orgId" textName="orgName" class="mini-buttonedit" width="200px" readonly="readonly" 
 										onbuttonclick="popLov(this,'选择部门',false,true,'${ctx}/ims-ext/sys/sysOrg/list?classId=0',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
 									</td>
 									<td>班组：</td>
 									<td>
-									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false"
+									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false" readonly="readonly" 
 										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/ims-ext/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>
 									<td>工作负责人(监护人)：</td>
 									<td>
-									  <input style="width: 150px" name="workLeader" id="workLeader" required="true" textName="workLeaderName" class="mini-buttonedit"
+									  <input style="width: 150px" name="workLeader" id="workLeader" required="true" textName="workLeaderName" class="mini-buttonedit" readonly="readonly" 
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/ims-ext/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
 									</td>
 								</tr>
 								<tr>
 									<td>所属设备KKS：</td>
 									<td>
-									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="true" width="200px" class="mini-buttonedit" vtype="" required="false"
+									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="true" width="200px" class="mini-buttonedit" vtype="" required="false" readonly="readonly" 
 										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/ims-ext/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)" onvaluechanged="updateEquip()" />
 									</td>
 									<td align="left">所属设备名称：</td>
@@ -254,7 +263,9 @@
 								<tr>
 									<td>工作班人员：</td>
 									<td colspan="4">
-									  <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" />
+									  <!-- <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" /> -->
+									   <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:900px;"/>                                   
+                                       <a id="choosePerson" class="mini-button " plain="true" onclick="popLovJson1(this)">选择...</ a>
 									</td>
 									<td><span>共 
 									  <input name="personNum" id="personNum" class="mini-spinner" allowNull="true" />人</span>
@@ -312,7 +323,7 @@
 									</td>
 									<td align="right">是否风险区域：</td>
 									<td colspan="2">
-									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%"
+									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%" readonly="readonly" 
 									   onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/ims-ext/em/emRiskArea/list',850,500,'areaName','areaName')" />
 									</td>	
 								</tr>								
@@ -447,9 +458,9 @@
 	<sys:workflow flowKey="woWt2"></sys:workflow>
 	<sys:toolbarfooter></sys:toolbarfooter>
 	<sys:excelframe></sys:excelframe>
-	<jsp:include page="permitNew.jsp" flush="true" />
-	<jsp:include page="attachTabNew.jsp" flush="true" />
-    <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script>
+	<jsp:include page="permit.jsp" flush="true" />
+	<jsp:include page="attachTab.jsp" flush="true" />
+  <%--   <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -462,7 +473,9 @@
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
 			importUrl:"${ctx}/wo-wt/wo/woWt/import",		
-			onAfterLoadRecord: onAfterLoadRecord
+			onAfterNewRecord:addNewReword,
+            onAfterLoadRecord: onAfterLoadRecord,          
+            onBeforeSaveCheck: onBeforeSaveCheck
 		});
 
 		function getWoWtSm() {
@@ -632,11 +645,7 @@
 		   addButton();
 	    });
 	    
-	    function onAfterLoadRecord(o) {	   
-	        wfAfterLoad(o);
-	    }
-	    
-	    editControl.loadEditList('woWt');	
+	 
 </script>
 </body>
 </html>
