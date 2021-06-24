@@ -62,18 +62,18 @@
 				</tr>								
 			</table>
 			<br>						
-			<input class="mini-hidden" name="workLeader" id="workLeader" value="${workLeader }"/>
-			<input class="mini-hidden" name="workLeaderName" id="workLeaderName" value="${workLeaderName }"/>
+			<input class="mini-hidden" name="workLeader" id="workLeader" value="${param.workLeader}"/>
+			<input class="mini-hidden" name="workLeaderName" id="workLeaderName" value="${param.workLeaderName}"/>
 			<input class="mini-hidden" name="nowWorkLeaderName" id="nowWorkLeaderName"/>
 			<input class="mini-hidden" name="oldWorkLeaderName" id="oldWorkLeaderName"/>
-			<input class="mini-hidden" id="wtSignerName_" value="${wtChangeDutyLeaderSigner}"/>
+			<input class="mini-hidden" id="wtSignerName_" value="${param.wtChangeDutyLeaderSigner}"/>
 			<!-- <input class="mini-hidden" name="wtSigner" id="wtChangeDutyLeaderSigner" /> -->
-			<input class="mini-hidden" name="id" id="id" value="${wtId }"/>
-			<input class="mini-hidden" name="wtId" id="wtId" value="${wtId }"/>
+			<input class="mini-hidden" name="id" id="id" value="${param.wtId}"/>
+			<input class="mini-hidden" name="wtId" id="wtId" value="${param.wtId }"/>
 			<!-- <input class="mini-hidden" name="permitBy" id="permitBy"/> -->
 			<input class="mini-hidden" name="wtType" id="wtType" value="${param.wtType}"/>
 			<!-- 新增 责任部门2020.01.03 -->
-			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${dutyOrgId }"/>
+			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${param.dutyOrgId }"/>
 			<div id="buttonDiv" style="text-align:center;margin-top: 200px">
 				<a class="mini-button" iconCls="icon-check" id="confimButton" style="width:70px;" onclick="onLovOk()">确定</a>
 				<span style="display:inline-block;width:25px;"></span>
@@ -113,7 +113,7 @@
 	    }
 		
 		$.ajax({
-			url:"${ctx}/wo/woWt/changeDutyLeader",
+			url:"${ctx}/wo-wt/wo/woWt/changeDutyLeader",
 			data:{wtId:wtId,oldWorkLeader:oldWorkLeader,nowWorkLeader:nowWorkLeader,
 				wtChangeDutyLeaderSignerName:wtChangeDutyLeaderSignerName,permitByName:permitByName,wtChangeDutyLeaderSigner:wtChangeDutyLeaderSigner,permitBy:permitBy,
 				changeTime:changeTime,nowWorkLeaderName:nowWorkLeaderName,oldWorkLeaderName:oldWorkLeaderName},
@@ -143,7 +143,7 @@
 	window.onload=function(){
 	    var wtId= mini.get("wtId").getValue();
 		$.ajax({
-			url:"${ctx}/wo/woWtLeaderChange/getData",
+			url:"${ctx}/wo-wt/wo/woWtLeaderChange/getData",
 			data:{wtId:wtId},
 			type:"post",
             success: function (o) {
@@ -184,7 +184,7 @@
 		//获取是哪种工作票
 		var wtType = mini.get("wtType").getValue();		
 		$.ajax({
-			url:"${ctx}/wo/woWt/findWoUserQualLine",
+			url:"${ctx}/wo-wt/wo/woWt/findWoUserQualLine",
 			data:{wo_type:wtType,qual_type:1},
 			type:"post",
             success: function (o) {            	
@@ -196,8 +196,9 @@
 	//新负责人的选择事件
 	function findUserName(obj){
 		var wtType = mini.get("wtType").getValue();	
-	    var url = '${ctx}/wo/woWtLeaderChange/newWorKLeaderList?addCan=0&wtType='+wtType+'&qualType=1';
-		popLov(obj,'选择人员',false,true,url,850,500,'id,name','nowWorkLeader,nowWorkLeaderName')
+	    //var url = '${ctx}/wo/woWtLeaderChange/newWorKLeaderList?addCan=0&wtType='+wtType+'&qualType=1';
+		var url = '${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType='+wtType+'&qualType=1';
+	    popLov(obj,'选择人员',false,true,url,850,500,'id,name','nowWorkLeader,nowWorkLeaderName')
 	    
 	}
 </script>

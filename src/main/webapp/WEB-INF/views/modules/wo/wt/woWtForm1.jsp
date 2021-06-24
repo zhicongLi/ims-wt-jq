@@ -543,7 +543,7 @@
 		</div>		
 		<!-- 加载作业安全措施附票 -->
 		<%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>		
-	        <div title="检修围栏" id="tabWoProcessList" name="tabSmElectronicFenceList"   style="border: 0px;"  >  			
+	    <div title="检修围栏" id="tabWoProcessList" name="tabSmElectronicFenceList"   style="border: 0px;"  >  			
 			<div class="mini-fit">
 				<div id="tabsSub1" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%">
 				<div title="检修围栏"   style="border: 0px;"  >
@@ -829,10 +829,14 @@
 			"functionStr":'changeWorkLeader',/* 对应按钮的点击事件 */			
 			"name":'变更负责人'
 		  }); 
-		  
 		  sysToolBar_.addButtonOption({
-			"buttonId":'detainTicket',
-			"functionStr":'detainTicket',/* 对应按钮的点击事件 */			
+			"buttonId":'restoreTicket',
+			"functionStr":'restoreTicket',/* 对应按钮的点击事件 */			
+			"name":'押票恢复'
+		  }); 
+		  sysToolBar_.addButtonOption({
+			"buttonId":'keepTicket',
+			"functionStr":'keepTicket',/* 对应按钮的点击事件 */			
 			"name":'押票'
 		  });  
 		  
@@ -848,13 +852,7 @@
 			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
 			"name":'检修围栏'
 		  });  
-		  
-		  sysToolBar_.addButtonOption({
-				"buttonId":'test1',
-				"functionStr":'test1',/* 对应按钮的点击事件 */
-			    "gridId":"gridSmElectronicFence", //* 对应具体的列表，默认给明细 */
-				"name":'打印预览111'
-			  });
+		  		 
 	    }
 	    //打印预览
 	    function print(){
@@ -868,42 +866,256 @@
 	    
 	    //变更负责人
 	    function changeWorkLeader(){
-	    	 var wtId = mini.get("id").getValue();	
-	    	 var wtType = mini.get("wtType").getValue();
-	    	 mini.confirm("确认重新进行变更负责人？", "重新变更负责人",
-				function (action) {
-					if (action == "ok") {
-						mini.open({
-							//targetWindow: window.top,   //页面对象。默认是顶级页面。			
-							url : "${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&wtType="+wtType, //页面地址
-							title : "变更负责人", //标题
-							width : 720, //宽度
-							height : 450, //高度
-							allowResize : true, //允许尺寸调节
-							allowDrag : true, //允许拖拽位置
-							showCloseButton : true, //显示关闭按钮
-							showMaxButton : true, //显示最大化按钮
-							showModal : true, //显示遮罩
-							loadOnRefresh : true, //true每次刷新都激发onload事件
-							onload : function() { //弹出页面加载完成								
-							},
-							ondestroy : function(action) {
-								if (action == "ok") {
-									showTipM("info", "提示", "变更负责人成功！");
-									refreshFormData();
-								}
-							}
+	    	var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();
+	    	var workLeader = mini.get("workLeader").getValue();
+			var workLeaderName = mini.get("workLeaderName").getValue();
+			var wtSigner = mini.get("wtSignerName_").getValue();
+			var changeTime = mini.get("woWtLC.changeTime").getFormValue();
+			var isLeaderChange = mini.get("woWtLC.isLeaderChange").getValue();
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			
+		    if(isLeaderChange=="1"){
+				showMessageBox("警告","只能变更负责人一次","warning");
+				return;
+			} 
+			if(changeTime!=null&&changeTime!=""){
+				mini.confirm("确认重新进行变更负责人？", "重新变更负责人",
+						function (action) {
+							if (action == "ok") {
+								mini.open({
+									//targetWindow: window.top,   //页面对象。默认是顶级页面。			
+									url : "${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&wtId=" + id
+										+ "&wtType=" + wtType + "&workLeader="
+											+ workLeader + "&workLeaderName="
+											+ workLeaderName + "&wtSigner=" + wtSigner + "&dutyOrgId=" + dutyOrgId, //页面地址
+									title : "变更负责人", //标题
+									width : 720, //宽度
+									height : 450, //高度
+									allowResize : true, //允许尺寸调节
+									allowDrag : true, //允许拖拽位置
+									showCloseButton : true, //显示关闭按钮
+									showMaxButton : true, //显示最大化按钮
+									showModal : true, //显示遮罩
+									loadOnRefresh : true, //true每次刷新都激发onload事件
+									onload : function() { //弹出页面加载完成								
+									},
+									ondestroy : function(action) {
+										if (action == "ok") {
+											showTipM("info", "提示", "变更负责人成功！");
+											refreshFormData();
+										}
+									}
 
+								});
+							}else if(action=="cancel"){
+								
+							}
 						});
-					}else if(action=="cancel"){
-						
+			}else{
+				mini.open({
+					//targetWindow: window.top,   //页面对象。默认是顶级页面。
+					url : "${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&wtId=" + id
+							+ "&wtType=" + wtType + "&workLeader="
+							+ workLeader + "&workLeaderName="
+							+ workLeaderName + "&wtSigner=" + wtSigner + "&dutyOrgId=" + dutyOrgId, //页面地址
+					title : "变更负责人", //标题
+					width : 720, //宽度
+					height : 450, //高度
+					allowResize : true, //允许尺寸调节
+					allowDrag : true, //允许拖拽位置
+					showCloseButton : true, //显示关闭按钮
+					showMaxButton : true, //显示最大化按钮
+					showModal : true, //显示遮罩
+					loadOnRefresh : true, //true每次刷新都激发onload事件
+					onload : function() { //弹出页面加载完成
+						/*  var iframe = this.getIFrameEl(); 
+						  var data = {};       
+						  //调用弹出页面方法进行初始化
+						  iframe.contentWindow.SetData(data); 
+						 */
+					},
+					ondestroy : function(action) {
+						if (action == "ok") {
+							showTipM("info", "提示", "变更负责人成功！");
+							refreshFormData();
+						}
 					}
-				}); 
-				 //var iamCode = iamCodeValue();
-	    	  //window.open("${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&iamCode=" + iamCode);
+
+				});
+			}
+	    	  
 	    }
 	    
+	    //押票恢复
+	    function restoreTicket(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var actionStatus = "restoreTicket";
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    			
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			mini.open({
+				//targetWindow: window.top,   //页面对象。默认是顶级页面。
+				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
+						+ "&wtType=" + wtType + "&actionStatus="
+						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+				title : "押票和恢复", //标题
+				width : "70%", //宽度
+				height : 600, //高度
+				allowResize : true, //允许尺寸调节
+				allowDrag : true, //允许拖拽位置
+				showCloseButton : true, //显示关闭按钮
+				showMaxButton : true, //显示最大化按钮
+				showModal : true, //显示遮罩
+				loadOnRefresh : true, //true每次刷新都激发onload事件
+				onload : function() { //弹出页面加载完成
+
+				},
+				ondestroy : function(action) {
+					if (action == "ok") {
+						if (actionStatus == "keepTicket") {
+							showTipM("info", "提示", "押票成功！");
+						} else if (actionStatus == "restoreTicket") {
+							showTipM("info", "提示", "恢复成功！");
+						}
+						refreshFormData();
+					}
+				}
+			});
+	    }
 	    
+	    //押票
+	    function keepTicket(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var actionStatus = "keepTicket";
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    				
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			mini.open({
+				//targetWindow: window.top,   //页面对象。默认是顶级页面。
+				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
+						+ "&wtType=" + wtType + "&actionStatus="
+						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+				title : "押票和恢复", //标题
+				width : "70%", //宽度
+				height : 600, //高度
+				allowResize : true, //允许尺寸调节
+				allowDrag : true, //允许拖拽位置
+				showCloseButton : true, //显示关闭按钮
+				showMaxButton : true, //显示最大化按钮
+				showModal : true, //显示遮罩
+				loadOnRefresh : true, //true每次刷新都激发onload事件
+				onload : function() { //弹出页面加载完成
+
+				},
+				ondestroy : function(action) {
+					if (action == "ok") {
+						if (actionStatus == "keepTicket") {
+							showTipM("info", "提示", "押票成功！");
+						} else if (actionStatus == "restoreTicket") {
+							showTipM("info", "提示", "恢复成功！");
+						}
+						refreshFormData();
+					}
+				}
+			});
+	    }
+	    
+	    //申请延期
+	    function postpone(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    				
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			var delayTime = mini.get("woWtDelay.delayTime").getFormValue();
+			var isDelay = mini.get("woWtDelay.isDelay").getValue();
+			if(isDelay=="1"){
+				showMessageBox("警告","只能延期一次","warning");
+				return;
+			}
+			if(delayTime!=null&&delayTime!=""){
+				mini.confirm("确认重新进行延期？", "重新延期",
+   						function (action) {
+   							if (action == "ok") {
+   								mini.open({
+   									//targetWindow: window.top,   //页面对象。默认是顶级页面。
+   									url : "${ctxRoot}/form?view=wo/wt/woWtApplyDelayForm&wtId=" + id
+   											+ "&wtType=" + wtType + "&workLeader="
+   											+ workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+   									title : "申请延期", //标题
+   									width : 720, //宽度
+   									height : 350, //高度
+   									allowResize : true, //允许尺寸调节
+   									allowDrag : true, //允许拖拽位置
+   									showCloseButton : true, //显示关闭按钮
+   									showMaxButton : true, //显示最大化按钮
+   									showModal : true, //显示遮罩
+   									loadOnRefresh : true, //true每次刷新都激发onload事件
+   									onload : function() { //弹出页面加载完成
+   										
+   									},
+   									ondestroy : function(action) {
+   										if (action == "ok") {
+   											showTipM("info", "提示", "申请延期成功！");
+   											refreshFormData();
+   										}
+   									}
+
+   								});
+   								
+   							}else if(action=="cancel"){
+   								
+   							}
+   						});
+			}else{
+				mini.open({
+						//targetWindow: window.top,   //页面对象。默认是顶级页面。
+						url : "${ctxRoot}/form?view=wo/wt/woWtApplyDelayForm&wtId=" + id
+								+ "&wtType=" + wtType + "&workLeader="
+								+ workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+						title : "申请延期", //标题
+						width : 720, //宽度
+						height : 350, //高度
+						allowResize : true, //允许尺寸调节
+						allowDrag : true, //允许拖拽位置
+						showCloseButton : true, //显示关闭按钮
+						showMaxButton : true, //显示最大化按钮
+						showModal : true, //显示遮罩
+						loadOnRefresh : true, //true每次刷新都激发onload事件
+						onload : function() { //弹出页面加载完成
+							
+						},
+						ondestroy : function(action) {
+							if (action == "ok") {
+								showTipM("info", "提示", "申请延期成功！");
+								refreshFormData();
+							}
+						}
+
+					});
+			}
+	    }
 	    
 	    
 	    
@@ -944,6 +1156,7 @@
 	    }
 	    	    
 	    editControl.loadEditList('woWt'); */
+	    //editControl.loadEditList('woWt1')
 	    
 	    //运行值班负责人签名自动带入工作负责人签名
 	    function inputReceiveWorkLeader(){
@@ -993,6 +1206,27 @@
         }
         
         
+      //流程按钮响应事件
+        function onBpmButtonClick(buttonId) {
+        	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+            var data = {
+                eventName: 'parentClickButton',
+                alias: buttonId,
+                flowVariables: {//定义流程变量                  
+                    "workLeader": workLeader || '',//工作负责人 */
+                },//隐患名称
+                data: {}
+            };
+            sendBpmMsg(data);
+            popBox();
+        }
 </script>
 
 </body>

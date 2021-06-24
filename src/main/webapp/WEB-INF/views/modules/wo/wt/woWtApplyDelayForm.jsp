@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <html>
 <head>
 	 <title>申请延期</title>
@@ -20,7 +21,7 @@
 				<tr id="dutyLeaderTr">
 					<td>
 					<c:choose>
-						<c:when test="${wtType=='1'||wtType=='2'}">
+						<c:when test="${param.wtType=='1'||param.wtType=='2'}">
 							值长或值班负责人：
 						</c:when>
 						<c:otherwise>
@@ -41,7 +42,7 @@
 				<tr id="permitByTr">
 					<td>
 						<c:choose>
-							<c:when test="${wtType=='1'||wtType=='2'}">
+							<c:when test="${param.wtType=='1'||param.wtType=='2'}">
 								工作许可人：
 							</c:when>
 							<c:otherwise>
@@ -52,7 +53,7 @@
 					</td>
 					<td>
 						<c:choose>
-							<c:when test="${wtType=='1'||wtType=='2'}">
+							<c:when test="${param.wtType=='1'||param.wtType=='2'}">
 								<input name="permitBy" id="permitByName_" textName="permitByName" onbuttonclick="sign_('permitByName_','3')" allowInput="false"  class="mini-buttonedit defSign_" vtype = "" required="true" onvaluechanged="updateSignTime('permitBy')"/> 
 							    <!-- <input name="permitBy" id="permitByName_" textName="permitByName" onbuttonclick="openFingerVerify('3','permitByName_')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="true" onvaluechanged="updateSignTime('permitBy')"/> -->
 							</c:when>
@@ -88,13 +89,13 @@
 		
 			<!-- <input class="mini-hidden" name="workLeader" id="applyDelayWorkLeader"/> -->
 			<!-- <input class="mini-hidden" name="dutyLeader" id="dutyLeader"/> -->
-			<input class="mini-hidden" name="id" id="id" value="${wtId }"/>
-			<input class="mini-hidden" name="wtId" id="wtId" value="${wtId }"/>
+			<input class="mini-hidden" name="id" id="id" value="${param.wtId}"/>
+			<input class="mini-hidden" name="wtId" id="wtId" value="${param.wtId}"/>
 			
-			<input class="mini-hidden"  id="workLeader"  value="${applyDelayWorkLeader}"/> 
-			<input class="mini-hidden" name="wtType" id="wtType" value="${wtType }"/>
+			<input class="mini-hidden"  id="workLeader"  value="${param.applyDelayWorkLeader}"/> 
+			<input class="mini-hidden" name="wtType" id="wtType" value="${param.wtType}"/>
 			<!-- 新增 责任部门2020.01.03 -->
-			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${dutyOrgId }"/>
+			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${param.dutyOrgId }"/>
 			
 			<div id="buttonDiv" style="text-align:center;margin-top: 100px">
 				<a class="mini-button" iconCls="icon-check" id="confimButton" style="width:70px;" onclick="onLovOk()">确定</a>
@@ -104,7 +105,7 @@
 			</div>
 			<jsp:include page="/WEB-INF/views/include/sign.jsp"></jsp:include>
 			<sys:toolbarfooter></sys:toolbarfooter>
-<jsp:include page="permit.jsp"></jsp:include>
+<%-- <jsp:include page="permit.jsp"></jsp:include> --%>
 		
 <script type="text/javascript">
 	initBase({
@@ -131,7 +132,7 @@
 	        return;
 	    }
 		$.ajax({
-			url:"${ctx}/wo/woWt/applyDelay",
+			url:"${ctx}/wo-wt/wo/woWt/applyDelay",
 			data:{wtId:wtId,applyDelayWorkLeaderName:applyDelayWorkLeaderName,
 				permitBy:permitBy,permitByName:permitByName,dutyLeaderName:dutyLeaderName,
 				dutyLeader:dutyLeader,applyDelayWorkLeader:applyDelayWorkLeader,
@@ -180,7 +181,7 @@
 		}
 		var wtId = mini.get("wtId").getValue();
 		$.ajax({
-			url:"${ctx}/wo/woWtDelay/getData",
+			url:"${ctx}/wo-wt/wo/woWtDelay/getData",
 			data:{wtId:wtId},
 			type:"post",
             success: function (o) {

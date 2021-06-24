@@ -679,24 +679,42 @@
 		
 		function addButton(){
 		  sysToolBar_.addButtonOption({
-			"buttonId":'test',
-			"functionStr":'test',/* 对应按钮的点击事件 */
+			"buttonId":'print',
+			"functionStr":'print',/* 对应按钮的点击事件 */
 			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
 			"name":'打印预览'
 		  });
-	       // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
+		  sysToolBar_.addButtonOption({
+			"buttonId":'repairRail',
+			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
+			"name":'检修围栏'
+		  });  
 	    }
 	  
-	    function test(){
-		  var id = mini.get("id").getValue();
-		  var wtType = mini.get("wtType").getValue();
-		  var dutyOrgId = mini.get("dutyOrgId").getValue();	  
-		  var menuItem = null; 
+	    function print(){
+		  var id = mini.get("id").getValue();		  
 		  if (id == "" || id == null) {
 			mini.alert("请先保存再点击打印按钮！");
 			return;
 		  }
 		  wowtPrint();
+	    }
+	    
+	    //检修围栏
+	    function repairRail(){
+		  var id = mini.get("id").getValue();		 
+		  if (id == "" || id == null) {
+			mini.alert("请先保存再点击检修围栏按钮！");
+			return;
+		  }		
+		  var form = new mini.Form("#editform");   
+		  var woWtData = form.getData();
+		  var wtId = woWtData.id;		 
+ 		  var iamCode = iamCodeValue();
+ 		  var smElectronicFenceUrl = "${smElectronicFenceUrl}";
+ 		  //window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
+ 		  //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
+ 		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
 	    }
 	  
 	    $(function(){

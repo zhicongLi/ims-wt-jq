@@ -878,25 +878,324 @@
 		}
 		function addButton(){
 		  sysToolBar_.addButtonOption({
-			"buttonId":'test',
-			"functionStr":'test',/* 对应按钮的点击事件 */
+			"buttonId":'print',
+			"functionStr":'print',/* 对应按钮的点击事件 */
 			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
 			"name":'打印预览'
 		  });
-		  // sysToolBar_.bindClick("_tbgridSmCheckQuestion_add",addCheckQuestion,'');
-		}
 		  
-	    function test(){
-		  var id = mini.get("id").getValue();
-		  var wtType = mini.get("wtType").getValue();
-		  var dutyOrgId = mini.get("dutyOrgId").getValue();	  
-		  var menuItem = null; 
+		  sysToolBar_.addButtonOption({
+			"buttonId":'changeWorkLeader',
+			"functionStr":'changeWorkLeader',/* 对应按钮的点击事件 */			
+			"name":'变更负责人'
+		  }); 
+		  sysToolBar_.addButtonOption({
+			"buttonId":'restoreTicket',
+			"functionStr":'restoreTicket',/* 对应按钮的点击事件 */			
+			"name":'押票恢复'
+		  }); 
+		  sysToolBar_.addButtonOption({
+			"buttonId":'keepTicket',
+			"functionStr":'keepTicket',/* 对应按钮的点击事件 */			
+			"name":'押票'
+		  });  
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'postpone',
+			"functionStr":'postpone',/* 对应按钮的点击事件 */			
+			"name":'延期'
+		  });   
+		  
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'repairRail',
+			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
+			"name":'检修围栏'
+		  });  
+		  		 
+	    }
+		  
+		//打印预览
+	    function print(){
+		  var id = mini.get("id").getValue();		 
 		  if (id == "" || id == null) {
 			mini.alert("请先保存再点击打印按钮！");
 			return;
 		  }
-		  wowtPrint();
-	   }
+		  wowtPrint();		     			  
+	    }
+	    
+	    //变更负责人
+	    function changeWorkLeader(){
+	    	var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();
+	    	var workLeader = mini.get("workLeader").getValue();
+			var workLeaderName = mini.get("workLeaderName").getValue();
+			var wtSigner = mini.get("wtSignerName_").getValue();
+			var changeTime = mini.get("woWtLC.changeTime").getFormValue();
+			var isLeaderChange = mini.get("woWtLC.isLeaderChange").getValue();
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			
+		    if(isLeaderChange=="1"){
+				showMessageBox("警告","只能变更负责人一次","warning");
+				return;
+			} 
+			if(changeTime!=null&&changeTime!=""){
+				mini.confirm("确认重新进行变更负责人？", "重新变更负责人",
+						function (action) {
+							if (action == "ok") {
+								mini.open({
+									//targetWindow: window.top,   //页面对象。默认是顶级页面。			
+									url : "${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&wtId=" + id
+										+ "&wtType=" + wtType + "&workLeader="
+											+ workLeader + "&workLeaderName="
+											+ workLeaderName + "&wtSigner=" + wtSigner + "&dutyOrgId=" + dutyOrgId, //页面地址
+									title : "变更负责人", //标题
+									width : 720, //宽度
+									height : 450, //高度
+									allowResize : true, //允许尺寸调节
+									allowDrag : true, //允许拖拽位置
+									showCloseButton : true, //显示关闭按钮
+									showMaxButton : true, //显示最大化按钮
+									showModal : true, //显示遮罩
+									loadOnRefresh : true, //true每次刷新都激发onload事件
+									onload : function() { //弹出页面加载完成								
+									},
+									ondestroy : function(action) {
+										if (action == "ok") {
+											showTipM("info", "提示", "变更负责人成功！");
+											refreshFormData();
+										}
+									}
+
+								});
+							}else if(action=="cancel"){
+								
+							}
+						});
+			}else{
+				mini.open({
+					//targetWindow: window.top,   //页面对象。默认是顶级页面。
+					url : "${ctxRoot}/form?view=wo/wt/woWtChangeDutyLeaderForm&wtId=" + id
+							+ "&wtType=" + wtType + "&workLeader="
+							+ workLeader + "&workLeaderName="
+							+ workLeaderName + "&wtSigner=" + wtSigner + "&dutyOrgId=" + dutyOrgId, //页面地址
+					title : "变更负责人", //标题
+					width : 720, //宽度
+					height : 450, //高度
+					allowResize : true, //允许尺寸调节
+					allowDrag : true, //允许拖拽位置
+					showCloseButton : true, //显示关闭按钮
+					showMaxButton : true, //显示最大化按钮
+					showModal : true, //显示遮罩
+					loadOnRefresh : true, //true每次刷新都激发onload事件
+					onload : function() { //弹出页面加载完成
+						/*  var iframe = this.getIFrameEl(); 
+						  var data = {};       
+						  //调用弹出页面方法进行初始化
+						  iframe.contentWindow.SetData(data); 
+						 */
+					},
+					ondestroy : function(action) {
+						if (action == "ok") {
+							showTipM("info", "提示", "变更负责人成功！");
+							refreshFormData();
+						}
+					}
+
+				});
+			}
+	    	  
+	    }
+	    
+	    //押票恢复
+	    function restoreTicket(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var actionStatus = "restoreTicket";
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    			
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			mini.open({
+				//targetWindow: window.top,   //页面对象。默认是顶级页面。
+				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
+						+ "&wtType=" + wtType + "&actionStatus="
+						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+				title : "押票和恢复", //标题
+				width : "70%", //宽度
+				height : 600, //高度
+				allowResize : true, //允许尺寸调节
+				allowDrag : true, //允许拖拽位置
+				showCloseButton : true, //显示关闭按钮
+				showMaxButton : true, //显示最大化按钮
+				showModal : true, //显示遮罩
+				loadOnRefresh : true, //true每次刷新都激发onload事件
+				onload : function() { //弹出页面加载完成
+
+				},
+				ondestroy : function(action) {
+					if (action == "ok") {
+						if (actionStatus == "keepTicket") {
+							showTipM("info", "提示", "押票成功！");
+						} else if (actionStatus == "restoreTicket") {
+							showTipM("info", "提示", "恢复成功！");
+						}
+						refreshFormData();
+					}
+				}
+			});
+	    }
+	    
+	    //押票
+	    function keepTicket(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var actionStatus = "keepTicket";
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    				
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			mini.open({
+				//targetWindow: window.top,   //页面对象。默认是顶级页面。
+				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
+						+ "&wtType=" + wtType + "&actionStatus="
+						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+				title : "押票和恢复", //标题
+				width : "70%", //宽度
+				height : 600, //高度
+				allowResize : true, //允许尺寸调节
+				allowDrag : true, //允许拖拽位置
+				showCloseButton : true, //显示关闭按钮
+				showMaxButton : true, //显示最大化按钮
+				showModal : true, //显示遮罩
+				loadOnRefresh : true, //true每次刷新都激发onload事件
+				onload : function() { //弹出页面加载完成
+
+				},
+				ondestroy : function(action) {
+					if (action == "ok") {
+						if (actionStatus == "keepTicket") {
+							showTipM("info", "提示", "押票成功！");
+						} else if (actionStatus == "restoreTicket") {
+							showTipM("info", "提示", "恢复成功！");
+						}
+						refreshFormData();
+					}
+				}
+			});
+	    }
+	    
+	    //申请延期
+	    function postpone(){
+	    	var workLeader = null;
+			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
+					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+				workLeader = mini.get("woWtLC.nowWorkLeader")
+						.getValue();
+			} else {
+				workLeader = mini.get("workLeader").getValue();
+			}
+			var id = mini.get("id").getValue();	
+	    	var wtType = mini.get("wtType").getValue();	    				
+			var dutyOrgId = mini.get("dutyOrgId").getValue();
+			var delayTime = mini.get("woWtDelay.delayTime").getFormValue();
+			var isDelay = mini.get("woWtDelay.isDelay").getValue();
+			if(isDelay=="1"){
+				showMessageBox("警告","只能延期一次","warning");
+				return;
+			}
+			if(delayTime!=null&&delayTime!=""){
+				mini.confirm("确认重新进行延期？", "重新延期",
+   						function (action) {
+   							if (action == "ok") {
+   								mini.open({
+   									//targetWindow: window.top,   //页面对象。默认是顶级页面。
+   									url : "${ctxRoot}/form?view=wo/wt/woWtApplyDelayForm&wtId=" + id
+   											+ "&wtType=" + wtType + "&workLeader="
+   											+ workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+   									title : "申请延期", //标题
+   									width : 720, //宽度
+   									height : 350, //高度
+   									allowResize : true, //允许尺寸调节
+   									allowDrag : true, //允许拖拽位置
+   									showCloseButton : true, //显示关闭按钮
+   									showMaxButton : true, //显示最大化按钮
+   									showModal : true, //显示遮罩
+   									loadOnRefresh : true, //true每次刷新都激发onload事件
+   									onload : function() { //弹出页面加载完成
+   										
+   									},
+   									ondestroy : function(action) {
+   										if (action == "ok") {
+   											showTipM("info", "提示", "申请延期成功！");
+   											refreshFormData();
+   										}
+   									}
+
+   								});
+   								
+   							}else if(action=="cancel"){
+   								
+   							}
+   						});
+			}else{
+				mini.open({
+						//targetWindow: window.top,   //页面对象。默认是顶级页面。
+						url : "${ctxRoot}/form?view=wo/wt/woWtApplyDelayForm&wtId=" + id
+								+ "&wtType=" + wtType + "&workLeader="
+								+ workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
+						title : "申请延期", //标题
+						width : 720, //宽度
+						height : 350, //高度
+						allowResize : true, //允许尺寸调节
+						allowDrag : true, //允许拖拽位置
+						showCloseButton : true, //显示关闭按钮
+						showMaxButton : true, //显示最大化按钮
+						showModal : true, //显示遮罩
+						loadOnRefresh : true, //true每次刷新都激发onload事件
+						onload : function() { //弹出页面加载完成
+							
+						},
+						ondestroy : function(action) {
+							if (action == "ok") {
+								showTipM("info", "提示", "申请延期成功！");
+								refreshFormData();
+							}
+						}
+
+					});
+			}
+	    }
+	    
+	    
+	    
+	    //检修围栏
+	    function repairRail(){
+		  var id = mini.get("id").getValue();		 
+		  if (id == "" || id == null) {
+			mini.alert("请先保存再点击检修围栏按钮！");
+			return;
+		  }		
+		  var form = new mini.Form("#editform");   
+		  var woWtData = form.getData();
+		  var wtId = woWtData.id;		 
+ 		  var iamCode = iamCodeValue();
+ 		  var smElectronicFenceUrl = "${smElectronicFenceUrl}";
+ 		  //window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
+ 		  //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
+ 		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
+	    }
 	  
 	   $(function(){
 		   addButton();

@@ -159,7 +159,7 @@ function padWorkLeader(){
 function searchDangerSourceWork(){
 	var grid = mini.get("gridWoTaskSafeMeasure");	
 	//debugger;
-	popLov(this,'选择危险源',true,true,'${ctxRoot}/form?view=wo/woDangerSourceInfoFormNew&showForm=0',1000,500,'','',null,function(data){
+	popLov(this,'选择危险源',true,true,'${ctxRoot}/form?view=wo/woDangerSourceInfoForm&showForm=0',1000,500,'','',null,function(data){
 		console.log(mini.encode(data));
 		for (var i = 0, l = data.length; i < l; i++) {
 				var row = data[i];

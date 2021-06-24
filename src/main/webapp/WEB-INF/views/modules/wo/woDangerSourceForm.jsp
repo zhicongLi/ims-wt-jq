@@ -11,7 +11,7 @@
 <div class="mini-fit">
 	<div id="_splTreeMain" class="mini-splitter" style="width:100%;height:100%;">
 	    <div size="240" showCollapseButton="true" style="overflow:auto;">
-             <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/workTreeData" idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称"></sys:treewithsearchbar>
+             <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/workTreeData" idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称" expandOnLoad="0"></sys:treewithsearchbar>
 	    </div>
 
 		<div showCollapseButton="true">
@@ -74,7 +74,7 @@
 			</div>
 		 </div>
 	</div>
-	<div title="明细" id="tabForm"  style="border: 0px;"  >
+	    <div title="明细" id="tabForm"  style="border: 0px;"  >
 		          <sys:toolbarformmain permissionEdit="wo:woDangerSource:edit"></sys:toolbarformmain> 				
                   <div id="editform" class="form" style="width:100%;">
 					<div class="container"  style="width: 100%;"  >
@@ -86,7 +86,7 @@
 								>
 									<input class="mini-hidden" name="id" id="id"/>
 									<input class="mini-hidden" name="parentId" id="parentId"/>
-									<input class="mini-hidden" name="parentIds" id="parentIds"/>
+									<input class="mini-hidden" name="parentIds" id="parentIds" width="300px"/>
 									<table border="0" cellpadding="3" cellspacing="3" >
 										<tr>
 											<td style="text-align:right;">危险源名称：</td>
@@ -164,13 +164,13 @@
 							</div>
 						 </div>
 		        </div> --%><!--fit-->
-			</div>
-			</div>
-			</div>
-			</div>
-	    </div>
+		</div>
+		</div>
+		</div>
+		</div>
+    </div>
 
-   </div>
+</div>
 
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
@@ -183,7 +183,7 @@
 			    masterKeyField:"id",
 			    treeSrcFields : "id",
 			    treeDestFields : "parentId",
-			    treeParentField:"parentId",
+			    treeParentField:"parentId",			    			   			    
 			    treeFilter:"a.parent_id='[node.id]' or a.id = '[node.id]'",//左树右表时不能为空,示例:"a.class_id='[node.id]'",
 				dataUrl:"${ctx}/wo-wt/wo/woDangerSource/data",
 				getUrl:"${ctx}/wo-wt/wo/woDangerSource/get",
@@ -191,6 +191,8 @@
 				removeUrl:"${ctx}/wo-wt/wo/woDangerSource/remove",
 				exportUrl:"${ctx}/wo-wt/wo/woDangerSource/export",
 				//onBeforeNewRecord:checkIsSearchNode
+				onAfterNewRecord:saveAddForm,
+				onAfterSaveForm:onAfterSaveForm,
 				onAfterRemove:reloadTree
 				//onAfterNewRecord:reloadTree
 			 }
@@ -336,8 +338,8 @@
 	  treeObj.reload();
   }
   
-  function saveAddForm(){
-	  debugger;
+  //新增带入parentIds
+  function saveAddForm(){	  
 	var rowObj=mini.get("datagridMain").getSelected();
 	if(rowObj.parentIds=="" || rowObj.parentIds==null){
 		var treeObj=mini.get("treeMain");
@@ -360,9 +362,20 @@
 			parentIdObject.setValue(parentId);
 			parentIdsObject.setValue(parentIds);
 		}
-		saveForm();
-	}else{
-		saveForm();
+		//saveForm();
+	}
+}
+  
+ //保存后
+function onAfterSaveForm()
+{
+	if(!objIsNotNull(parentNode))
+	{
+		tree.reload();
+	}
+	else
+	{
+		tree.reload();
 	}
 }
 </script>

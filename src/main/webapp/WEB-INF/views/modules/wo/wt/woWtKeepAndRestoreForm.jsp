@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <html>
 <head>
 	 <title>工作票押票和恢复</title>
@@ -50,21 +51,21 @@
 				
 			</table>
 			<br>
-			<input class="mini-hidden" name="actionStatus" id="actionStatus" value="${actionStatus}"/>
+			<input class="mini-hidden" name="actionStatus" id="actionStatus" value="${param.actionStatus}"/>
 			<!-- <input class="mini-hidden" name="restorePermitBy" id="restorePermitBy"/>
 			<input class="mini-hidden" name="keepPermitBy" id="keepPermitBy"/> -->
-			<input class="mini-hidden" name="id" id="id" value="${wtId}"/>
-			<input class="mini-hidden" name="wtId" id="wtId" value="${wtId}"/>
-			<input class="mini-hidden"  id="workLeader" value="${keepAndRestoreWorkLeader}"/>
+			<input class="mini-hidden" name="id" id="id" value="${param.wtId}"/>
+			<input class="mini-hidden" name="wtId" id="wtId" value="${param.wtId}"/>
+			<input class="mini-hidden"  id="workLeader" value="${param.keepAndRestoreWorkLeader}"/>
 			<!-- <input class="mini-hidden" name="workLeader" id="keepAndRestoreWorkLeader" /> -->
-			<input class="mini-hidden" name="wtType" id="wtType" value="${wtType }"/>
+			<input class="mini-hidden" name="wtType" id="wtType" value="${param.wtType }"/>
 			<!-- 新增 责任部门2020.01.03 -->
-			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${dutyOrgId }"/>
+			<input class="mini-hidden" id="dutyOrgId" name="dutyOrgId" value="${param.dutyOrgId}"/>
 			
 			</div>
 			<div class="mini-fit">
 				<div id="datagridMain" class="mini-datagrid" style="width:100%;height:92%;"
-					 url="${ctx}/wo/woWtKeepRestore/data" idField="id"
+					 url="${ctx}/wo-wt/wo/woWtKeepRestore/data" idField="id"
 					 allowResize="true" pageSize="10"
 					 allowCellEdit="false" allowCellSelect="false" multiSelect="false"
 					 editNextOnEnterKey="true"  editNextRowCell="true"
@@ -143,14 +144,14 @@
 		   </div>
 			<jsp:include page="/WEB-INF/views/include/sign.jsp"></jsp:include>
 			<sys:toolbarfooter></sys:toolbarfooter>
-<jsp:include page="permit.jsp"></jsp:include>
+<%-- <jsp:include page="permit.jsp"></jsp:include> --%>
 		
 <script type="text/javascript">
 
 	initBase(
 		{   id:"datagridMain",
 		    objId:"WoWtKeepRestore",
-			dataUrl:"${ctx}/wo/woWtKeepRestore/data"
+			dataUrl:"${ctx}/wo-wt/wo/woWtKeepRestore/data"
 		 }
        );
 	loadWindow();
@@ -169,7 +170,7 @@
 	        return;
 	    }
 		$.ajax({
-			url:"${ctx}/wo/woWtKeepRestore/CheckCanRestore",
+			url:"${ctx}/wo-wt/wo/woWtKeepRestore/CheckCanRestore",
 			data:{wtId:wtId},
 			type:"post",
             success: function (o) {
@@ -195,7 +196,7 @@
         		        return;
         		    }
         			$.ajax({
-        				url:"${ctx}/wo/woWt/keepAndRestore",
+        				url:"${ctx}/wo-wt/wo/woWt/keepAndRestore",
         				data:{wtId:wtId,keepAndRestoreWorkLeaderName:keepAndRestoreWorkLeaderName,keepPermitBy:keepPermitBy,restorePermitBy:restorePermitBy,
         					keepAndRestoreWorkLeader:keepAndRestoreWorkLeader,keepPermitByName:keepPermitByName,restorePermitByName:restorePermitByName,
         					restoreTime:restoreTime,keepTime:keepTime,actionStatus:actionStatus},
@@ -241,7 +242,7 @@
 		        return;
 		    }
 			$.ajax({
-				url:"${ctx}/wo/woWt/keepAndRestore",
+				url:"${ctx}/wo-wt/wo/woWt/keepAndRestore",
 				data:{wtId:wtId,keepAndRestoreWorkLeaderName:keepAndRestoreWorkLeaderName,keepPermitBy:keepPermitBy,restorePermitBy:restorePermitBy,
 					keepAndRestoreWorkLeader:keepAndRestoreWorkLeader,keepPermitByName:keepPermitByName,restorePermitByName:restorePermitByName,
 					restoreTime:restoreTime,keepTime:keepTime,actionStatus:actionStatus},
@@ -279,13 +280,12 @@
 			hideCells(["keTimeTd","keTime","keep"]);
 		}
 		$.ajax({
-			url:"${ctx}/wo/woWtKeepRestore/getData",
+			url:"${ctx}/wo-wt/wo/woWtKeepRestore/getData",
 			data:{wtId:wtId},
 			type:"post",
             success: function (o) {
             	var data = mini.decode(o);
-        		if(data!=null&&data!=""){
-        			
+        		if(data!=null&&data!=""){       			
         			if(actionStatus=="keepTicket"){
         			
                			if(data.keepTime!=null&&data.restoreTime==null){

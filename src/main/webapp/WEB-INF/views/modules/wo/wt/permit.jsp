@@ -173,5 +173,5 @@
         editControl.afterLoad(o);//页面编辑权限控制	     
     }
     
-    editControl.loadEditList('woWt');
+    //editControl.loadEditList('woWt');
 </script>

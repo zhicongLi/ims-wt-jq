@@ -1,26 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/head.jsp"%>
 <html>
 <head>
 	 <title>危险因素及作业表</title>
-	 <meta name="decorator" content="default"/>
-	  <%@ include file="/WEB-INF/views/include/head.jsp"%>
+	 <meta name="decorator" content="default"/>	 
 	 <link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <div class="mini-fit">
 	<div id="_splTreeMain" class="mini-splitter" style="width:100%;height:100%;">
 	    <div size="240" showCollapseButton="true" style="overflow:auto;">
-             <%-- <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/dangerSourceTreeData" searchDisplay="none"  idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称" expandOnLoad="false" dynamicLoad="1" ></sys:treewithsearchbar> --%>
-	         <%-- <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/dangerSourceTreeData"  idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称" expandOnLoad="false" dynamicLoad="1"></sys:treewithsearchbar> --%>
-	         <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/workTreeData" idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称" expandOnLoad="false" dynamicLoad="1"></sys:treewithsearchbar>
+             <sys:treewithsearchbar dataUrl="${ctx}/wo-wt/wo/woDangerSource/workTreeData" idField="id" valueField="id" textField="dangerName" parentField="parentId" textFieldLabel="名称"></sys:treewithsearchbar>
 	    </div>
 
 		<div showCollapseButton="true">
 					<div class="mini-fit">
 					<div id="tabsMain" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;">
 						<div title="列表" id="tabList"  style="border: 0px;"  >
-								<sys:toolbargridmain objId="WoDangerSourceInfo" permissionEdit="wo:woDangerSourceInfo:edit"></sys:toolbargridmain>								
+								<sys:toolbargridmain objId="WoDangerSourceInfo" permissionEdit="wo:woDangerSourceInfo:edit"></sys:toolbargridmain>								 
 								 <sys:searchadv></sys:searchadv>
 								 <div class="mini-fit">
 									<div id="datagridMain" class="mini-datagrid" style="width:100%;height:100%;"
@@ -179,11 +177,7 @@
 												<tr>
 													<td style="text-align:right;">风险等级：</td>
 													<td>
-													  
-													 <%--  <input name="riskGradeCode" id="riskGradeCode" property="editor" textName="riskGradeName"
-															class="mini-combobox" tyle="width: 40px;" required="false"
-															valueField="code" textField="name"
-															url="${ctx}/wo/woDangerRiskGrade/dictData" /> --%>
+													  <!--  <input name="riskGradeName" id="riskGradeName" class="mini-textbox"  vtype = ""  required="false" /> -->
 													 <input name="riskGradeCode" id="riskGradeCode" property="editor" textName="riskGradeName"
 															class="mini-combobox" tyle="width: 40px;" required="false"
 															valueField="value" textField="label"
@@ -227,7 +221,6 @@
 					</div>
 	    </div>
 	</div>
-
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
 
@@ -236,10 +229,10 @@
 	initBase(
 			{   id:"datagridMain",
 			    objId:"WoDangerSourceInfo",
-			    masterKeyField:"id",
 			    treeFilter:"a.danger_source_id='[node.id]'",//左树右表时不能为空,示例:"a.class_id='[node.id]'",
-			    treeParentField:"parentId",
-				dataUrl:"${ctx}/wo-wt/wo/woDangerSourceInfo/data?dynamicLoad=1&initParentId=",
+			    treeSrcFields : "id,dangerName",
+			    treeDestFields : "dangerSourceId,remarks",
+				dataUrl:"${ctx}/wo-wt/wo/woDangerSourceInfo/data",
 				getUrl:"${ctx}/wo-wt/wo/woDangerSourceInfo/get",
 				saveUrl:"${ctx}/wo-wt/wo/woDangerSourceInfo/save",
 				removeUrl:"${ctx}/wo-wt/wo/woDangerSourceInfo/remove",
