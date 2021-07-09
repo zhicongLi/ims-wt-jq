@@ -12,13 +12,18 @@
 <!-- 引用工作票的js逻辑 --> 
 <script src="${ctxStatic}/static/js/workTicket.js" type="text/javascript"></script>
 <!-- 引用工作票公共CSS样式  -->
-<link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/operationOrder.css">
+<%-- <link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/operationOrder.css">
 <link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/workTicketNew.css" type="text/css" />
 <link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/heatPower.css" type="text/css" />
-
+ --%>
+<link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/operationOrderNew.css?_v=<%=System.currentTimeMillis() %>" type="text/css">
+<link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/workTicketNewNew.css?_v=<%=System.currentTimeMillis() %>" type="text/css" />
+<link rel="stylesheet" href="${ctxStatic}/static/wo/wt/css/electricNew1.css?_v=<%=System.currentTimeMillis() %>" type="text/css" />
+ 
 <style type="text/css">
 	body {
-        width: 210mm;
+       /*  width: 210mm; */
+        width: 649px;
         text-align: center;
         /*font-size: 14px; */
         margin: 0 auto;
@@ -69,9 +74,17 @@
 	</c:otherwise>
 </c:choose>
 </div>
+
+<div class="pageHeader"></div>
+<!-- 危险点预控措施 -->
+<%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
+<div class="pageFooter"></div>
+<div class="pageBreak"></div>
+<div class="pageHeader"></div>
+
 <div class="print-content">
 	<header class="host header">
-	    <h1>国家能源集团宿迁发电有限公司</h1>
+	    <h1>国家能源集团发电泰州发电有限公司</h1>
 	    <h1 style="font-size:35px;">工作任务单&nbsp;</h1>
 	    <h2 >编号:<span>${WoWtTask.wtCode}</span></h2> 	   
 	</header>
@@ -177,15 +190,15 @@
 		    <td ></td>		    
 	    </tr>
     </table>	
-    <table>
+    <table cellspacing="0" cellpadding="0" class="table07">
         <tr>
 		    <td>8.告知运行：</td>		    
 	    </tr>
-	    <tr >
+	    <tr class="date01">
 			<td >运行值班人员：
 				<input size="10" readonly="true" value="${WoWtTask.appDutyPrincipalName}"/>
 			</td>			
-		    <td class="ident2">
+		    <td>
 				<input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.appDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
 			    <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.appDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 			    <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.appDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
@@ -196,8 +209,8 @@
 		<tr>
 		    <td colspan="2" >9.工作结束：</td>		    
 	    </tr>
-	    <tr>
-		    <td colspan="2" class="ident2">全部工作于 
+	    <tr class="date01">
+		    <td colspan="2" >全部工作于 
                 <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.endDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
 			    <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.endDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 			    <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.endDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
@@ -205,7 +218,7 @@
 			    <input readonly="true" placeholder="<fmt:parseDate value='${WoWtTask.endDutyPrincipalTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分结束，工作班人员已全部撤离，现场已清理完毕。
 			</td>		    
 	    </tr>
-	    <tr >
+	    <tr class="date01">
 			<td >工作监护人（工作负责人）：
 				<input size="10" readonly="true" value="${WoWtTask.endWorkLeaderName}"/>
 			</td>
@@ -218,13 +231,17 @@
 <input type="hidden" id="wtCode"  value="${WoWtTask.wtCode}">
 </body>
  <script type="text/javascript">
- const A4 = 1100;
+ /* const A4 = 1100; */
+ const A4 = 953;
  window.onload = function(){
  	setRow1Content("content1","工作内容:占");
  	setRow1Content("location1","工作地点:占");
+	setRow1Content("dangerContent1","工作内容:占");
+ 	setRow1Content("dangerLocation1","工作地点:占");	 
  	setRow1Content("workperson0","工作班人员:占");
  	setRow1Content("remark1","备注:占");
  		
  } 
+ loadDangerInfo();	
    </script>
 </html>

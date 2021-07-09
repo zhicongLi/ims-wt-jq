@@ -122,7 +122,7 @@ if (row) {
 }
 }
 
-//更新危险点与预防控制措施排序字段  
+//更新作业安全措施排序字段  
 function updDangerTaskSeqNo()
 {	
   	var taskGrid = mini.get("gridWoTaskSafeMeasure");

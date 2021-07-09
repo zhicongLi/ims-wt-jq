@@ -78,14 +78,6 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<div style="text-align:right;" id="printWoOt1">
-<c:choose>
-	<c:when test="${display==true}"></c:when>
-	<c:otherwise>
-		<button  onclick="javascript:exitPreForm()">退出</button>
-	</c:otherwise>
-</c:choose>
-</div>
 <div class="pageHeader"></div>
 <!-- 危险点预控措施 -->
 <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
@@ -94,7 +86,7 @@
 <div class="pageHeader"></div>
 <div class="print-content">
 	<header class="host header">	    
-	    <h1 >国家能源集团宿迁发电有限公司</h1>	
+	    <h1 >国家能源集团泰州发电有限公司</h1>	
 	    <h1>电气第二种工作票</h1>
 	    <h2 >编号:<span>${WoWt.wtCode}</span></h2>	  
 	</header>
@@ -119,6 +111,7 @@
 		<tr>
 			<td>
 				<span class="ident-number1">2.</span>工作负责人(监护人)：<input  readonly="true" value="${WoWt.workLeaderName }"/>
+			       电话：<input  readonly="true" value="${WoWt.mobile}"/>
 			</td>
 		</tr>					
 		<c:if test="${fn:length(classPersons) == 1}">
@@ -217,26 +210,42 @@
 			  <input readonly="true"  value="${fn:escapeXml(conditionSmList[0])}"/>
 			</td>
 		</tr>
-			<c:forEach begin="2" end="${fn:length(conditionSmList)}" var="i">
-				<tr class="ident1 work02 daozhadixian">
-					<td colspan="3">
-						<input  readonly="true" value="${i}${fn:escapeXml(conditionSmList[i-1])}"/>
-					</td>
-				</tr>
-			</c:forEach>
-			<tr>
-            	<td colspan="3"><span class="ident-number1">8.</span>安全措施（注意事项）：
-                  <input  style="width:465px;float: right" id="zlSm1" readonly="true" value="${fn:escapeXml(zlSmList[0])}"/>
-                </td>
+		<c:forEach begin="2" end="${fn:length(conditionSmList)}" var="i">
+			<tr class="ident1 work02 daozhadixian">
+				<td colspan="3">
+					<input  readonly="true" value="${i}${fn:escapeXml(conditionSmList[i-1])}"/>
+				</td>
 			</tr>
-			<c:forEach begin="2" end="${fn:length(zlSmList)}" var="i">
-				<tr class="ident1 work02">
-					<td colspan="3">
-						<input  readonly="true" value="${fn:escapeXml(zlSmList[i-1])}"/>
-					</td>
-				</tr>
-			</c:forEach>
+		</c:forEach>
+		<%-- <tr>
+           	<td colspan="3"><span class="ident-number1">8.</span>安全措施（注意事项）：
+                 <input  style="width:465px;float: right" id="zlSm1" readonly="true" value="${fn:escapeXml(zlSmList[0])}"/>
+               </td>
+		</tr>
+		<c:forEach begin="2" end="${fn:length(zlSmList)}" var="i">
+			<tr class="ident1 work02">
+				<td colspan="3">
+					<input  readonly="true" value="${fn:escapeXml(zlSmList[i-1])}"/>
+				</td>
 			</tr>
+		</c:forEach> --%>
+        <tr>
+           	<td id="condition"  class="widthValue" colspan="3">
+           	  <span class="ident-number1">8.</span>安全措施（注意事项）：                 
+            </td>
+		</tr>
+		<tr class="daozhadixian">
+			<td id=""  class="widthValue" colspan="3">
+			  <input id="zlSm1" readonly="true"  value="${fn:escapeXml(zlSmList[0])}"/>
+			</td>
+		</tr>
+		<c:forEach begin="2" end="${fn:length(zlSmList)}" var="i">
+			<tr class="ident1 work02 daozhadixian">
+				<td colspan="3">
+					<input  readonly="true" value="${fn:escapeXml(zlSmList[i-1])}"/>
+				</td>
+			</tr>
+		</c:forEach>
 	   </tbody>
        </table>						 										 
 		<table >
@@ -363,7 +372,7 @@
 	        	<td >工作许可人：
 	        		<input size="10" readonly="true" value="${WoWt.endPermitByName }"/></td>	        	
 			</tr>
-			<tr id="remark"  class="widthValue remarks" >
+			<%-- <tr id="remark"  class="widthValue remarks" >
 				 <td colspan="3">
                 <span >14.</span>
                 	备注：<input id="remark1"  class="table09-put" readonly="true" value="${fn:escapeXml(remarks[0])}">
@@ -375,7 +384,28 @@
 						<input readonly="true" value="${fn:escapeXml(remarks[i])}">
 					</td>
 				</tr>
-			</c:forEach>			
+			</c:forEach> --%>
+			<tr>
+			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">14.</span>备注：</td>
+			</tr>		
+			<tr class="daozhadixian">
+			    <td id=""  class="widthValue" colspan="3">
+				  <input id="remark1" readonly="true"  value="${fn:escapeXml(remarks[0])}"/>
+				</td>
+			</tr>	
+			<c:if test="${fn:length(remarks)==1}">
+			  <tr class="ident1 work02 daozhadixian">
+					<td colspan="3"><input readonly="true" value="" /></td>
+				</tr>
+			</c:if>			  		
+			<c:if test="${fn:length(remarks)>1}">
+			  <c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
+				<tr class="ident1 work02 daozhadixian">
+					<td colspan="3"><input readonly="true"
+						value="${fn:escapeXml(remarks[i])}" /></td>
+				</tr>
+			  </c:forEach>
+			</c:if>					
 		</table>		
 </div>
 <input type="hidden" id="wtCode"  value="${WoWt.wtCode}">

@@ -98,7 +98,7 @@
 		        <div class="mini-fit">
 						 <div id="tabsSub" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;">
 								<div title="用户资质行" name="tabWoUserQualLineList"  style="border: 0px;"  >
-									<sys:toolbargridsub girdId="gridWoUserQualLine" permissionEdit="wo:woUserQualLine:edit"></sys:toolbargridsub>
+									<sys:toolbargridsub girdId="gridWoUserQualLine" permissionEdit="wo:woUserQualLine:edit" ></sys:toolbargridsub>
 									<div class="mini-fit">
 									<div id="gridWoUserQualLine" class="mini-datagrid" style="width:100%;height:100%;"
 										 url="${ctx}/wo-wt/wo/woUserQualLine/data" idField="id"
@@ -173,7 +173,7 @@
 
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
-
+<sys:excelimport></sys:excelimport> 
 <script type="text/javascript">
 
 	initBase(
@@ -183,7 +183,8 @@
 				dataUrl:"${ctx}/wo-wt/wo/woUserQual/data",
 				getUrl:"${ctx}/wo-wt/wo/woUserQual/get",
 				saveUrl:"${ctx}/wo-wt/wo/woUserQual/save",
-				removeUrl:"${ctx}/wo-wt/wo/woUserQual/remove",
+				removeUrl:"${ctx}/wo-wt/wo/woUserQual/remove",	
+				importUrl:"${ctx}/wo-wt/wo/woUserQual/import",
 				exportUrl:"${ctx}/wo-wt/wo/woUserQual/export",
 				initData:{
 					qualType:'${param.qualType}'
@@ -204,6 +205,10 @@
 						 dataUrl:"${ctx}/wo-wt/wo/woUserQualLine/data",
 						 getUrl:"${ctx}/wo-wt/wo/woUserQualLine/get",
 						 saveUrl:"${ctx}/wo-wt/wo/woUserQualLine/save",
+						 importUrl:"${ctx}/wo-wt/wo/woUserQualLine/import",
+						 importParam:{
+						     initImport:getInitParam//导入初始化数据，类型为Function，返回格式为JSON对象
+						 },
 						 removeUrl:"${ctx}/wo-wt/wo/woUserQualLine/remove",
 						 exportUrl:"${ctx}/wo-wt/wo/woUserQualLine/export"
 	                    }
@@ -296,12 +301,21 @@
 	
 	//控制单元格是否可编辑
 	function OnCellBeginEdit(e) {
-        var record = e.record, field = e.field;
+       /*  var record = e.record, field = e.field;
         if (record.userName !=null&&record.id!=null) {
             e.cancel = true;    
-        }
+        } */
     }
 
+	//子表导入
+	function getInitParam(){
+		var id = mini.get("id").getValue();
+		if (id == "" || id == null) {
+   		  mini.alert("请先保存再导入人员！");
+   		  return;
+   	    }	
+		return {userQualId:id};
+	}
 </script>
 </body>
 </html>

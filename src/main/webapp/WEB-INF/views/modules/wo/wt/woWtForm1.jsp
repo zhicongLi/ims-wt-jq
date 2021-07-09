@@ -143,7 +143,7 @@
 							<input class="mini-hidden" name="pcSigner" id="pcSigner" />							
 							<input class="mini-hidden" name="woWtLC.id" id="woWtLC.id" />
 							<input class="mini-hidden" name="woWtLC.wtId" id="woWtLC.wtId" /> 
-							<input class="mini-hidden" name="woWtLC.oldWorkLeaderName" id="woWtLC.oldWorkLeaderName"/> 
+							<input class="mini-hidden" name="woWtLC.oldWorkLeaderName" id="woWtLC.oldWorkLeaderName"/> 							
 							<input class="mini-hidden" name="woWtLC.nowWorkLeaderName" id="woWtLC.nowWoLeaderName"/>							
 							<input class="mini-hidden" name="woWtDelay.id" id="woWtDelay.id" />
 							<input class="mini-hidden" name="woWtDelay.wtId" id="woWtDelay.wtId" />
@@ -182,6 +182,10 @@
 							<input class="mini-hidden" name="woWtLC.isLeaderChange" id="woWtLC.isLeaderChange" />
                             <!-- 票来源 -->
 							<input class="mini-hidden" name="sourceType" id="sourceType" /> 
+							<!-- 动火票关联字段 -->
+							<input class="mini-hidden" id="mainTicketId" name="mainTicketId">
+							<!-- 工作负责人手机号 -->
+							<input class="mini-hidden" id="mobile" name="mobile">
 							
 							<table class="formtable">
 								<tr>
@@ -196,11 +200,11 @@
 									</td>
 									<td>专业：</td>									
 									<td>
-									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="true" allowInput="true" 
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="true" 
 										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
 									</td>
 								</tr>								
-								<tr>
+								<%-- <tr>
 									<td>所属设备KKS：</td>
 									<td>
 									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" readonly="readonly" allowInput="false" width="200px" class="mini-buttonedit" vtype="" required="false"
@@ -214,7 +218,7 @@
 									<td>
 									  <input name="equipId" id="equipId" class="mini-textbox" readonly="readonly" />
 									</td>
-								</tr>
+								</tr> --%>
 								<tr>
 									<td>1.部门：</td>
 									<td>
@@ -249,6 +253,10 @@
 								</tr>
 								<tr>
 									<td>4.工作地点：</td>
+									<%-- <td colspan="5">
+								      <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
+									    onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/wo-wt/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />							
+									</td> --%>
 									<td colspan="2">
 								      <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
 									    onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/wo-wt/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />							
@@ -267,10 +275,10 @@
 									</td>
 									<td align="right">结束时间：</td>
 									<td colspan="2">
-									  <input name="planEndTime" id="planEndTime" allowInput="false" class="mini-datepicker" showTime="true" style="width: 180px;" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
+									  <input name="planEndTime" id="planEndTime" allowInput="false" class="mini-datepicker" showTime="true" format="yyyy-MM-dd HH:mm:ss" style="width: 180px;" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
 									</td>
 								</tr>								
-								<tr id="sotID">										
+								<%-- <tr id="sotID">										
 									<td>许可部门：</td>
 									<td colspan="2">
 									  <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
@@ -281,7 +289,7 @@
 									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%" readonly="readonly" 
 									    onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/wo-wt/em/emRiskArea/list',850,500,'areaName','areaName')" />
 									</td>
-								</tr>															
+								</tr>	 --%>														
 							</table>
 
 							<div class="mini-panel" title="应拉断路器" width="auto"  id="tabWoWtsm1List" name="tabWoWtsm1List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
@@ -405,7 +413,7 @@
 								<tr>
 									<td>运行值班负责人签名：</td>
 									<td colspan=2>
-									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName"  onvaluechanged="inputReceiveWorkLeader"
+									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName"  onvaluechanged="inputReceiveWorkLeader" style="width: 180px;"
 										onbuttonclick="sign_('wtReceiveName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 
 									</td>
 									<td>工作负责人签名：</td>
@@ -419,6 +427,27 @@
 							<p></p>
 							
 							<table class="formtable">
+							    <tr>
+									<td>批准工作时间：</td>									
+									<td align="right">开始时间：</td>
+									<td>
+									  <input name="appStartTime" allowInput="false" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
+									</td>
+									<td align="right">结束时间：</td>
+									<td colspan="2">
+									  <input name="appEndTime" allowInput="false" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
+									</td>									
+								</tr>	
+								<tr>
+									<td align="right">值长:</td>
+									<td>
+									  <input name="appDutyLeader" id="appDutyLeaderName_" textName="appDutyLeaderName" onbuttonclick="sign_('appDutyLeaderName_')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />										
+									</td>
+									<td align="right">签字时间：</td>
+									<td colspan="3" align="left">
+									  <input name="appDutyLeaderTime" allowInput="false" id="appDutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+								</tr>							
 								<tr>
 									<td colspan="6" _emptyName="许可时间，许可人，工作负责人">6.确认本工作票上述各项内容，许可开始工作时间： 
 									  <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" showTime="true" allowInput="false" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" /> 
@@ -429,12 +458,18 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="6" >7.工作负责人变动： 原工作负责人
+									<%-- <td colspan="6" >7.工作负责人变动： 原工作负责人
 									  <input style="width: 180px" name="woWtLC.oldWorkLeader" id="woWtLC.oldWorkLeader" required="false" textName="woWtLC.oldWorkLeaderName" class="mini-buttonedit"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/wo-wt/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','woWtLC.oldWorkLeader,woWtLC.oldWorkLeaderName')" />
 									   离去，变更为
 									 <input style="width: 180px" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/wo-wt/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />担任工作负责人。
+									</td> --%>
+									<td colspan="6" >7.工作负责人变动：自
+									  <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" allowInput="false" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 
+									  原工作负责人离去，变更为
+									 <input style="width: 180px" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit"
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />担任工作负责人。
 									</td>
 								</tr>
 								<tr>
@@ -442,12 +477,12 @@
 									<td colspan="2">工作票签发人签名：  
 									  <input name="woWtLC.wtSigner" id="woWtLC.wtSignerName_" textName="woWtLC.wtSignerName" onbuttonclick="sign_('woWtLC.wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 
 									</td>
-									<td align="center">运行值班负责人签名 ： 
-									  <input name="woWtLC.permitBy" id="woWtLC.permitByName_" textName="woWtLC.permitByName" onbuttonclick="sign_('woWtLC.permitByName_','99  ')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 
+									<td align="center" colspan="3">运行值班负责人签名 ： 
+									  <input name="woWtLC.permitBy" id="woWtLC.permitByName_" textName="woWtLC.permitByName" onbuttonclick="sign_('woWtLC.permitByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 
 									</td>
-									<td colspan="2">变动时间： 
+									<!-- <td colspan="2">变动时间： 
 									   <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" allowInput="false" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
-									</td>
+									</td> -->
 								</tr>
 								<tr>
 									<td colspan="6" >8.工作票延期：有效期延长到 
@@ -546,8 +581,7 @@
 	    <div title="检修围栏" id="tabWoProcessList" name="tabSmElectronicFenceList"   style="border: 0px;"  >  			
 			<div class="mini-fit">
 				<div id="tabsSub1" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%">
-				<div title="检修围栏"   style="border: 0px;"  >
-				<%-- <sys:toolbargridsub girdId="gridOmLogTeam"  permissionEdit="om:omLog:edit"></sys:toolbargridsub> --%>						
+				<div title="检修围栏"   style="border: 0px;"  >				
 				<div id="gridSmElectronicFence" class="mini-datagrid" style="width:100%;height:100%;"
 						 url="${ctx}/sm-region/sm/smElectronicFence/data" idField="id" onrowdblclick="onrowdblclick"
 						 allowResize="true" pageSize="10" 
@@ -600,6 +634,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 	</div>
 	<!-- 新流程方式引入 flowKey对应流程Key -->
 	<sys:workflow flowKey="woWt1"></sys:workflow>
@@ -616,13 +652,14 @@
 			masterKeyField : "id",
 			dataUrl : "${ctx}/wo-wt/wo/woWt/data?baseQuery=a.is_standard='${param.isStandard}'",
 			getUrl : "${ctx}/wo-wt/wo/woWt/get?wtType=${param.wtType}",
-			initInsertUrl : "${ctx}/wo-wt/wo/woWt/initInsert?wtType=${param.wtType}&isStandard=${param.isStandard}&&sourceType=1",
+			initInsertUrl : "${ctx}/wo-wt/wo/woWt/initInsert?wtType=${param.wtType}&isStandard=${param.isStandard}&sourceType=1",
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
 			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
 			onAfterNewRecord:addNewReword,
             onAfterLoadRecord: onAfterLoadRecord,          
-            onBeforeSaveCheck: onBeforeSaveCheck           
+            onBeforeSaveCheck: onBeforeSaveCheck,
+            onBeforeSaveForm : onBeforeSaveForm
 			
 		});
 				
@@ -696,7 +733,6 @@
 				saveUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/save",
 				removeUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/remove",
 				exportUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/export"
-
 			});		
 			childs.push({
 				id : "gridWoTaskSafeMeasure",
@@ -725,7 +761,7 @@
 				tabName : "tabSmElectronicFenceList",				
 				//dataUrl:"http://192.168.0.171:18600/sm-region/sm/smElectronicFence/data"
 				dataUrl:"${ctx}/sm-region/sm/smElectronicFence/data"
-			}); 
+			}); 						
 			/***********加载附票子表结束**************/
 			
 			return childs;
@@ -824,11 +860,11 @@
 			"name":'打印预览'
 		  });
 		  
-		  sysToolBar_.addButtonOption({
+		 /*  sysToolBar_.addButtonOption({
 			"buttonId":'changeWorkLeader',
-			"functionStr":'changeWorkLeader',/* 对应按钮的点击事件 */			
+			"functionStr":'changeWorkLeader',
 			"name":'变更负责人'
-		  }); 
+		  });  */
 		  sysToolBar_.addButtonOption({
 			"buttonId":'restoreTicket',
 			"functionStr":'restoreTicket',/* 对应按钮的点击事件 */			
@@ -840,12 +876,22 @@
 			"name":'押票'
 		  });  
 		  
-		  sysToolBar_.addButtonOption({
+		 /*  sysToolBar_.addButtonOption({
 			"buttonId":'postpone',
-			"functionStr":'postpone',/* 对应按钮的点击事件 */			
+			"functionStr":'postpone',		
 			"name":'延期'
-		  });   
+		  });   */ 
+		  sysToolBar_.addButtonOption({
+			"buttonId":'createWoWt5',
+			"functionStr":'createWoWt5',/* 对应按钮的点击事件 */			
+			"name":'一级动火工作票'
+		  });  
 		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'createWoWt6',
+			"functionStr":'createWoWt6',/* 对应按钮的点击事件 */			
+			"name":'二级动火工作票'
+		  });  
 		  
 		  sysToolBar_.addButtonOption({
 			"buttonId":'repairRail',
@@ -865,7 +911,7 @@
 	    }
 	    
 	    //变更负责人
-	    function changeWorkLeader(){
+	  /*   function changeWorkLeader(){
 	    	var id = mini.get("id").getValue();	
 	    	var wtType = mini.get("wtType").getValue();
 	    	var workLeader = mini.get("workLeader").getValue();
@@ -929,11 +975,7 @@
 					showModal : true, //显示遮罩
 					loadOnRefresh : true, //true每次刷新都激发onload事件
 					onload : function() { //弹出页面加载完成
-						/*  var iframe = this.getIFrameEl(); 
-						  var data = {};       
-						  //调用弹出页面方法进行初始化
-						  iframe.contentWindow.SetData(data); 
-						 */
+						
 					},
 					ondestroy : function(action) {
 						if (action == "ok") {
@@ -945,7 +987,7 @@
 				});
 			}
 	    	  
-	    }
+	    } */
 	    
 	    //押票恢复
 	    function restoreTicket(){
@@ -1036,7 +1078,7 @@
 	    }
 	    
 	    //申请延期
-	    function postpone(){
+	  /*   function postpone(){
 	    	var workLeader = null;
 			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
 					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
@@ -1115,7 +1157,7 @@
 
 					});
 			}
-	    }
+	    } */
 	    
 	    
 	    
@@ -1133,7 +1175,9 @@
  		  var smElectronicFenceUrl = "${smElectronicFenceUrl}";
  		  //window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
  		  //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
- 		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
+ 		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true); 		
+ 		
+	    
 	    }
 	  
 	    $(function(){
@@ -1156,6 +1200,8 @@
 	    }
 	    	    
 	    editControl.loadEditList('woWt'); */
+	    
+	    //加载页面编辑权限
 	    //editControl.loadEditList('woWt1')
 	    
 	    //运行值班负责人签名自动带入工作负责人签名
@@ -1202,32 +1248,143 @@
             var smElectronicFenceUrl = "${smElectronicFenceUrl}";
             var iamCode = iamCodeValue();
             // newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=view&showList=0&id="+uid+"&iamCode="+iamCode,true);    
-            newTabPage('工作票关联检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=view&showList=0&id="+uid+"&iamCode="+iamCode,true);
+            newTabPage('工作票关联检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=view&showList=0&id="+uid+"&iamCode="+iamCode,true);                 
         }
         
         
       //流程按钮响应事件
-        function onBpmButtonClick(buttonId) {
+      function onBpmButtonClick(buttonId) {       	 
         	var workLeader = null;
 			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
 					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
-				workLeader = mini.get("woWtLC.nowWorkLeader")
-						.getValue();
+				workLeader = mini.get("woWtLC.nowWorkLeader").getValue();				
 			} else {
-				workLeader = mini.get("workLeader").getValue();
+				workLeader = mini.get("workLeader").getValue();				
 			}
             var data = {
                 eventName: 'parentClickButton',
                 alias: buttonId,
                 flowVariables: {//定义流程变量                  
-                    "workLeader": workLeader || '',//工作负责人 */
+                    "workLeader": workLeader || '',//工作负责人 
                 },//隐患名称
                 data: {}
             };
             sendBpmMsg(data);
             popBox();
-        }
+        }  
+      
+      //检修围栏状态改变
+      function changeRepairRail(){
+         //var url = "http://192.168.0.171:18600/sm-region/sm/smElectronicFence/updateStaByWtid";   		
+         var iamCode = iamCodeValue();
+         var url = "${ctx}/sm-region/sm/smElectronicFence/updateStaByWtid";
+   		 var data = {"wtId":"7450879b462c4b980f98f801a90c5592759564","status":"1","iamCode":iamCode};//status 0:无效   1：有效          
+           $.ajax({
+  		        url: url,
+  		        data: data,
+  		        type: "post",
+  		        success: function (text) { 		        	
+  		        	var o = mini.decode(text);
+  		        	console.log(0);
+  		        	if(o.type == "I"){
+  		        		showMessageBox("提示",o.message,"info");
+  		        	}if(o.type == "E"){
+  		        		showMessageBox("错误",o.message,"error");
+  		        	}
+  		        },
+  		        error: function (jqXHR, textStatus, errorThrown) {
+  		        	
+  		        }
+  		    });
+   		 
+          
+    		/*  var data = {"wtId":"7450879b462c4b980f98f801a90c5592759564","status":"1","iamCode":iamCode};//status 0:无效   1：有效          
+            $.ajax({
+   		        url: "${ctx}/wo-wt/wo/woWt/updateStaByWtid",
+   		        data: data,
+   		        type: "post",
+   		        success: function (text) { 
+   		        	debugger;
+   		        	var o = mini.decode(text);
+   		        	console.log(0); 	       	 	
+ 		  	       	if(o.type == "I"){
+ 		        		showMessageBox("提示",o.message,"info");
+ 		        	}if(o.type == "E"){
+ 		        		showMessageBox("错误",o.message,"error");
+ 		        	}
+   		        },
+   		        error: function (jqXHR, textStatus, errorThrown) {
+   		        	
+   		        }
+   		    }); */
+      }
+      
+      //新建/查看一级动火票
+      function createWoWt5(){
+    	  var id = mini.get("id").getValue();
+    	  var iamCode = iamCodeValue();
+    	  if (id == "" || id == null) {
+  			mini.alert("请先保存再点击检修围栏按钮！");
+  			return;
+  		  }	
+    	  $.ajax({
+			url : "${ctx}/wo-wt/wo/woWt/data",
+			data : {
+				mainTicketId : id,
+				wtType:"5"
+			},
+			type : "post",
+			success : function(text) {				
+				var o = mini.decode(text);				
+				if ((o.data).length>0) {
+					var wtId = o.data[0].id;
+					newTabPage(
+							"相关工作票查看",
+							'${ctxRoot}/form?view=wo/wt/woWtForm5'
+									+ '&border=1&action=view&wtType=5&id='
+									+ wtId
+									+ '&showList=0&showTree=0&showForm=1',
+							true);
+				} else {
+					newTabPage('新建一级动火工作票',"${ctxRoot}/form?view=wo/wt/woWtForm5&action=new&showList=0&wtType=5&isStandard=1&mainTicketId="+id,true); 
+				}
+			 }
+		   });
+      }
+      
+      //新建/查看二级动火票
+      function createWoWt6(){
+    	  var id = mini.get("id").getValue();
+    	  var iamCode = iamCodeValue();
+    	  if (id == "" || id == null) {
+  			mini.alert("请先保存再点击检修围栏按钮！");
+  			return;
+  		  }	
+    	  $.ajax({
+			url : "${ctx}/wo-wt/wo/woWt/data",
+			data : {
+				mainTicketId : id,
+				wtType:"6"
+			},
+			type : "post",
+			success : function(text) {				
+				var o = mini.decode(text);				
+				if ((o.data).length>0) {
+					var wtId = o.data[0].id;
+					newTabPage(
+							"相关工作票查看",
+							'${ctxRoot}/form?view=wo/wt/woWtForm6'
+									+ '&border=1&action=view&wtType=6&id='
+									+ wtId
+									+ '&showList=0&showTree=0&showForm=1',
+							true);
+				} else {
+					newTabPage('新建二级动火工作票',"${ctxRoot}/form?view=wo/wt/woWtForm6&action=new&showList=0&wtType=6&isStandard=1&mainTicketId="+id,true); 
+				}
+			 }
+		   });
+      }
+           
 </script>
-
 </body>
 </html>

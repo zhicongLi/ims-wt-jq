@@ -5,7 +5,7 @@
         <header class="header">
             <!--大于2页display: block;小于两页display:none-->
             <p style="display: block;bottom: -25px;" class="prevDangerPage"></p>
-            <h1>国家能源集团宿迁发电有限公司<br/>作 业 安 全 措 施 票</h1>
+            <h1>国家能源集团泰州发电有限公司<br/>作 业 安 全 措 施 票</h1>
             <h2 style="text-align:right;">工作票票号：<span>${WoWt.wtCode}</span></h2>           
         </header>
         <table class="table01"  >	
@@ -76,6 +76,7 @@
 </div>
 <input type="hidden" id="wtCode"  value="${WoWt.wtCode}">	
 <script type="text/javascript">
+
 var invar2 = '<div class="dangerContent"><div class="invar">'
                  +'<p style="display:block;bottom: -25px;text-align:left;font-size:16px;" class="prevDangerPage"></p>'
                  +'<table  class="table dangerTable tMerge">'

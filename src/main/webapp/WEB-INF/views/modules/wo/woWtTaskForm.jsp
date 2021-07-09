@@ -224,14 +224,14 @@
 								  </tr>
 								  <tr>
 								    <td>7.交底人</td>
-								    <td colspan="3">
-								      <input style="width: 180px" name="proReplyBy" id="proReplyBy" required="false" textName="proReplyByName" class="mini-buttonedit" allowInput="false"
+								    <td colspan="5">
+								      <input style="width: 180px" name="proReplyBy" id="proReplyBy" required="false" textName="proReplyByName" class="mini-buttonedit" allowInput="false" 
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','proReplyBy,proReplyByName')" onvaluechanged="update(this)" />
 									</td>
-									<td>许可部门：</td>
+									<%-- <td>许可部门：</td>
 									<td>
 									    <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_is_fuel_run" />
-									</td>	
+									</td>	 --%>
 								  </tr>
 								  <tr>
 									<td>8.工作班成员签名：</td>
@@ -274,16 +274,76 @@
 				  </div> <!--editform-->
 				 <jsp:include page="/WEB-INF/views/include/sign.jsp"></jsp:include>		       
 	    </div>       
- </div>
+    <!-- 加载作业安全措施附票 -->
+    <%@ include file="/WEB-INF/views/modules/wo/wt/woWtTaskSafeMeasureTab.jsp"%>		
+<%--     <div title="检修围栏" id="tabWoProcessList" name="tabSmElectronicFenceList"   style="border: 0px;"  >  			
+		<div class="mini-fit">
+			<div id="tabsSub1" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%">
+			<div title="检修围栏"   style="border: 0px;"  >				
+			<div id="gridSmElectronicFence" class="mini-datagrid" style="width:100%;height:100%;"
+					 url="${ctx}/sm-region/sm/smElectronicFence/data" idField="id" onrowdblclick="onrowdblclick"
+					 allowResize="true" pageSize="10" 
+					 allowCellEdit="false" allowCellSelect="true" multiSelect="true"
+					 editNextOnEnterKey="true"  editNextRowCell="true"
+					 allowAlternating="true" showFilterRow="false"  showColumnsMenu="false"
+				>
+					<div property="columns">							
+							<div type="indexcolumn" headerAlign="center" width="35">序号</div>
+							<div name="id"  field="id" vtype="required"  headerAlign="center" allowSort="true" width="64" visible="false" hideable="true">id
+								<input property="editor" class="mini-textbox"  style="width:100%;"  />
+								<input id="id2-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>
+							<div name="fenceBegTime" field="fenceBegTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160"  hideable="true">围栏开始时间 
+								<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+								<input id="fenceBegTime-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>
+							<div name="fenceEndTime" field="fenceEndTime" vtype="" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" width="160"  hideable="true">围栏结束时间 
+								<input property="editor" class="mini-textbox" style="width: 100%;" /> 
+								<input id="fenceEndTime-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>
+							<div name="fenceName"  field="fenceName" vtype=""  headerAlign="center" allowSort="true" width="150" >围栏名称
+								<input property="editor" class="mini-textbox"  style="width:100%;"  />
+								<input id="fenceName-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>
+							<div name="fenceDesc"  field="fenceDesc" vtype=""  headerAlign="center" allowSort="true" width="150" >围栏描述
+								<input property="editor" class="mini-textbox"  style="width:100%;"  />
+								<input id="fenceDesc-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>																	
+							<div name="wtId"  field="wtId" vtype=""  headerAlign="center" allowSort="true" width="64" visible="false" hideable="true">关联工作票id
+								<input property="editor" class="mini-textbox"  style="width:100%;"  />
+								<input id="wtId2-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
+									   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
+								/>
+							</div>
+						</div>
+				</div>
+			 </div>
+			</div>
+		</div>
+	</div> --%>
+		
+</div>
 <!-- 新流程方式引入 -->
 <sys:workflow flowKey="woWtTask"></sys:workflow>
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
+<jsp:include page="wt/attachTab.jsp" flush="true" />
 <script type="text/javascript">
 
 	initBase(
 			{   id:"datagridMain",
 			    objId:"WoWtTask",
+			    masterKeyField : "id",
 				dataUrl:"${ctx}/wo-wt/wo/woWtTask/data",
 				getUrl:"${ctx}/wo-wt/wo/woWtTask/get",
 				saveUrl:"${ctx}/wo-wt/wo/woWtTask/save",
@@ -292,12 +352,55 @@
 				initInsertUrl : "${ctx}/wo-wt/wo/woWtTask/initInsert",				
 				onAfterNewRecord:addNewReword,
 	            onAfterLoadRecord: onAfterLoadRecord,          
-	            onBeforeSaveCheck: onBeforeSaveCheck
+	            onBeforeSaveCheck: onBeforeSaveCheck,
+	            onBeforeSaveForm : onBeforeSaveForm
 			 }
 	       );
 
 	initChilds( "#editform", "tabsMain" ,
                       [
+                    	  {
+      						id : "#formWoWtWorkSafe",
+      						objId : "WoWtWorkSafe",
+      						FK : "wtId",
+      						visible : true,
+      						cascade : true,
+      						cascadeVisible : true,
+      						tabsId : "tabsMain",
+      						tabName : "tabWoTaskSafeMeasureList",
+      						dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data",
+      						getUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/get",
+      						saveUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/save",
+      						removeUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/remove",
+      						exportUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/export"
+      					},
+      					{//作业安全措施票
+      						id : "gridWoTaskSafeMeasure",
+      						objId : "WoTaskSafeMeasure",
+      						FK : "wtId",							
+      						cascade : true,							
+      						tabsId : "tabsMain",
+      						insertPos : "L",
+      						insertType : "A",
+      						tabName : "tabWoTaskSafeMeasureList",
+      						panelId : "tabWoTaskSafeMeasure1List",
+      						dataUrl:"${ctx}/wo-wt/wo/woTaskSafeMeasure/data",
+      						getUrl:"${ctx}/wo-wt/wo/woTaskSafeMeasure/get",
+      						saveUrl:"${ctx}/wo-wt/wo/woTaskSafeMeasure/save",
+      						removeUrl:"${ctx}/wo-wt/wo/woTaskSafeMeasure/remove",
+      						exportUrl:"${ctx}/wo-wt/wo/woTaskSafeMeasure/export"
+      					}/* ,
+      				    {//新增显示关联检修围栏信息
+      						id : "gridSmElectronicFence",
+      						objId : "SmElectronicFence",
+      						FK : "wtId",				
+      						cascade : true,								
+      						insertPos : "L",
+      						insertType : "A",
+      						tabsId : "tabsMain",
+      						tabName : "tabSmElectronicFenceList",				      						
+      						dataUrl:"${ctx}/sm-region/sm/smElectronicFence/data"
+      					} */
 	                   ]
 	);
 
@@ -560,24 +663,7 @@
    }
    //////////form操作菜单项点击事件方法/////////
    function onFormOpMiClick(e){
-	 var id = mini.get("id").getValue();
-     var menuItem=null;
-     if(e.item==undefined){
-        menuItem=e.sender.item;
-        if (menuItem.menuNo == "WoWtForm2") { //打印预览
-        	if (id == "" || id == null) {
-				mini.alert("请先保存再点击打印按钮！");
-				return;
-			}
-            window.open("${ctx}/wo-wt/wo/woWtTask/viewWoWtTask?action=new&id="+id);
-        }else if(menuItem.menuNo == "relateDefect"){
-			relateDefect();
-	   	 }else if(menuItem.menuNo == "linkDefect"){
-	   			linkDefect();
-	   	 }
-     }else{
-        menuItem=e.item;
-     }
+	
      
    }
    
@@ -629,7 +715,6 @@
        	
    }
    
-   editControl.loadEditList('woWtTask'); 
    
    //选择用户（分页多选）
    function popLovJson1(e) {           
@@ -677,6 +762,14 @@
        mini.get("workClassPersonIds").setValue(ids);   //人员id
        mini.get("workClassPersonIds").setText(names);   //人员
    }
+   
+   //更新作业安措排序
+   function onBeforeSaveForm() {
+	  //更新危险点与预防控制措施排序字段值
+	  updDangerTaskSeqNo();			
+	  return true;
+   }
+ //editControl.loadEditList('woWtTask'); 
 </script>
 </body>
 </html>

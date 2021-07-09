@@ -91,14 +91,6 @@
  			</c:otherwise> 
 		</c:choose> 
 	</div>
-	<div style="text-align:right;" id="printWoOt1">
-	<c:choose>
-		<c:when test="${display==true}"></c:when>
-		<c:otherwise>
-			<button  onclick="javascript:exitPreForm()">退出</button>
-		</c:otherwise>
-	</c:choose>
-	</div>
 	<div class="pageHeader"></div>
 	<!-- 危险点预控措施 -->
 	<%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
@@ -108,7 +100,7 @@
 	
 	<div class="print-content">		
 		<header class="host header">	    	
-	    	<h1>国家能源集团宿迁发电有限公司</h1>
+	    	<h1>国家能源集团泰州发电有限公司</h1>
 	        <h1 style="font-size:35px;">热控工作票&nbsp;</h1>
 	        <h2 >编号:<span>${WoWt.wtCode}</span></h2>      
 		</header>
@@ -122,7 +114,8 @@
 			</tr>		
 			<tr>
 				<td colspan="3"><span class="ident-number1">2.</span>工作负责人（监护人）：
-					<input size="10" readonly="true" value="${WoWt.workLeaderName }"/>					
+					<input size="10" readonly="true" value="${WoWt.workLeaderName }"/>	
+					电话：<input  readonly="true" value="${WoWt.mobile}"/>				
 				</td>
 			</tr>
 			<c:if test="${fn:length(classPersons) == 1}">
@@ -418,8 +411,8 @@
 		           <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>年
 		           <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>""/>时
-		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>">"/>分
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.appEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
 				</td>
 			</tr>
 	         <tr>
@@ -604,10 +597,10 @@
 			</tr>
 			<tr class="ident5"></tr>
 		</table>		
-		<table class="table09">		
+		<%-- <table class="table09">		
 		<tr>
-			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">18.</span>备注：<input id="remark1"  class="table09-put"
-				readonly="true" value="${fn:escapeXml(remarks[0])}" />
+			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">18.</span>备注：
+			<input id="remark1"  class="table09-put" readonly="true" value="${fn:escapeXml(remarks[0])}" />
 			</td>
 		</tr>
 		<c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
@@ -616,6 +609,29 @@
 					value="${fn:escapeXml(remarks[i])}" /></td>
 			</tr>
 		</c:forEach>
+		</table> --%>
+		<table class="table09">		
+		<tr>
+			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">18.</span>备注：</td>
+		</tr>		
+		<tr class="daozhadixian">
+		    <td id=""  class="widthValue" colspan="3">
+			  <input id="remark1" readonly="true"  value="${fn:escapeXml(remarks[0])}"/>
+			</td>
+		</tr>	
+		<c:if test="${fn:length(remarks)==1}">
+		  <tr class="ident1 work02 daozhadixian">
+				<td colspan="3"><input readonly="true" value="" /></td>
+			</tr>
+		</c:if>		  		
+		<c:if test="${fn:length(remarks)>1}">
+		  <c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
+			<tr class="ident1 work02 daozhadixian">
+				<td colspan="3"><input readonly="true"
+					value="${fn:escapeXml(remarks[i])}" /></td>
+			</tr>
+		  </c:forEach>
+		</c:if>				
 		</table>		
 	</div>
 <!--打印区域-->

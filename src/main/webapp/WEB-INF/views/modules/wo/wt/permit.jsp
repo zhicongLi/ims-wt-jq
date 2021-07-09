@@ -69,12 +69,17 @@
 		form.reset();
 	}
 		  			 	  	
-
+	 //更新作业安措排序
+    function onBeforeSaveForm() {
+	  //更新危险点与预防控制措施排序字段值
+	  updDangerTaskSeqNo();			
+	  return true;
+    }
 	function cancelRow() {
-			var form = new mini.Form("#editform2");
-			form.reset();
-			var editWindow = mini.get("editWindow");
-	    editWindow.hide();
+	  var form = new mini.Form("#editform2");
+	  form.reset();
+	  var editWindow = mini.get("editWindow");
+      editWindow.hide();
 	}
 	
 	//打印预览页面
