@@ -195,25 +195,10 @@
 									</td>
 									<td>专业:</td>
 									<td>
-									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="true" 
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" 
 										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
 									</td>
-								</tr>
-								<%-- <tr>
-									<td>所属设备KKS：</td>
-									<td>
-									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="false" class="mini-buttonedit" vtype="" required="false" width="200px" readonly="readonly"
-										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)" onvaluechanged="updateEquip()" />
-									</td>
-									<td align="left">所属设备名称：</td>
-									<td>
-									  <input name="equipName" id="equipName" class="mini-textbox" readonly="readonly" />
-									</td>
-									<td align="left">所属设备编码：</td>
-									<td>
-									  <input name="equipId" id="equipId" class="mini-textbox" readonly="readonly" />
-									</td>
-								</tr> --%>
+								</tr>								
 								<tr>
 									<td style="padding-left: 5px; width: 300px;">部门：</td>
 									<td>
@@ -225,33 +210,36 @@
 									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false" readonly="readonly"
 										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>
-									<td></td>
-									<td></td>									
+									<td>机组:</td>
+									<td>
+									  <input name="plantUnit" width="150px" id="plantUnit" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype=""  width="100%"
+										url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_plant_unit" />
+									</td> 									
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火负责人签名：</td>
 									<td colspan="5">
-									  <input style="width: 150px" name="workLeader" id="workLeader" allowInput="false" required="false" textName="workLeaderName" class="mini-buttonedit" width="200px" readonly="readonly"
+									  <input style="width: 200px" name="workLeader" id="workLeader" allowInput="false" required="false" textName="workLeaderName" class="mini-buttonedit" width="200px" readonly="readonly"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
 									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火执行人签名：</td>
-									<td colspan="2">										
+									<td>										
 									  <input name="woWtFire.execByName" id="woWtFire.execByName" class="mini-textbox" allowInput="true" width="200px"/>
 									</td>
-									<td align="left">证件编号：</td>
-									<td colspan="2">
+									<td>证件编号：</td>
+									<td colspan="3">
 									  <input name="woWtFire.execByIdNumber" id="woWtFire.execByIdNumber" class="mini-textbox" />
 									</td>
 								</tr>
 								<tr>
 									<td style="padding-left: 5px;">动火执行人签名：</td>
-									<td colspan="2">										
+									<td>										
 									  <input name="woWtFire.execByName2" id="woWtFire.execByName2" class="mini-textbox" allowInput="true" width="200px"/>
 									</td>
-									<td align="left">证件编号：</td>
-									<td colspan="2">
+									<td>证件编号：</td>
+									<td colspan="3">
 									  <input name="woWtFire.execByIdNumber2" id="woWtFire.execByIdNumber2" class="mini-textbox" />
 									</td>
 								</tr>
@@ -269,10 +257,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td>动火方式</td>									
-									<%-- <td colspan="3">
-									    <input name="woWtFire.fireModeId" id="woWtFire.fireModeId" allowInput="true" required="true" class="mini-combobox" valueField="value" textField="label" vtype="" textName="woWtFire.fireMode" url="${ctx}/sys/dict/listDataStr?type=wo_wt_firemode" width="200px"/>
-									</td> --%>
+									<td>动火方式</td>																		
 									<td colspan="3" >									     
 										<div id="woWtFire.fireModeId" name="woWtFire.fireModeId"  class="mini-checkboxlist" repeatItems="6" repeatLayout="table" textField="label" valueField=value 
 											 url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_firemode" >
@@ -286,20 +271,7 @@
 									       自：<input name="planStartTime" id="planStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px" /> 
 										至： <input name="planEndTime" id="planEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
 									</td>
-								</tr>																
-								<%-- <tr id="sotID">									
-									<td>许可部门：</td>
-									<td colspan="3">
-									  <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
-									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_is_fuel_run" /></td>
-								</tr>								
-								<tr>
-								    <td>是否风险区域：</td>
-									<td colspan="5">
-									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="40%" readonly="readonly"
-									    onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/em/emRiskArea/list',850,500,'areaName','areaName')" />
-								    </td>
-								</tr>	 --%>							
+								</tr>																														
 							</table>
 							<div class="mini-panel" title="运行部门应采取的安全措施：" width="auto" id="tabWoWtsmList" name="tabWoWtsmList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm" permissionEdit="wo:woWt:edit"></sys:toolbargridsub>
@@ -349,49 +321,49 @@
 									<td colspan="6">审批：</td>
 								</tr>
 								<tr>
-									<td align="right">动火工作票签发人：</td>
-									<td colspan="2">										
-									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+									<td>动火工作票签发人：</td>
+									<td>										
+									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName" onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td>
-									<td align="right">签发日期：</td>
-									<td colspan="2">
+									<td>签发日期：</td>
+									<td colspan="3">
 									  <input name="wtSignDate" id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px"/>
 									</td>
 								</tr>
 								<tr>									
-									<td align="right">动火部门安监人员：</td>
-									<td colspan="2">										
+									<td>动火部门安监人员：</td>
+									<td>										
 									  <input name="woWtFire.appCompSafeHealth" id="woWtFire.appCompSafeHealthName_" textName="woWtFire.appCompSafeHealthName"
-										onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+										onbuttonclick="sign_('woWtFire.appCompSafeHealthName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td>
-									<td align="right">动火部门负责人（或技术负责人）签名：</td>
-									<td colspan="2">										
+									<td>动火部门负责人（或技术负责人）签名：</td>
+									<td colspan="3">										
 									  <input name="woWtFire.appDeptLeader" id="woWtFire.appDeptLeaderName_" textName="woWtFire.appDeptLeaderName"
-									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','5')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','5')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td>
 								</tr>								
 								<tr>									
-									<td align="right">批准动火时间：</td>
-									<td colspan="4">
+									<td>批准动火时间：</td>
+									<td colspan="5">
 									   自 <input name="appStartTime" id="appStartTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px"/> 
 									   至 <input name="appEndTime" id="appEndTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="6" style="height: 28px;">运行部门应采取的安全措施已全部执行完毕</td>
+									<td colspan="6">运行部门应采取的安全措施已全部执行完毕</td>
 								</tr>
 								<tr>
-									<td align="right">运行许可动火时间：</td>
-									<td colspan="2">
+									<td>运行许可动火时间：</td>
+									<td >
 									  <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px"/>
 									</td>
-									<td align="right">运行许可人签名：</td>
-									<td colspan="2">										
-									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />									    									     
+									<td>运行许可人签名：</td>
+									<td colspan="3">										
+									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>									    									     
 									</td>
 								</tr>								
 								<tr style="display: none;">
-									<td align="right">检修负责人签名：</td>
+									<td>检修负责人签名：</td>
 									<td style="text-align: left;">
 									  <input name="smDutyPrincipal" id="smDutyPrincipalName_" textName="smDutyPrincipalName"
 										onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
@@ -440,71 +412,69 @@
 									<td colspan="6" style="height: 28px;">签字确认</td>
 								</tr>
 								<tr>
-									<td align="right">动火执行人签名：</td>																		
-									<td colspan="2">										
+									<td>动火执行人签名：</td>																		
+									<td>										
 									  <input style="width: 180px" name="woWtFire.safeExecByName" id="woWtFire.safeExecByName" textName="woWtFire.safeExecByName" allowInput="false" required="false" class="mini-buttonedit"
 									    onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','woWtFire.safeExecBy,woWtFire.safeExecByName')" onvaluechanged="update(this)" />
 									</td>
-                                    <td align="right">消防监护人签名：</td>
-									<td colspan="2">										
+                                    <td>消防监护人签名：</td>
+									<td colspan="3">										
 									  <input style="width: 180px" name="woWtFire.safeFiremanBy" id="woWtFire.safeFiremanBy" textName="woWtFire.safeFiremanByName" allowInput="false" required="false" class="mini-buttonedit" 
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','woWtFire.safeFiremanBy,woWtFire.safeFiremanByName')" />
 									</td>									
 								</tr>								
 								<tr>									
-									<td align="right">动火工作负责人签名：</td>
-									<td colspan="2">										
+									<td>动火工作负责人签名：</td>
+									<td>										
 									  <input style="width: 180px" name="woWtFire.safeWorkLeaderName" id="woWtFire.safeWorkLeaderName" textName="woWtFire.safeWorkLeaderName" allowInput="false" required="false" class="mini-buttonedit"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','woWtFire.safeWorkLeader,woWtFire.safeWorkLeaderName')" onvaluechanged="update(this)" />
 									</td>
-									<td align="right">动火部门安监人员签名：</td>
-									<td colspan="2">										
+									<td>动火部门安监人员签名：</td>
+									<td colspan="3">										
 									  <input style="width: 180px" name="woWtFire.safeDeptSafeByName" id="woWtFire.safeDeptSafeByName" textName="woWtFire.safeDeptSafeByName" allowInput="false" required="false" class="mini-buttonedit"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','woWtFire.safeDeptSafeBy,woWtFire.safeDeptSafeByName')" onvaluechanged="update(this)" />
 									</td>
 								</tr>
 								<tr>
-								    <td align="right">消防管理部门负责人：</td>
-									<td colspan="2">										
+								    <td>消防管理部门负责人：</td>
+									<td>										
 									  <input style="width: 180px" name="woWtFire.endsfDeptLeaderName"id="woWtFire.endsfDeptLeaderName" textName="woWtFire.endsfDeptLeaderName" allowInput="false" required="false" class="mini-buttonedit" 
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','woWtFire.endsfDeptLeader,woWtFire.endsfDeptLeaderName')" />									
 									</td>									
-									<td align="right">允许动火时间：</td>
-									<td colspan="2">
+									<td>允许动火时间：</td>
+									<td colspan="3">
 									  <input style="width: 180px" name="woWtFire.safeFireTime" id="woWtFire.safeFireTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px"/></td>
 								</tr>
 								<tr>
-									<td colspan="6" style="height: 28px;" _emptyName="动火工作全部结束时间">动火结束：动火工作于 
+									<td colspan="6"  _emptyName="动火工作全部结束时间">动火结束：动火工作于 
 									  <input name="actEndTime" id="actEndTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" width="180px"/> 全部结束。
 									</td>
 								</tr>
 								<tr>
-									<td align="right">动火执行人签名：</td>
-									<td colspan="2">										
-									  <input name="woWtFire.endExecByName" id="woWtFire.endExecByName"  class="mini-textbox" vtype = "" allowInput="true"  />
+									<td>动火执行人签名：</td>
+									<td>										
+									  <input name="woWtFire.endExecByName" id="woWtFire.endExecByName"  class="mini-textbox" vtype = "" allowInput="true"  width="180px"/>
 									</td>
-									<td align="right">消防监护人签名：</td>
-									<td colspan="2">										
+									<td>消防监护人签名：</td>
+									<td colspan="3">										
 									  <input name="woWtFire.endFiremanBy" id="woWtFire.endFiremanByName_" textName="woWtFire.endFiremanByName"
-										onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+										onbuttonclick="sign_('woWtFire.endFiremanByName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td>
 								</tr>
 								<tr>
-									<td align="right">动火工作负责人签名：</td>
-									<td colspan="2">										
+									<td>动火工作负责人签名：</td>
+									<td>										
 									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
-									    onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+									    onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td>
-									<td align="right">运行许可人签名：</td>
-								    <td colspan="2">									    
+									<td>运行许可人签名：</td>
+								    <td colspan="3">									    
 									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName"
-										onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+										onbuttonclick="sign_('endPermitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="180px"/>
 									</td> 									
 								</tr>								
 								<tr>
-									<td>
-									  备注
-									</td>
+									<td>备注</td>
 									<td colspan="5">
 									  <input name="remarks" id="remarks" class="mini-textarea" vtype="" required="false" width="100%" height="200px" />
 									</td>
@@ -768,33 +738,9 @@
 		  });  
 	    }
 	  
-		//打印预览
-	    function print(){
-		  var id = mini.get("id").getValue();		  
-		  if (id == "" || id == null) {
-			mini.alert("请先保存再点击打印按钮！");
-			return;
-		  }
-		  wowtPrint();
-	    }
-	    
-	    //检修围栏
-	    function repairRail(){
-		  var id = mini.get("id").getValue();		 
-		  if (id == "" || id == null) {
-			mini.alert("请先保存再点击检修围栏按钮！");
-			return;
-		  }		
-		  var form = new mini.Form("#editform");   
-		  var woWtData = form.getData();
-		  var wtId = woWtData.id;		 
- 		  var iamCode = iamCodeValue();
- 		  var smElectronicFenceUrl = "${smElectronicFenceUrl}"; 
- 		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
-	    }
-	    
-	  //关联主票
-	    function linkMainTicket(){    	
+		
+	   //关联主票
+	   function linkMainTicket(){    	
 	      var id = mini.get("id").getValue();		 
 	   	  if (id == "" || id == null) {
 	   		mini.alert("请先保存再关联主票！");
@@ -859,16 +805,16 @@
 	    }
 	    
 	  
-	    $(function(){
-		   addButton();
-	    });	
-	    	    
+	       
 	    
 	    function onBeforeSaveForm() {	    	   	
     	  var fire = mini.get("woWtFire.fireModeId").getText();
     	  mini.get("woWtFire.fireMode").setValue(fire);		
 		  return true;
 	  }
+	    
+	  //加载页面编辑权限
+	    //editControl.loadEditList('woWt6')
 </script>
 </body>
 </html>

@@ -5,7 +5,14 @@ var AA = function() {
 	 this.currObj=null;
 	 this.afterFlowSecList=[]; //需要流程加载完后处理
 };
-
+AA.prototype.get = function(id){
+	debugger;
+	var d = mini.get(id);
+	if(!d){
+		return '';
+	}
+	return d.getValue();
+}
 AA.prototype.loadEditList = function( objName, queryKey){
 	var _this = this;
 	$.ajax({
@@ -50,6 +57,18 @@ AA.prototype.loadEditList = function( objName, queryKey){
 	
 }
 
+
+AA.prototype.validate_ = function(expr){
+	debugger;
+	if(expr==''){
+		return true;
+	}
+	var _this = this;
+	var o = this.currObj;
+	var b = eval("("+expr+")");
+	
+	return b;
+}
 AA.prototype.afterLoad = function(o){
 	if(!o){
 		return true;
@@ -58,10 +77,11 @@ AA.prototype.afterLoad = function(o){
 	if(!secList){
 		return true;
 	}
-	//debugger;
+	debugger;
 	this.currObj=o;
 	var newSecList = new Array();
 	var newAfterSecList = new Array();
+	var _this = this;
 	for(var i = 0;i<secList.length;i++){
 		var sec = secList[i];
 		var seccList = sec.seccList;
@@ -74,9 +94,26 @@ AA.prototype.afterLoad = function(o){
 				if(secc.condGroup!='1'){//流程提交时验证
 					continue;
 				}
+				var expr = secc.condExpr;
 				if(secc.valueMethod=='2'||secc.valueMethod=='1'){//前端从值里取,或者后端获取
+					if(expr){
+						b=this.validate_(expr,_this);
+						if(b){
+							continue;
+						}else{
+							break;
+						}
+					}
 					value = o[secc.fieldName];
 				}else if(secc.valueMethod=='3'){//根据id get
+					if(expr){
+						b=this.validate_(expr);
+						if(b){
+							continue;
+						}else{
+							break;
+						}
+					}
 					var field = mini.get(secc.fieldName);
 					if(field){
 						value = field.getValue();	
@@ -110,7 +147,7 @@ AA.prototype.afterLoad = function(o){
 }
 
 AA.prototype.afterFlowLoad = function(flowData){
-	//debugger;
+	debugger;
 	if(!flowData){
 		return true;
 	}
@@ -132,6 +169,15 @@ AA.prototype.afterFlowLoad = function(flowData){
 					continue;
 				}
 				if(secc.valueMethod=='4'){//只有 流程返回数据 需要验证，其他已经在afterload中验证过
+					var expr = secc.condExpr;
+					if(expr){
+						b=this.validate_(expr);
+						if(b){
+							continue;
+						}else{
+							break;
+						}
+					}
 					value = flowData[secc.fieldName]+"";
 				}else{ //只有流程返回数据需要验证，其他已经验证过
 					continue;
@@ -263,7 +309,6 @@ AA.prototype.setEdit=function(newSecList){
 					if(!field){
 						field = mini.get(secl.fieldName);
 					}
-					
 					if(field){
 						if(secl.isEdit=='1'){
 							field.setEnabled(true);
@@ -346,7 +391,16 @@ AA.prototype.flowAction=function(){
 				if(secc.valueMethod=='1'||secc.valueMethod=='2'){//后端获取，jsget获取，已经验证
 					continue;
 				}
+				var expr = secc.condExpr;
 				if(secc.valueMethod=='3'){//根据id get
+					if(expr){
+						b=this.validate_(expr);
+						if(b){
+							continue;
+						}else{
+							break;
+						}
+					}
 					var field = mini.get(secc.fieldName);
 					if(field){
 						value = field.getValue();	
@@ -466,7 +520,16 @@ AA.prototype.beforeSave=function(){
 				if(secc.condGroup=='2'){//流程提交，保存时流程提交条件忽略
 					continue;
 				}
+				var expr = secc.condExpr;
 				if(secc.valueMethod=='3'){//根据id get
+					if(expr){
+						b=this.validate_(expr);
+						if(b){
+							continue;
+						}else{
+							break;
+						}
+					}
 					var field = mini.get(secc.fieldName);
 					if(field){
 						value = field.getValue();	

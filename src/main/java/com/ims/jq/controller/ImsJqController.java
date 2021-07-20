@@ -95,6 +95,8 @@ public class ImsJqController {
         String docOnlineEditUrl = Global.getConfig("doc.online.edit.url");
         //电子围栏路径
         String smElectronicFenceUrl = Global.getConfig("smElectronicFenceUrl");
+        //newTabPage路径
+        String woWtNewTabPageUrl = Global.getConfig("woWtNewTabPageUrl");
         
         String ctx = "http://"+gatewayIp+":"+gatewayPort;
         if(StringUtils.isNotBlank(serviceApiName)){
@@ -108,6 +110,7 @@ public class ImsJqController {
         model.addAttribute("rootDocPreviewUrl", docPreviewUrl);
         model.addAttribute("rootDocOnlineEditUrl", docOnlineEditUrl);
         model.addAttribute("smElectronicFenceUrl", smElectronicFenceUrl);
+        model.addAttribute("woWtNewTabPageUrl", woWtNewTabPageUrl);
     }
     @RequestMapping(value = "/form")
     public String form(String view, Model model) {

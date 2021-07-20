@@ -95,6 +95,15 @@
 			if (buttonList && buttonList.length > 0) {
 				for (var i = 0; i < buttonList.length; i++) {
 					var button = buttonList[i];
+					
+					/* var isAdd = true;
+					if(beforeAddButton){
+						isAdd =	beforeAddButton(button.alias,buttonList);
+					}	
+					
+					if(isAdd){
+						addBpmButtons(button.alias, button.name);
+					} */
 					addBpmButtons(button.alias, button.name);
 				}
 			}

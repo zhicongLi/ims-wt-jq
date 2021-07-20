@@ -176,10 +176,15 @@
 							<input class="mini-hidden" id="mainTicketId" name="mainTicketId">
 							<!-- 工作负责人手机号 -->
 							<input class="mini-hidden" id="mobile" name="mobile">
-							
-							<table class="formtable">
+							<div class="mini-panel" title="基本信息" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">
 								<tr>
-									<td style="padding-left: 5px;">热控工作票：No：</td>
+								    <td>工作票流水号：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" width="200px" readonly="readonly"/>
+									</td>
+									<td>编号：</td>
 									<td>
 									  <input name="wtCode" id="wtCode" class="mini-textbox" readonly="readonly" width="200px" />
 									 </td>
@@ -187,102 +192,134 @@
 									<td>
 									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
 									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
+									</td>									
+								</tr>
+								<tr>
+								    <td>工单：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" width="200px" readonly="readonly"/>
 									</td>
-									<td>专业:</td>
+									<td>缺陷单：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" width="200px" readonly="readonly"/>
+									</td>
+									<td>作业类型:</td>
+									<td>
+									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype=""  width="180px" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_status" />
+									</td>									
+								</tr>
+								<tr>
+								    <td>机组:</td>
+									<td>
+									  <input name="plantUnit" id="plantUnit" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype=""  
+										url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_plant_unit" />
+									</td>
+									<td>功能位置：</td>
+									<td><input name="equipLogicId" id="equipLogicId"
+										textName="equipLogicId" allowInput="false" width="200px"
+										class="mini-buttonedit" vtype="" required="false"
+										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)"
+										onvaluechanged="updateEquip()" /></td>
+									<td align="left">原KKS：</td>
+									<td><input name="equipName" id="equipName"
+										class="mini-textbox" readonly="readonly" /></td>
+									<!-- <td align="left">所属设备编码：</td>
+									<td><input name="equipId" id="equipId"
+										class="mini-textbox" readonly="readonly" /></td>	 -->							
+								</tr>
+								<tr>
+									<td>工作负责人(监护人)：</td>
+									<td>
+									  <input  name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" allowInput="false" enabled="false"
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
+									</td>
+									<td>电话：</td>									
+									<td>
+									  <input name="mobile" id="mobile" class="mini-textbox" width="200px" readonly="readonly"/>
+									</td>
+									<td>工作班成员数量：</td>
+									<td>
+									  <input name="personNum" id="personNum" class="mini-spinner" allowNull="true" />
+									</td>
+								  </tr>							  							
+								  <tr>
+									<td>部门：</td>
+									<td>
+									  <input name="orgId" id="orgId" textName="orgName" width="200px" class="mini-buttonedit" allowInput="false"  enabled="false"
+										onbuttonclick="popLov(this,'选择部门',false,true,'${ctxRoot}/form?view=sys/sysOrgList',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
+									</td>
+									<td>专业：</td>									
 									<td>
 									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="true" 
 										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
 									</td>
-								</tr>
-								<%-- <tr>
-									<td>所属设备KKS：</td>
+									<td>班组：</td>									
 									<td>
-									  <input name="equipLogicId" id="equipLogicId" textName="equipLogicId" allowInput="true" class="mini-buttonedit" vtype="" required="false" width="200px" readonly="readonly" 
-										onbuttonclick="popLov(this,'选择逻辑设备',false,true,'${ctx}/em/emEquipLogic/lov',800,500,'id,name','equipLogicId,equipLogicName',null,null,selectKKS)" onvaluechanged="updateEquip()" />
-									  </td>
-									<td align="left">所属设备名称：</td>
-									<td>
-									  <input name="equipName" id="equipName" class="mini-textbox" readonly="readonly" />
-									</td>
-									<td align="left">所属设备编码：</td>
-									<td>
-									  <input name="equipId" id="equipId" class="mini-textbox" readonly="readonly" />
-									</td>
-								</tr> --%>
+									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="180px" allowInput="false" enabled="false"
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+									</td>								
+								</tr>																		
 								<tr>
-									<td>1.部门：</td>
-									<td>
-									  <input name="orgId" id="orgId" textName="orgName" class="mini-buttonedit" allowInput="false" width="200px" readonly="readonly" 
-										onbuttonclick="popLov(this,'选择部门',false,true,'${ctx}/sys/sysOrg/list?classId=0',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
-									</td>
-									<td>班组：</td>
-									<td >
-									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false"  readonly="readonly" 
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
-									</td>
-									<td>机组:</td>
-									<td>
-									  <input name="plantUnit" id="plantUnit" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" width="150"  
-										url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_plant_unit" />
-									</td>									
-								</tr>
+									<td>工作班人员：</td>
+									<td colspan="5">									  
+									   <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:600px;"/>                                   
+	                                      <a id="choosePerson" class="mini-button " plain="true" onclick="popLovJson1(this)">选择...</ a>							
+									</td>																
+								</tr>							
 								<tr>
-									<td>2.工作负责人（监护人）：</td>
-									<td>
-									  <input style="width: 200px;" name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" readonly="readonly" 
-										onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList?orgQuery=61',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
-									</td>
-									<td>工作成员：</td>
-									<td colspan="2">
-									  <!-- <input name="workClassPerson" id="workClassPerson" class="mini-textarea" vtype="" required="false" width="100%" /> -->
-									   <input id="workClassPersonIds" class="mini-textboxlist" name="workClassPersonIds" textName="workClassPerson" allowInput="false" required="false" style="width:500px;"/>                                   
-                                       <a id="choosePerson" class="mini-button " plain="true" onclick="popLovJson1(this)">选择...</ a>
-									</td>
-									<td>共：<input style="width: 100px;" name="personNum" id="personNum" class="mini-spinner" vtype="" allowNull="true" />人</td>
-								</tr>
+									<td>工作地点：</td>
+									<td colspan="5">
+									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true"
+										onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
+									</td>																	
+								</tr>							 
 								<tr>
-									<td>3.工作内容：</td>
-									<td colspan="2">
+									<td>工作内容：</td>
+									<td colspan="5">
 									  <input name="content" id="content" class="mini-textarea" vtype="" required="false" width="100%" />
 									</td>
-									<td>工作地点：</td>
-									<td colspan=2>
-									  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" 
-										onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
+								</tr> 
+								<tr>
+									<td>专职监护人监护：</td>
+									<td colspan="5">
+									  <input name="" id="" class="mini-CheckBox" vtype="" required="false" width="100%" />
 									</td>
 								</tr>
-								<tr>
-									<td>4.计划工作时间：</td>
-									<td align="right">开始时间：</td>
+							    <tr>
+								    <td>专职监护人：</td>
 									<td>
-									  <input name="planStartTime" allowInput="false" id="planStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									  <input name="" id="" class="mini-textbox"  />
 									</td>
-									<td align="right">结束时间：</td>
-									<td colspan="2">
-									  <input name="planEndTime" allowInput="false" id="planEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" onvaluechanged="checkEndTime(planStartTime,planEndTime)"/>
+									<td>监护地点：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
 									</td>
-								</tr>								
-								<%-- <tr id="sotID">									
-									<td>许可部门：</td>
-									<td colspan="2">
-									  <input name="isFuelRun" id="isFuelRun" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
-										url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_is_fuel_run" />
+									<td>监护内容:</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
 									</td>									
-									<td align="right">是否风险区域：</td>
-									<td colspan="2">
-									  <input name="areaName" id="areaName" textName="areaName" class="mini-buttonedit" vtype="" required="false" allowInput="false" width="100%" readonly="readonly" 
-									    onbuttonclick="popLov(this,'请选择风险区域',false,true,'${ctx}/em/emRiskArea/list',850,500,'areaName','areaName')" />
-								    </td>
-								</tr>		 --%>												
+								</tr>								 							 
 								<tr>
-								   <td>5.需要退出热工保护或自动装置名称</td>
+									<td>计划工作开始时间：</td>
+									<td>
+									  <input name="planStartTime" id="planStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+									<td>计划工作结束时间：</td>
+									<td colspan="3">   
+									  <input name="planEndTime" id="planEndTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+								</tr>																									
+								<tr>
+								   <td>投入/退出热工装置名称：</td>
 								   <td colspan="5">
 								     <input name="deviceName" id="deviceName" class="mini-textarea" vtype="" required="false" width="100%" />
 								   </td>
 								</tr>
-							</table>
+							  </table>
+						    </div>
 							
-							<div class="mini-panel" title="6.运行人员执行的安全措施：" width="auto" id="tabWoWtsm13List" name="tabWoWtsm13List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							
+							<div class="mini-panel" title="运行人员执行的安全措施：" width="auto" id="tabWoWtsm13List" name="tabWoWtsm13List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm13" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>								
 								<div id="gridWoWtsm13" class="mini-datagrid sGrid" style="width: 99.999%;"
 									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=13"
@@ -307,55 +344,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="mini-panel" title="7.工作负责人安全措施：" width="auto" id="tabWoWtsmList" name="tabWoWtsmList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
-								<sys:toolbargridsub girdId="gridWoWtsm" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub> 									
-								<div id="gridWoWtsm" class="mini-datagrid sGrid" style="width: 99.999%;"
-									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=5"
-									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
-									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
-									<div property="columns">
-										<div type="checkcolumn"></div>
-										<div type="indexcolumn" width="30">序号</div>
-										<div name="seqNo" field="seqNo" vtype="int" headerAlign="center" allowSort="true" width="32" visible="false" hideable="true">序号 
-										    <input property="editor" class="mini-textarea" style="width: 100%;" /> 
-										    <input id="seqNo-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChangedChild('gridWoWtSm')" showClose="true" oncloseclick="onChildFilterClose(this,'gridWoWtSm')" />
-										</div>
-										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
-										    <input property="editor" class="mini-textbox" style="width: 100%;" />
-										</div>									    
-										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">工作负责人安全措施
-										    <input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">执行情况
-											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<table class="formtable">
-								<tr>
-									<td>工作票签发人：</td>
-									<td colspan="2">
-									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName"  onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />										
-									</td>
-									<td>签发时间：</td>
-									<td colspan=2>
-									  <input name="wtSignDate" allowInput="false"id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" vtype="" required="false" style="width: 180px;" />
-									</td>
-								</tr>
-								<tr>
-									<td>工作票接收人：</td>
-									<td colspan="2">
-									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName" onbuttonclick="sign_('wtReceiveName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
-									</td>
-									<td>接收时间：</td>
-									<td colspan=2>
-									  <input name="wtReceiveTime" allowInput="false" id="wtReceiveTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
-									</td>
-								</tr>
-							</table>
-
-							<div class="mini-panel" title="8.运行值班人员补充的安全措施：" width="auto" id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="运行值班人员补充的安全措施：" width="auto" id="tabWoWtsm4List" name="tabWoWtsm4List" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtsm4" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub>										
 								<div id="gridWoWtsm4" class="mini-datagrid sGrid"
 									style="width: 99.999%;"
@@ -383,126 +372,180 @@
 								</div>
 							</div>
 							
-							<table class="formtable">
+							<div class="mini-panel" title="工作负责人安全措施：" width="auto" id="tabWoWtsmList" name="tabWoWtsmList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+								<sys:toolbargridsub girdId="gridWoWtsm" permissionEdit="wo:woWtSm:edit"></sys:toolbargridsub> 									
+								<div id="gridWoWtsm" class="mini-datagrid sGrid" style="width: 99.999%;"
+									url="${ctx}/wo-wt/wo/woWtSm/allData?woWtType=${param.wtType}&typeId=5"
+									idField="id" allowResize="false" showPager="false" pageSize="1000" allowCellSelect="true" allowCellEdit="true"
+									editNextOnEnterKey="true" editNextRowCell="true" showFilterRow="false" allowAlternating="true" showColumnsMenu="true" multiSelect="true">
+									<div property="columns">
+										<div type="checkcolumn"></div>
+										<div type="indexcolumn" width="30">序号</div>
+										<div name="seqNo" field="seqNo" vtype="int" headerAlign="center" allowSort="true" width="32" visible="false" hideable="true">序号 
+										    <input property="editor" class="mini-textarea" style="width: 100%;" /> 
+										    <input id="seqNo-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChangedChild('gridWoWtSm')" showClose="true" oncloseclick="onChildFilterClose(this,'gridWoWtSm')" />
+										</div>
+										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
+										    <input property="editor" class="mini-textbox" style="width: 100%;" />
+										</div>									    
+										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">工作负责人安全措施
+										    <input property="editor" class="mini-textarea" style="width: 100%;" />
+										</div>
+										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">执行情况
+											<input property="editor" class="mini-textarea" style="width: 100%;" />
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="mini-panel" title="工作票签发" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">
 								<tr>
-									<td>9．批准工作时间：</td>
-									<td align="right">开始时间：</td>
+									<td>工作票签发人：</td>
+									<td>
+									  <input name="wtSigner" id="wtSignerName_" textName="wtSignerName"  onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />										
+									</td>
+									<td>签发时间：</td>
+									<td colspan="3">
+									  <input name="wtSignDate" allowInput="false"id="wtSignDate" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" vtype="" required="false" style="width: 180px;" />
+									</td>
+								</tr>
+								<tr>
+									<td>工作票接收人：</td>
+									<td>
+									  <input name="wtReceiver" id="wtReceiveName_" textName="wtReceiveName" onbuttonclick="sign_('wtReceiveName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
+									</td>
+									<td>接收时间：</td>
+									<td colspan="3">
+									  <input name="wtReceiveTime" allowInput="false" id="wtReceiveTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+								</tr>
+							  </table>
+						    </div>
+							<div class="mini-panel" title="工作票批准" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">
+								<tr>
+									<td>批准工作开始时间：</td>																									    
 									<td>
 									  <input name="appStartTime" allowInput="false" id="appStartTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
 									</td>
-									<td align="right">结束时间：</td>
-									<td colspan="2">
+									<td >批准工作结束时间：</td>
+									<td>
 									  <input name="appEndTime" allowInput="false" id="appEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" onvaluechanged="checkEndTime(appStartTime,appEndTime)"/>
-									</td>
-								</tr>
-								<tr>
-									<td align="right">值长:</td>
+									</td>								
+									<td >值长(或单元长):</td>
 									<td>
-									  <input name="appDutyLeader" id="appDutyLeaderName_" textName="appDutyLeaderName" onbuttonclick="sign_('appDutyLeaderName_')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />										
-									</td>
-									<td align="right">签字时间：</td>
-									<td colspan="3" align="left">
-									  <input name="appDutyLeaderTime" allowInput="false" id="appDutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
-									</td>
+									  <input name="appDutyLeader" id="appDutyLeaderName_" textName="appDutyLeaderName" onbuttonclick="sign_('appDutyLeaderName_')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>										
+									</td>									
 								</tr>
-								<tr>
-									<td colspan="6" style="height: 28px;" _emptyName="开始工作时间">10.上述安全措施已全部执行，自 
-									  <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>开始工作。
-									</td>
-								</tr>
-								<tr>
-									<td align="right">值班负责人：</td>
+							  </table>
+						    </div>
+														
+							<div class="mini-panel" title="工作票许可" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">
+						        <tr>
+									<td>许可开始时间</td>
 									<td>
+									  <input name="permitStartTime" id="permitStartTime" class="mini-datepicker" allowInput="false" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
+									</td>								
+									<td >值班(运行值班负责人)：</td>
+									<td colspan="3">
 									  <input name="appDutyPrincipal" id="appDutyPrincipalName_" textName="appDutyPrincipalName"
-									    onbuttonclick="sign_('appDutyPrincipalName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype=""required="false" />
-									</td>								    
-									<td align="right">工作许可人:</td>
+									    onbuttonclick="sign_('appDutyPrincipalName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype=""required="false" style="width: 180px;"/>
+									</td>
+								</tr>
+								<tr>								    
+									<td>工作许可人:</td>
 									<td>
 									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" 
-									    onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
-										
+									    onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>										
 									</td>
-									<td align="right">工作负责人:</td>
+									<td>工作负责人:</td>
+									<td colspan="3">
+									  <input name="workLeaderSign" id="workLeaderSignName_" textName="workLeaderSignName" onbuttonclick="sign_('workLeaderSignName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/> 										
+									</td>									
+								</tr>
+						      </table>
+						    </div>
+						    
+						    <div class="mini-panel" title="工作票负责人变更" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">
+						        <tr>
+									<td>变更后工作负责人：</td>
 									<td>
-									  <input name="workLeaderSign" id="workLeaderSignName_" textName="workLeaderSignName" onbuttonclick="sign_('workLeaderSignName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
-									</td>									
-								</tr>
-								<tr>
-									<td colspan="6" style="height: 28px;">11.工作负责人变更：自 
-									  <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/> 原工作负责人离去，变更为
-									  <input style="width: 180px" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit"
-										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />担任工作负责人。
+									  <input style="width: 180px" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit" allowInput="false"
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />
+									</td>
+									<td>变更时间：</td>
+									<td colspan="3">
+									  <input name="woWtLC.changeTime" id="woWtLC.changeTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;"/>
 									</td>
 								</tr>
 								<tr>
-									<td align="right">工作票签发人签名:</td>
-									<td colspan="2" align="center">
+									<td >工作票签发人:</td>
+									<td >
 									  <input name="woWtLC.wtSigner" id="woWtLC.wtSignerName_" textName="woWtLC.wtSignerName"
-									    onbuttonclick="sign_('woWtLC.wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
+									    onbuttonclick="sign_('woWtLC.wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/> 										
 									</td>									
-									<td align="right">运行值班负责人签名:</td>
-									<td colspan="2">
+									<td >值长(运行值班负责人):</td>
+									<td colspan="3">
 									  <input name="woWtLC.permitBy" id="woWtLC.permitByName_" textName="woWtLC.permitByName"
-									    onbuttonclick="sign_('woWtLC.permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
+									    onbuttonclick="sign_('woWtLC.permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/> 										
 									</td>
 								</tr>
+						      </table>
+						    </div>
+						    
+						    <div class="mini-panel" title="工作票延期" width="auto" height="auto"
+						      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable">						       
 								<tr>
-									<td colspan="6" style="height: 28px;">12.工作票延期：有效期延长到
+									<td>有效期延期到：</td>
+									<td colspan="5">
 									  <input name="woWtDelay.delayTime" id="woWtDelay.delayTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" /> 结束。
-									</td>
-								</tr>								
-								<tr>
-									<td align="right">值长(或单元长):</td>
-									<td colspan="2">										
-									  <input name="woWtDelay.dutyLeader" id="woWtDelay.dutyLeaderName_" textName="woWtDelay.dutyLeaderName"
-										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
-									</td>									
-									<td align="right">值长(或单元长)签字时间：</td>
-									<td colspan="2">
-									  <input name="woWtDelay.dutyLeaderTime" allowInput="false" id="woWtDelay.dutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
-									</td>
-								</tr>
-								<tr>
-									<td align="right">运行值班负责人:</td>
-									<td colspan="2">										
-									  <input name="woWtDelay.permitBy" id="woWtDelay.permitByName1_" textName="woWtDelay.permitByName"
-										onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
-									</td>									
-									<td align="right">运行值班负责人签字时间：</td>
-									<td colspan="2">
-									  <input name="woWtDelay.permitByTime" allowInput="false" id="woWtDelay.permitByTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
 									</td>
 								</tr>
 								<tr>									
-									<td align="right">工作负责人:</td>
-									<td colspan="2">										
+									<td >工作负责人:</td>
+									<td >										
 									  <input name="woWtDelay.workLeader" id="woWtDelay.workLeaderName_" textName="woWtDelay.workLeaderName"
-										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
+										onbuttonclick="sign_('woWtDelay.workLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>
 									</td>
-									<td align="right">工作负责人签字时间：</td>
-									<td colspan="2">
+									<td >签字时间：</td>
+									<td colspan="3">
 									  <input name="woWtDelay.workLeaderTime" allowInput="false" id="woWtDelay.workLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
 									</td>
 								</tr>
 								<tr>
-									<td colspan="6" style="height: 28px;" _emptyName="全部工作结束时间">13.工作终结：热控系统已恢复，工作人员已全部撤离，现场已清理完毕，全部工作于
-									  <input name="actEndTime" allowInput="false" id="actEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" /> 结束。
-									</td>
-								</tr>
-								<tr>
-									<td align="right">工作负责人签名：</td>
-									<td colspan="2">
-									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
-										onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" /> 										
-									</td>
-									<td align="right">工作许可人签名：</td>
-									<td colspan="2">
-									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName" onbuttonclick="sign_('endPermitByName_','3')"
-									    allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />										 
+									<td>值长(运行值班负责人):</td>
+									<td>										
+									  <input name="woWtDelay.permitBy" id="woWtDelay.permitByName1_" textName="woWtDelay.permitByName"
+										onbuttonclick="sign_('woWtDelay.permitByName1_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>
 									</td>									
+									<td>签字时间：</td>
+									<td colspan="3">
+									  <input name="woWtDelay.permitByTime" allowInput="false" id="woWtDelay.permitByTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
 								</tr>								
-							</table>
-							<div class="mini-panel" title="14.检修设备需试运（工作票交回，所列安全措施已拆除，可以试运）：" width="auto" id="tabWoWtBeforeWorkList" name="tabWoWtBeforeWorkList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+								<tr>
+									<td>值长(或单元长):</td>
+									<td>										
+									  <input name="woWtDelay.dutyLeader" id="woWtDelay.dutyLeaderName_" textName="woWtDelay.dutyLeaderName"
+										onbuttonclick="sign_('woWtDelay.dutyLeaderName_','100')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>
+									</td>									
+									<td>签字时间：</td>
+									<td colspan="3">
+									  <input name="woWtDelay.dutyLeaderTime" allowInput="false" id="woWtDelay.dutyLeaderTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+								</tr>																
+						      </table>
+						    </div>
+						    						   						    							
+							<div class="mini-panel" title="检修设备需试运（工作票交回，所列安全措施已拆除，可以试运）：" width="auto" id="tabWoWtBeforeWorkList" name="tabWoWtBeforeWorkList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtBeforeWork" permissionEdit="wo:woWtBeforeWork:edit"></sys:toolbargridsub>
 								<div id="gridWoWtBeforeWork" class="mini-datagrid sGrid" style="width: 99.999%;" 
 									url="${ctx}/wo-wt/wo/woWtBeforeWork/allData"
@@ -537,7 +580,7 @@
 								</div>
 							</div>
 							
-							<div class="mini-panel" title="15.检修设备试运后仍需要进行检修工作，工作票所列安全措施已全部执行，可以工作：" width="auto" id="tabWoWtAfterWorkList" name="tabWoWtAfterWorkList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
+							<div class="mini-panel" title="检修设备试运后仍需要进行检修工作，工作票所列安全措施已全部执行，可以工作：" width="auto" id="tabWoWtAfterWorkList" name="tabWoWtAfterWorkList" showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true">
 								<sys:toolbargridsub girdId="gridWoWtAfterWork" permissionEdit="wo:woWtAfterWork:edit"></sys:toolbargridsub>
 								<div id="gridWoWtAfterWork" class="mini-datagrid sGrid"style="width: 99.999%;" 
 									url="${ctx}/wo-wt/wo/woWtAfterWork/allData"
@@ -572,14 +615,124 @@
 								</div>
 							</div>
 
-                            <table class="formtable">
+                            <div class="mini-panel" title="检修交代" width="auto" height="auto"
+							  showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+						      <table class="formtable" border="0" cellpadding="0" cellspacing="1" bgColor="#333">
+							      <tr>
+									<td>检修交代：</td>
+									<td>
+									  <td colspan="5">
+									    <input name="" id="" allowInput="true" class="mini-textarea"  width="90%" vtype="" required="false" /></td>
+									</td> 																																	
+						          </tr>
+						      </table>
+						    </div>
+						    
+						    <div class="mini-panel" title="工作终结" width="auto" height="auto"
+							  showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+							  <table class="formtable">																						
 								<tr>
-									<td>16．备注</td>
+									<td>工作终结：</td>
+									<td>
+									  <input name="actEndTime" allowInput="false" id="actEndTime" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>								
+									<td >工作负责人：</td>
+									<td colspan="3">
+									  <input name="endWorkLeader" id="endWorkLeaderName_" textName="endWorkLeaderName"
+										onbuttonclick="sign_('endWorkLeaderName_','1')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/> 										
+									</td>
+								</tr>	
+								<tr>
+									<td>工作许可人：</td>
+									<td>
+									  <input name="endPermitBy" id="endPermitByName_" textName="endPermitByName" onbuttonclick="sign_('endPermitByName_','3')"
+									    allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" style="width: 180px;"/>										 
+									</td>
+									<td>终结值别：</td>
+								    <td colspan="3">
+								     <input name="" id="" class="mini-textbox" width="200px" readonly="readonly"/>
+								    </td>									
+								</tr>								
+							  </table>
+							</div>
+						                               
+							<div class="mini-panel" title="备注" width="auto" height="auto"
+							  showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+							   <table class="formtable">
+								 <tr>
+									<td>备注</td>
 									<td colspan="5">
 								      <input name="remarks" id="remarks" class="mini-textarea" vtype="" required="false" width="100%" height="100px" />
 								    </td>
 								</tr>
-							</table>
+							  </table>
+							</div>
+							
+							<div class="mini-panel" title="工作票评估" width="auto" height="auto"
+							  showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+							   <table class="formtable">
+								 <tr>
+									<td>班组评估:</td>
+									<td>
+									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
+									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
+									</td>	
+									<td>专业评估:</td>
+									<td>
+									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
+									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
+									</td>
+									<td>安健环评估:</td>
+									<td>
+									  <input name="status" id="status" class="mini-combobox" allowInput="false" enabled="true" required="false" valueField="value" textField="label" vtype="" 
+									    url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" />
+									</td>
+								</tr>
+								<tr>
+								    <td>评估人：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>
+									<td>评估人：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>
+									<td>评估人:</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>								
+								</tr>
+								<tr>
+								    <td>评估时间：</td>
+									<td>
+									  <input name="planStartTime" id="planStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+									<td>评估时间：</td>
+									<td>
+									  <input name="planStartTime" id="planStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>
+									<td>评估时间:</td>
+									<td>
+									  <input name="planStartTime" id="planStartTime" allowInput="false" class="mini-datepicker" showTime="true" vtype="" format="yyyy-MM-dd HH:mm:ss" required="false" style="width: 180px;" />
+									</td>								
+								</tr>	
+								<tr>
+								    <td>意见：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>
+									<td>意见：</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>
+									<td>意见:</td>
+									<td>
+									  <input name="" id="" class="mini-textbox" />
+									</td>								
+								</tr>		
+							  </table>
+							</div>
+                           
 						</div>
 						<!--mini-col-->
 					</div>
@@ -843,7 +996,8 @@
 				menuItem = e.item;
 			}
 		}
-	 function addButton(){
+		
+	    function addButton(){
 		  sysToolBar_.addButtonOption({
 			"buttonId":'print',
 			"functionStr":'print',/* 对应按钮的点击事件 */
@@ -882,216 +1036,37 @@
 		  		 
 	    }
 	  
-	    //打印预览
-	    function print(){
-		  var id = mini.get("id").getValue();		 
-		  if (id == "" || id == null) {
-			mini.alert("请先保存再点击打印按钮！");
-			return;
-		  }
-		  wowtPrint();		     			  
-	    }
-	    
-	   
-	    
-	    //押票恢复
-	    function restoreTicket(){
-	    	var workLeader = null;
-			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
-					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
-				workLeader = mini.get("woWtLC.nowWorkLeader")
-						.getValue();
-			} else {
-				workLeader = mini.get("workLeader").getValue();
-			}
-			var actionStatus = "restoreTicket";
-			var id = mini.get("id").getValue();	
-	    	var wtType = mini.get("wtType").getValue();	    			
-			var dutyOrgId = mini.get("dutyOrgId").getValue();
-			mini.open({
-				//targetWindow: window.top,   //页面对象。默认是顶级页面。
-				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
-						+ "&wtType=" + wtType + "&actionStatus="
-						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
-				title : "押票和恢复", //标题
-				width : "70%", //宽度
-				height : 600, //高度
-				allowResize : true, //允许尺寸调节
-				allowDrag : true, //允许拖拽位置
-				showCloseButton : true, //显示关闭按钮
-				showMaxButton : true, //显示最大化按钮
-				showModal : true, //显示遮罩
-				loadOnRefresh : true, //true每次刷新都激发onload事件
-				onload : function() { //弹出页面加载完成
-
-				},
-				ondestroy : function(action) {
-					if (action == "ok") {
-						if (actionStatus == "keepTicket") {
-							showTipM("info", "提示", "押票成功！");
-						} else if (actionStatus == "restoreTicket") {
-							showTipM("info", "提示", "恢复成功！");
-						}
-						refreshFormData();
-					}
-				}
-			});
-	    }
-	    
-	    //押票
-	    function keepTicket(){
-	    	var workLeader = null;
-			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
-					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
-				workLeader = mini.get("woWtLC.nowWorkLeader")
-						.getValue();
-			} else {
-				workLeader = mini.get("workLeader").getValue();
-			}
-			var actionStatus = "keepTicket";
-			var id = mini.get("id").getValue();	
-	    	var wtType = mini.get("wtType").getValue();	    				
-			var dutyOrgId = mini.get("dutyOrgId").getValue();
-			mini.open({
-				//targetWindow: window.top,   //页面对象。默认是顶级页面。
-				url : "${ctxRoot}/form?view=wo/wt/woWtKeepAndRestoreForm&wtId=" + id
-						+ "&wtType=" + wtType + "&actionStatus="
-						+ actionStatus + "&workLeader=" + workLeader + "&dutyOrgId=" + dutyOrgId, //页面地址
-				title : "押票和恢复", //标题
-				width : "70%", //宽度
-				height : 600, //高度
-				allowResize : true, //允许尺寸调节
-				allowDrag : true, //允许拖拽位置
-				showCloseButton : true, //显示关闭按钮
-				showMaxButton : true, //显示最大化按钮
-				showModal : true, //显示遮罩
-				loadOnRefresh : true, //true每次刷新都激发onload事件
-				onload : function() { //弹出页面加载完成
-
-				},
-				ondestroy : function(action) {
-					if (action == "ok") {
-						if (actionStatus == "keepTicket") {
-							showTipM("info", "提示", "押票成功！");
-						} else if (actionStatus == "restoreTicket") {
-							showTipM("info", "提示", "恢复成功！");
-						}
-						refreshFormData();
-					}
-				}
-			});
-	    }
-	    	  	    
-	    //检修围栏
-	    function repairRail(){
-		  var id = mini.get("id").getValue();		 
-		  if (id == "" || id == null) {
-			mini.alert("请先保存再点击检修围栏按钮！");
-			return;
-		  }		
-		  var form = new mini.Form("#editform");   
-		  var woWtData = form.getData();
-		  var wtId = woWtData.id;		 
-		  var iamCode = iamCodeValue();
-		  var smElectronicFenceUrl = "${smElectronicFenceUrl}";
-		  //window.open("http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId);
-		  //newTabPage('检修围栏',"http://192.168.0.169:9090/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
-		  newTabPage('新建检修围栏',smElectronicFenceUrl+"/form?view=sm/smElectronicFenceForm&action=new&showList=0&iamCode=" + iamCode +"&wtId="+wtId,true);
-	    }
-	  
-	    $(function(){
-		   addButton();
-	    });
 	    
 	    //流程按钮响应事件
-	    function onBpmButtonClick(buttonId) {       	 
-        	var workLeader = null;
-			if (mini.get("woWtLC.nowWorkLeader").getValue() != null
-					&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
-				workLeader = mini.get("woWtLC.nowWorkLeader").getValue();				
-			} else {
-				workLeader = mini.get("workLeader").getValue();				
-			}
-            var data = {
-                eventName: 'parentClickButton',
-                alias: buttonId,
-                flowVariables: {//定义流程变量                  
-                    "workLeader": workLeader || '',//工作负责人 
-                },//隐患名称
-                data: {}
-            };
-            sendBpmMsg(data);
-            popBox();
-        }
+        /* function onBpmButtonClick(buttonId) {    	   
+    	   var isSave =  checkDataChanged();//获取页面是否保存明细数据，true:未保存   false：已保存
+    	   if(isSave==true){
+    		 mini.alert("请先保存再提交流程！");
+    		 return;
+    	   }else{
+   		     var workLeader = null;   		    
+   			 if (mini.get("woWtLC.nowWorkLeader").getValue() != null&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
+   				workLeader = mini.get("woWtLC.nowWorkLeader").getValue();				
+   			  } else {
+   				workLeader = mini.get("workLeader").getValue();				
+   			  }
+    		 var data = {
+               eventName: 'parentClickButton',
+               alias: buttonId,
+               flowVariables: {//定义流程变量                  
+                   "workLeader": workLeader || '',//工作负责人 
+               },//隐患名称
+               data: {}
+             };
+             sendBpmMsg(data);
+             popBox(); 
+    	   }
+        	                     
+        }  */
 	    
-	  //新建/查看一级动火票
-	      function createWoWt5(){
-	    	  var id = mini.get("id").getValue();
-	    	  var iamCode = iamCodeValue();
-	    	  if (id == "" || id == null) {
-	  			mini.alert("请先保存再点击检修围栏按钮！");
-	  			return;
-	  		  }	
-	    	  $.ajax({
-				url : "${ctx}/wo-wt/wo/woWt/data",
-				data : {
-					mainTicketId : id,
-					wtType:"5"
-				},
-				type : "post",
-				success : function(text) {				
-					var o = mini.decode(text);				
-					if ((o.data).length>0) {
-						var wtId = o.data[0].id;
-						newTabPage(
-								"相关工作票查看",
-								'${ctxRoot}/form?view=wo/wt/woWtForm5'
-										+ '&border=1&action=view&wtType=5&id='
-										+ wtId
-										+ '&showList=0&showTree=0&showForm=1',
-								true);
-					} else {
-						newTabPage('新建一级动火工作票',"${ctxRoot}/form?view=wo/wt/woWtForm5&action=new&showList=0&wtType=5&isStandard=1&mainTicketId="+id,true); 
-					}
-				 }
-			   });
-	      }
-	      
-	      //新建/查看二级动火票
-	      function createWoWt6(){
-	    	  var id = mini.get("id").getValue();
-	    	  var iamCode = iamCodeValue();
-	    	  if (id == "" || id == null) {
-	  			mini.alert("请先保存再点击检修围栏按钮！");
-	  			return;
-	  		  }	
-	    	  $.ajax({
-				url : "${ctx}/wo-wt/wo/woWt/data",
-				data : {
-					mainTicketId : id,
-					wtType:"6"
-				},
-				type : "post",
-				success : function(text) {				
-					var o = mini.decode(text);				
-					if ((o.data).length>0) {
-						var wtId = o.data[0].id;
-						newTabPage(
-								"相关工作票查看",
-								'${ctxRoot}/form?view=wo/wt/woWtForm6'
-										+ '&border=1&action=view&wtType=6&id='
-										+ wtId
-										+ '&showList=0&showTree=0&showForm=1',
-								true);
-					} else {
-						newTabPage('新建二级动火工作票',"${ctxRoot}/form?view=wo/wt/woWtForm6&action=new&showList=0&wtType=6&isStandard=1&mainTicketId="+id,true); 
-					}
-				 }
-			   });
-	      }
 	  
         //加载页面编辑权限
-	    //editControl.loadEditList('woWt3')  
+	   // editControl.loadEditList('woWt3')  
 </script>
 </body>
 </html>

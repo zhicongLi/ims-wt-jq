@@ -147,7 +147,7 @@
 									<div id="gridSysEditControlCondtion" class="mini-datagrid" style="width:100%;height:100%;"
 										 url="${ctx}/ims-ext/sys/sysEditControlCondtion/data" idField="id"
 										 allowResize="true" pageSize="10"
-										 allowCellSelect="true" allowCellEdit="true"
+										 allowCellSelect="true" allowCellEdit="true" allowCellWrap="true"
 										 editNextOnEnterKey="true"  editNextRowCell="true" showFilterRow="false"
 										 allowAlternating="true"    showColumnsMenu="true" multiSelect="true"
 									>
@@ -164,7 +164,7 @@
 											<div name="editControlId" hideable="true" visible="false"  field="editControlId" headerAlign="center" allowSort="true" width="150" >
 												<input property="editor" class="mini-textbox" style="width:100%;" minWidth="200" />
 											</div>
-											<div name="fieldType"  field="fieldType" vtype=""  headerAlign="center" allowSort="true" width="64" type="comboboxcolumn" >字段类型
+											<div name="fieldType"  field="fieldType" vtype=""  headerAlign="center" allowSort="true" width="50" type="comboboxcolumn" >字段类型
 												<input property="editor" class="mini-combobox"  style="width:100%;"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=sys_edit_control_condtion_field_type"  />
 											</div>
 											
@@ -186,6 +186,12 @@
 											<div name="fieldValue"  field="fieldValue"   vtype="" headerAlign="center" allowSort="true"  width="64" >字段值
 												<input property="editor" class="mini-textbox"  style="width:100%;"  />
 												<input id="fieldValue-Filter" name="mini-column-filter"  property="filter" class="mini-textbox" style="width:100%;"
+													   onvaluechanged="onFilterChangedChild('gridSysEditControlCondtion')" showClose="true" oncloseclick="onChildFilterClose(this,'gridSysEditControlCondtion')"
+												/>
+											</div>
+											<div name="condExpr"  field="condExpr"   vtype="" headerAlign="center" allowSort="true"  width="120" >条件表达式
+												<input property="editor" class="mini-textarea"  style="width:100%;"  />
+												<input id="condExpr-Filter" name="mini-column-filter"  property="filter" class="mini-textbox" style="width:100%;"
 													   onvaluechanged="onFilterChangedChild('gridSysEditControlCondtion')" showClose="true" oncloseclick="onChildFilterClose(this,'gridSysEditControlCondtion')"
 												/>
 											</div>
@@ -255,6 +261,9 @@
 											</div>
 											<div name="minRowNum"  field="minRowNum"   vtype="" headerAlign="center" allowSort="true"  width="64" >表格最少行数
 												<input property="editor" class="mini-textbox"  style="width:100%;"  />
+											</div>
+											<div name="notAutoDel"  field="notAutoDel" vtype=""  headerAlign="center" allowSort="true" width="64" type="comboboxcolumn" >不自动删除
+												<input property="editor" class="mini-combobox"  style="width:100%;"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=yes_no"  />
 											</div>
 										</div>
 									</div>

@@ -3,7 +3,8 @@
 <style type="text/css">
          
 	 	 .formtable{
-	 		 border-collapse:collapse;	 		
+	 		/* border-collapse:collapse;	*/ 	
+	 		
 		  }
 	 	.formtable{
 	 		width:100%;
@@ -11,14 +12,15 @@
 	 	}
 	 	
 	 	.formtable td{
-	 		/* padding-left: 5px; */	 		
+	 		/* padding-left: 5px; */
+	 		background-color:#fff;	 		
 	 	}
 </style>
 	 <c:if test="${param.border!='0' }">
 	 	<style type="text/css">
 	 	.formtable td
 		  {
-		   border: 1px solid black; 		 
+		   /*border: 1px solid black; 	*/	 
 		   line-height:28px;
 		  }
 		   .sGrid .mini-grid-cell{

@@ -1,6 +1,147 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <div title="作业安全措施票" id="tabWoTaskSafeMeasureList" name="tabWoTaskSafeMeasureList"  style="border: 0px;"  >
+		<%-- <div id="formWoProcess" class="form" style="width:100%;">
+						<div class="container"  style="width: 100%;"  >
+							<div class="mini-clearfix ">
+								<div class="mini-col-12">
+											<div class="mini-panel" title="基本信息" width="auto" height="auto"
+	      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+	      <table class="formtable" border="0" cellpadding="0" cellspacing="1" bgColor="#333">										
+			  <tr>
+			    <td>措施票流水号：</td>
+				<td>
+				  <input name="" id="" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>
+				<td>编号：</td>
+				<td>
+				  <input name="wtCode" id="wtCode" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>
+				<td>工作票流水号：</td>
+				<td>
+				  <input name="wtCode" id="wtCode" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>									
+			  </tr>	
+			  <tr>
+				<td>部门：</td>
+				<td>
+				  <input name="orgId" id="orgId" textName="orgName" width="200px" class="mini-buttonedit" allowInput="false"  enabled="false"
+					onbuttonclick="popLov(this,'选择部门',false,true,'${ctxRoot}/form?view=sys/sysOrgList',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg">
+				</td>				
+				<td>班组：</td>									
+				<td colspan="3">
+				  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="180px" allowInput="false" enabled="false"
+					onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+				</td>								
+			  </tr>			  		  
+			  <tr>
+				<td>工作负责人(监护人)：</td>
+				<td colspan="3">
+				  <input  name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" allowInput="false" enabled="false"
+					onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" />
+				</td>				
+				<td>风险等级</td>
+				<td>
+				  <div id="woWtFire.fireModeId" name="woWtFire.fireModeId"  class="mini-checkboxlist" repeatItems="3" repeatLayout="table" textField="label" valueField=value 
+					 url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_risk_type" >
+				  </div>
+				</td>
+			  </tr>							  										 			 					
+			  <tr>
+				<td>工作地点：</td>
+				<td colspan="5">
+				  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true"
+					onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
+				</td>																	
+			 </tr>							 
+			  <tr>
+				<td>工作内容：</td>
+				<td colspan="5">
+				  <input name="content" id="content" class="mini-textarea" vtype="" required="false" width="100%" />
+				</td>
+			  </tr> 		
+	      </table>						
+	    </div>
+							
+							
+							
+						</div>
+					</div>
+				</div>
+			</div> --%>
+	
+	
+	
+	
+	
+	
 	<div id="formWoWtWorkSafe" class="form" style="width:99.999%;height:99.999%;">
+	  <div class="mini-panel" title="基本信息" width="auto" height="auto"
+	      showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
+	      <table class="formtable" border="0" cellpadding="0" cellspacing="1" bgColor="#333">										
+			  <tr>
+			    <td>措施票流水号：</td>
+				<td>
+				  <input name="measureNumber" id="measureNumber" class="mini-textbox" width="200px"/>
+				</td>
+				<td>编号：</td>
+				<td>
+				  <input name="measureCode" id="measureCode" class="mini-textbox" width="200px" />
+				</td>
+				<td>工作票流水号：</td>
+				<td>
+				  <input name="wtCode" id="wtCode" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>									
+			  </tr>	
+			  <tr>
+				<td>部门：</td>
+				<td>
+				  <%-- <input name="orgId" id="orgId" textName="orgName" width="200px" class="mini-buttonedit"   readonly="readonly"
+					onbuttonclick="popLov(this,'选择部门',false,true,'${ctxRoot}/form?view=sys/sysOrgList',850,500,'id,name','orgId,orgName')" onvaluechanged="changeDutyOrg"> --%>
+				  <input name="orgName" id="orgName" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>				
+				<td>班组：</td>									
+				<td colspan="3">
+				  <%-- <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="200px" allowInput="false" enabled="false" readonly="readonly"
+					onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" /> --%>
+				  <input name="maintOrgName" id="maintOrgName" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>								
+			  </tr>			  		  
+			  <tr>
+				<td>工作负责人(监护人)：</td>
+				<td>
+				 <%--  <input  name="workLeader" id="workLeader" required="false" textName="workLeaderName" class="mini-buttonedit" allowInput="false" enabled="false"
+					onbuttonclick="popLov(this,'选择人员',false,true,'${ctx}/sys/sysUser/sysMisList',850,500,'id,name','workLeader,workLeaderName')" onvaluechanged="update(this)" /> --%>
+				  <input name="workLeaderName" id="workLeaderName" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>
+				<td>工作签发人：</td>
+				<td >
+				  <!-- <input name="wtSigner" id="wtSignerName_" textName="wtSignerName"  onbuttonclick="sign_('wtSignerName_','2')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />																				 -->
+				  <input name="wtSignerName" id="wtSignerName" class="mini-textbox" width="200px" readonly="readonly"/>
+				</td>				
+				<td>风险等级</td>
+				<td>
+				   <div id="riskGradeCode" name="riskGradeCode"  property="editor" textName="riskGradeName" class="mini-radiobuttonlist" repeatItems="3" repeatLayout="table"  textField="label" valueField=value 
+					 url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_risk_type" >
+				  </div> 				  				
+				</td>
+			  </tr>							  										 			 					
+			  <tr>
+				<td>工作地点：</td>
+				<td colspan="5">
+				  <input name="location" id="location" textName="location" class="mini-buttonedit" vtype="" required="false" width="100%" allowInput="true" readonly="readonly"
+					onbuttonclick="popLov(this,'选择工作地址',false,true, '${ctx}/em/emEquipLogic/lov2',800,500,'id,name','locationId,location')" />
+				</td>																	
+			 </tr>							 
+			  <tr>
+				<td>工作内容：</td>
+				<td colspan="5">
+				  <input name="content" id="content" class="mini-textarea" vtype="" required="false" width="100%" readonly="readonly"/>
+				</td>
+			  </tr> 		
+	      </table>						
+	    </div> 
+		
+		
 		<div class="mini-panel" title="作业安全措施" width="auto" height="" id="tabWoTaskSafeMeasure1List" name="tabWoTaskSafeMeasure1List"
 				 showCollapseButton="true" onbuttonclick="onPanelButtonClick" showFooter="true" >
 			<div style="width:100%;">
@@ -60,7 +201,7 @@
 							   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
 						/>
 					</div>
-					<div name="processName"  field="processName" vtype=""  headerAlign="center" allowSort="true" width="50" >工序
+					<div name="processName"  field="processName" vtype=""  headerAlign="center" allowSort="true" width="50" >工序描述
 						<input property="editor" class="mini-textbox"  style="width:100%;"  />
 						<input id="processName-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
 							   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
@@ -108,7 +249,7 @@
 							   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
 						/>
 					</div>
-					<div name="measureName"  field="measureName" vtype=""  headerAlign="center" allowSort="true" width="150" >作业标准
+					<div name="measureName"  field="measureName" vtype=""  headerAlign="center" allowSort="true" width="150" >作业安全措施
 						<input property="editor" class="mini-textbox"  style="width:100%;"  /> 
 						<input id="measureName-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
 							   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
@@ -157,17 +298,17 @@
 				</div>
 	  	 </div>
 	   </div>
-		   <div>
-				<table class="formtable" style="width:99.999%" >
-					<input class="mini-hidden" name="wtId" />
-					<input class="mini-hidden" name="id" />
-						<tr>
-							<td style="width: 15%;">作业安全措施交底:</td>
-							<td style="width: 84%;"><input name="safeMeasureContent" id="safeMeasureContent"
-								class="mini-textarea" vtype="" required="false" width="100%"  />
-							</td>
-						</tr>
-					</table> 
-			</div>
-	   </div>
+	    <div>
+			<table class="formtable" style="width:99.999%" >		
+				<input class="mini-hidden" name="wtId" id="wtId"/>
+				<input class="mini-hidden" name="id" />
+					<tr>
+						<td style="width: 15%;">作业安全措施交底:</td>
+						<td style="width: 84%;"><input name="safeMeasureContent" id="safeMeasureContent"
+							class="mini-textarea" vtype="" required="false" width="100%"  />
+						</td>
+					</tr>
+				</table> 
+		</div>
+	</div>
 </div>
