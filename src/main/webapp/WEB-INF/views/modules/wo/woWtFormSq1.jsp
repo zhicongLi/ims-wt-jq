@@ -170,7 +170,7 @@
 		<tr  class="work01">
 			<td  colspan="3" style="position:relative;"><span class="ident-number1">5.</span>工作内容：
 				<input id="content1"  readonly="true" value="${fn:escapeXml(content[0])}"/>
-				<c:if test="${WoWt.status =='10' }">
+				<%-- <c:if test="${WoWt.status =='10' }">
 			        <img src="${ctxStatic}/static/wo/icon/yzj_yf.png" alt="" style="position: absolute;right:0px;margin:auto;top:0px">
 			    </c:if>
 			    <c:if test="${WoWt.status =='8' }">
@@ -178,7 +178,7 @@
 			    </c:if>
 			    <c:if test="${WoWt.status =='30' }">
 			       <img src="${ctxStatic}/static/wo/icon/bhg.bmp" alt="" style="position: absolute;right:0px;margin:auto;top:0px">
-			    </c:if>
+			    </c:if> --%>
 
 			</td>
 		</tr>
@@ -228,11 +228,11 @@
 					${status.index + 1}.${i.value[0]} 
 				</td>
 				<td class="table03-l" style="width:50%">
-					${status.index + 1}.${i.value[3]}
+					<%-- ${status.index + 1}.${i.value[3]} --%>
 				</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${8>fn:length(kgMap)}">
+		<%-- <c:if test="${8>fn:length(kgMap)}">
 			<c:forEach begin="1" end="${8- fn:length(kgMap)}"  varStatus="status">
 				<tr>
 					<td class="table03-l" style="position: relative;">
@@ -267,10 +267,11 @@
 					</td>
 				</tr>
 			</c:forEach>
-		</c:if>
-		<c:if test="${7 == fn:length(kgMap)}">
+		</c:if> --%>
+		<c:if test="${0 == fn:length(kgMap)}">
 			<tr>
 				<td class="table03-l" >
+				  1.无
 				</td>
 				<td class="table03-s" >
 				</td>
@@ -286,11 +287,11 @@
 					${status.index + 1}.${i.value[0]}
 				</td>
 				<td class="table03-l">
-					${status.index + 1}.${i.value[3]}
+					<%-- ${status.index + 1}.${i.value[3]} --%>
 				</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${4>fn:length(dxMap)}">
+		<%-- <c:if test="${4>fn:length(dxMap)}">
 			<c:forEach begin="1" end="${4- fn:length(dxMap)}" varStatus="status">
 				<tr>					
 				<td class="table03-l" style="position: relative;">
@@ -325,10 +326,19 @@
 				</td>
 				</tr>
 			</c:forEach>
-		</c:if>
-		<c:if test="${3 == fn:length(dxMap)}">
+		</c:if> --%>
+		<%-- <c:if test="${3 == fn:length(dxMap)}">
 			<tr>
 				<td class="table03-l" >
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
+		</c:if> --%>
+		<c:if test="${0 == fn:length(dxMap)}">
+			<tr>
+				<td class="table03-l" >
+				  1.无
 				</td>
 				<td class="table03-s" >
 				</td>
@@ -344,11 +354,11 @@
 					${status.index + 1}.${i.value[0]}
 				</td>
 				<td class="table03-l">
-					${status.index + 1}.${i.value[3]}
+					<%-- ${status.index + 1}.${i.value[3]} --%>
 				</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${3>fn:length(zlMap)}" >
+		<%-- <c:if test="${3>fn:length(zlMap)}" >
 			<c:forEach begin="1" end="${3- fn:length(zlMap)}" varStatus="status">
 				<tr>
 					<td class="table03-l" style="position: relative;">
@@ -391,6 +401,15 @@
 				<td class="table03-s" >
 				</td>
 			</tr>
+		</c:if> --%>
+		<c:if test="${0 == fn:length(zlMap)}">
+			<tr>
+				<td class="table03-l" >
+				1.无
+				</td>
+				<td class="table03-s" >
+				</td>
+			</tr>
 		</c:if>
 		<tr> 
 			<td class="widthValue" id="bcSm" colspan="2" >工作地点保留带电部分、注意事项或应补充安全措施（由值班负责人或值长填写）</td>
@@ -402,7 +421,7 @@
 				</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${4>fn:length(bcMap)}">
+		<%-- <c:if test="${4>fn:length(bcMap)}">
 			<c:forEach begin="1" end="${4- fn:length(bcMap)}" varStatus="status">
 				<tr>
 					<td colspan="4" class="table03-l" style="position: relative;">
@@ -430,7 +449,15 @@
 				<td class="table03-s" >
 				</td>
 			</tr>
-		</c:if>		
+		</c:if>	 --%>	
+		<c:if test="${0 == fn:length(bcMap)}">
+			<tr>
+				<td class="table03-l" colspan="4">
+				1.无
+				</td>
+				
+			</tr>
+		</c:if>
 	</table>	
 	<table  class="table07">
 		<tbody>
@@ -455,8 +482,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="middletd">运行值班负责人： <input size="10" readonly="true" value="${WoWt.wtReceiveName}"/></td>
-			<td class="middletd">工作负责人： <input size="10" readonly="true" value="${WoWt.receiveWorkLeaderName}"/></td>
+			<td >运行值班负责人： <input size="10" readonly="true" value="${WoWt.wtReceiveName}"/></td>
+			<td >工作负责人： <input size="10" readonly="true" value="${WoWt.receiveWorkLeaderName}"/></td>
 		</tr>
 		<tr class="date01">
 			<td colspan="2" ><span class="ident-number2">10.</span>批准工作时间：自<input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.appStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
@@ -472,7 +499,7 @@
 			</td>
 		</tr>
          <tr>
-        	 <td class="middletd">
+        	 <td>
         	            值长(或单元长)：<input size="10" readonly="true" value="${WoWt.appDutyLeaderName }"/>	        	    	        	     	        	    
         	 </td>	        		        	 
         </tr>	  
@@ -486,8 +513,8 @@
 			</td>
 		</tr>
 		<tr>			
-			<td class="middletd">工作许可人： <input size="10" readonly="true"  value=""/></td>
-			<td class="middletd">工作负责人： <input size="10" readonly="true"  value=""/></td>
+			<td >工作许可人： <input size="10" readonly="true"  value=""/></td>
+			<td >工作负责人： <input size="10" readonly="true"  value=""/></td>
 		</tr>
 		<tr class="date01">
 			<td colspan="2" style="line-height: 30px;"><san class="ident-number2">12.</san>工作负责人变更：自					  
@@ -502,13 +529,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="middletd">工作票签发人：
+			<td >工作票签发人：
 			<c:forEach
 					items="${leaderChangeList}" var="item" varStatus="i">
 					<c:if test="${i.last }">  							
 			        	<input size="9" readonly="true" value="${item.wtSignerName }" />					       
 			</td>
-			<td class="middletd">        	                  
+			<td >        	                  
                                       运行值班负责人:<input size="9" readonly="true" value="${item.permitByName }" />
            			</c:if>
 				</c:forEach>
@@ -526,7 +553,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="middletd">工作负责人：
+			<td >工作负责人：
 		       <input size="10" readonly="true" value="${woWtDelayList[0].workLeaderName }" />
 			</td>
 			<td>	           
@@ -538,7 +565,7 @@
            </td>        	
 		</tr>
 		<tr>
-			<td class="middletd">值长（或运行值班负责人）：
+			<td >值长（或运行值班负责人）：
 			   <input size="10" readonly="true" value="${woWtDelayList[0].dutyLeaderName }" />
 			</td>
 			<td>	          
@@ -552,8 +579,8 @@
 		<tr>
 			<td colspan="2"><span class="ident-number2">14.</span>工作终结：</td>
 		</tr>		
-		<tr class="date01">
-			<td colspan="2" class="middletd">全部工作于
+		<tr >
+			<td colspan="2" class="date01">全部工作于
 			   <input  readonly="true"  placeholder="<fmt:parseDate value='${WoWt.actEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
 	           <input  readonly="true"  placeholder="<fmt:parseDate value='${WoWt.actEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
 	           <input  readonly="true"  placeholder="<fmt:parseDate value='${WoWt.actEndTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
@@ -562,20 +589,20 @@
 			</td>
 		</tr>
 		<tr>	
-			<td class="middletd">工作负责人： <input size="10" readonly="true"
+			<td >工作负责人： <input size="10" readonly="true"
 				value="${WoWt.endWorkLeaderName }" />
 			</td>
-			<td class="middletd">工作许可人： <input size="10"
+			<td >工作许可人： <input size="10"
 				readonly="true" value="${WoWt.endPermitByName }" />
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="middletd"> 
+			<td colspan="2" > 
 				 临时遮栏、标示牌、常设安全措施已恢复。
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" class="middletd hidden1"><!-- class="middletd hidden1" -->
+			<td colspan="2" class="hidden1"><!-- class="middletd hidden1" -->
 				接地线共 <input size="3" readonly="true"
 				value="${WoWt.endWireTotalNum=='0'?null:WoWt.endWireTotalNum}" /> 组，已拆除 <input size="3"
 				readonly="true" value="${WoWt.endWireRemoveNum=='0'?null:WoWt.endWireRemoveNum}" /> 组，因另有工作保留
@@ -584,21 +611,21 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="middletd" >保留接地线编号及位置：</td>
+			<td>保留接地线编号及位置：</td>
 		</tr>
-		<tr class="ident1 daozhadixian">
-			<td id="endWireKeepInfo" class="middletd"  colspan="6"><input id="endWireKeepInfo1"  class=""
+		<tr class="daozhadixian">
+			<td id="endWireKeepInfo"  colspan="6"><input id="endWireKeepInfo1"  class=""
 				readonly="true" value="${fn:escapeXml(endWireKeepInfo[0])}" />
 			</td>
 		</tr>
 		<c:forEach begin="1" end="${fn:length(endWireKeepInfo)-1}" var="i">
-			<tr class="ident1 daozhadixian">
+			<tr class="daozhadixian">
 				<td colspan="6"><input readonly="true"
 					value="${fn:escapeXml(endWireKeepInfo[i])}" /></td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="2" class="middletd hidden1">
+			<td colspan="2" class="hidden1">
 				接地刀闸共 <input size="3" readonly="true"
 				value="${WoWt.endGateTotalNum=='0'?null:WoWt.endGateTotalNum}" /> 组，已拆除 <input size="3"
 				readonly="true" value="${WoWt.endGateRemoveNum=='0'?null:WoWt.endGateRemoveNum}" /> 组，因另有工作保留
@@ -607,21 +634,21 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="middletd" >保留接地刀闸编号及位置：</td>
+			<td >保留接地刀闸编号及位置：</td>
 		</tr>
-		<tr class="ident1 daozhadixian"><!--  class="ident1 daozhadixian" -->
+		<tr class="daozhadixian"><!--  class="ident1 daozhadixian" -->
 			<td id="endGateKeepInfo"   colspan="6"><input id="endGateKeepInfo1"  class=""
 				readonly="true" value="${fn:escapeXml(endGateKeepInfo[0])}" />
 			</td>
 		</tr>
 		<c:forEach begin="1" end="${fn:length(endGateKeepInfo) -1}" var="i">
-			<tr class="ident1 daozhadixian">
+			<tr class="daozhadixian">
 				<td colspan="6" ><input readonly="true"
 					value="${fn:escapeXml(endGateKeepInfo[i])}" /></td>
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="2" class="middletd" >值长（或运行值班负责人）: <input
+			<td colspan="2">值长（或运行值班负责人）: <input
 				 size="10" readonly="true" value="${WoWt.endDutyPrincipalName}" /></td>
 		</tr>		
 	  </tbody>
@@ -629,7 +656,7 @@
 	<%-- <table class="table09">
 		<tr>
 			<td id="remark"  class="widthValue" colspan="6"><span class="ident-number2">15.</span>备注：<input id="remark1"  class="table09-put"
-				readonly="true" value="${fn:escapeXml(remarks[0])}" />
+				style="width:100%;" readonly="true" value="${fn:escapeXml(remarks[0])}" />
 			</td>
 		</tr>
 		<c:forEach begin="1" end="${fn:length(remarks)-1 }" var="i">
@@ -641,28 +668,27 @@
 	</table> --%>
 	<table class="table09">		
 		<tr>
-			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">15.</span>备注：</td>
+			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">18.</span>备注：</td>
 		</tr>		
 		<tr class="daozhadixian">
 		    <td id=""  class="widthValue" colspan="3">
 			  <input id="remark1" readonly="true"  value="${fn:escapeXml(remarks[0])}"/>
 			</td>
-		</tr>
+		</tr>	
 		<c:if test="${fn:length(remarks)==1}">
-		  <tr class="ident1 work02 daozhadixian">
+		  <tr class="daozhadixian">
 				<td colspan="3"><input readonly="true" value="" /></td>
 			</tr>
-		</c:if>			  		
+		</c:if>		  		
 		<c:if test="${fn:length(remarks)>1}">
 		  <c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
-			<tr class="ident1 work02 daozhadixian">
+			<tr class="daozhadixian">
 				<td colspan="3"><input readonly="true"
 					value="${fn:escapeXml(remarks[i])}" /></td>
 			</tr>
 		  </c:forEach>
-		</c:if>
-				
-	</table>	 
+		</c:if>				
+		</table>	 
 </div>
 <input type="hidden" id="wtCode"  value="${WoWt.wtCode}">
 <!-- 危险点预控措施 -->

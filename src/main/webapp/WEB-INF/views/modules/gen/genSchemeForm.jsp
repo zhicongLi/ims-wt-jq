@@ -6,6 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<%@ include file="/WEB-INF/views/include/head.jsp"%>
 	<link href="${ctxStatic}/common/trepsui-ext.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="${ctxStatic}/common/sysToolBar.js"></script>
 </head>
 <body>
 <div id="tabsMain" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;">
@@ -183,7 +184,7 @@
 								<tr>
 									<td style="text-align:right;">包路径：</td>
 									<td>
-										<input name="packageName" id="packageName" class="mini-textbox"  vtype = ""  enabled="false" required="false" />
+										<input name="packageName" id="packageName" class="mini-textbox"  vtype = ""   required="false" />
 									</td>
 
 									<!-- <td style="text-align:right;">模块名：</td>
@@ -381,40 +382,7 @@
    function onFormOpMiClick(e){
        //开始执行
        if(e.item.menuNo=='genCode'){
-           var genId=mini.get('id');
-           showMessageBox(null,"代码生成中，请稍后......","loading");
-
-           $.ajax({
-               url: "${ctx}/ims-ext${ims_ext_suffix}"+e.item.href+"?id="+genId.getValue(),
-               success: function (text) {
-                   var o = mini.decode(text);
-                   if(objIsNotNull(o.type)){
-                       //alert(text);
-                       if(o.type=="E"){
-                           showMessageBox("错误",o.message,"error");
-                           return;
-                       }else if(o.type=="W"){
-                           showMessageBox("警告",o.message,"warning");
-                       }else if(o.type=="I"){
-                           showTipM("info","提示",o.message);
-                           var code = getCookie("iamCode");
-                           window.open("${ctx}/ims-ext${ims_ext_suffix}/gen/genScheme/download-code?fileName="+o.data+"&code="+code);
-                       }
-
-                   }
-
-                   hideMessageBox();
-
-               },
-               error: function (jqXHR, textStatus, errorThrown) {
-                   var callback=function (action) {
-                       if(action=='详细')  viewErrorDetail(jqXHR.responseText);
-                   }
-                   var buttonsTemp=["ok","详细"];
-                   showMessageBox("错误","代码生成失败","error",null,callback,buttonsTemp);
-
-               }
-           });
+           genCodeFun();
        }
    }
    
@@ -494,8 +462,55 @@
     	mini.get("packageName").setValue(packageName);
     	return true;
     }
+    
+    function addButton(){
+		sysToolBar_.addButtonOption({
+			"buttonId":'genCodeButton',
+			"functionStr":'genCodeFun',
+			//"gridId":"gridSmGoalItem",
+			"name":'生成代码'
+		});
+	}
+    
+    function genCodeFun(){
+    	var genId=mini.get('id');
+        showMessageBox(null,"代码生成中，请稍后......","loading");
+
+        $.ajax({
+            url: "${ctx}/ims-ext${ims_ext_suffix}/gen/genScheme/genCode?id="+genId.getValue(),
+            success: function (text) {
+                var o = mini.decode(text);
+                if(objIsNotNull(o.type)){
+                    //alert(text);
+                    if(o.type=="E"){
+                        showMessageBox("错误",o.message,"error");
+                        return;
+                    }else if(o.type=="W"){
+                        showMessageBox("警告",o.message,"warning");
+                    }else if(o.type=="I"){
+                        showTipM("info","提示",o.message);
+                        var code = getCookie("iamCode");
+                        window.open("${ctx}/ims-ext${ims_ext_suffix}/gen/genScheme/download-code?fileName="+o.data+"&code="+code);
+                    }
+
+                }
+
+                hideMessageBox();
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var callback=function (action) {
+                    if(action=='详细')  viewErrorDetail(jqXHR.responseText);
+                }
+                var buttonsTemp=["ok","详细"];
+                showMessageBox("错误","代码生成失败","error",null,callback,buttonsTemp);
+
+            }
+        });
+    }
     $(function(){
     	getConfigData();
+    	addButton();
     });
 </script>
 </body>

@@ -15,10 +15,12 @@
 		<table style="width: 100%;">
 			<tr>
 				<td style="width: 100%;">
-					 
-					<a class="mini-button" iconCls="" onclick="docAttachNew('${girdId}','${objKeyField}','${objDescrField}','${objType}','','',${directSelect=='true'?'true':''},${directMultiple=='true'?'true':''})"
+					<a id="_sm_doc_add" class="mini-button" iconCls="" onclick="docAttachNew('${girdId}','${objKeyField}','${objDescrField}','${objType}','','','${directSelect=='true'?'true':''}','${directMultiple=='true'?'true':''}')"
 					   plain="true"
 					   tooltip="新建行..."><i class="fa fa-plus-circle"></i></a>
+<%-- 					<a class="mini-button" iconCls="" onclick="docAttachNew('${girdId}','${objKeyField}','${objDescrField}','${objType}','','',${directSelect=='true'?'true':''},${directMultiple=='true'?'true':''})"
+					   plain="true"
+					   tooltip="新建行..."><i class="fa fa-plus-circle"></i></a> --%>
 					 
 
 				<td style="white-space: nowrap;"></td>

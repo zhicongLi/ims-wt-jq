@@ -167,6 +167,10 @@
 }
 .print-content header h2 span{
     border-bottom: 1px solid #333;
+    display: inline-block;
+    font-weight: 600;
+    text-align: left;
+    width:200px;
 }
 /* .title01{
     font-size:24px;
@@ -274,7 +278,7 @@
 
 .daozhadixian input{
 	width :619px;
-    float: right;
+    /* float: right; */
 }
 
 /**/

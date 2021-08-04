@@ -6,12 +6,13 @@
             <!--大于2页display: block;小于两页display:none-->
             <p style="display: block;bottom: -25px;" class="prevDangerPage"></p>
             <h1>国家能源集团泰州发电有限公司<br/>作 业 安 全 措 施 票</h1>
-            <h2 style="text-align:right;">工作票票号：<span>${WoWt.wtCode}</span></h2>           
+            <h2 >编号：<span>${measureCode}</span></h2> 
+            <h2>对应的工作票编号：<span>${WoWt.wtCode}</span></h2>           
         </header>
         <table class="table01"  >	
 	   <tbody>	  
 		<tr>
-			<td colspan="3" class="department" ><span class="ident-number1">1.</span>工作部门：
+			<td colspan="3" class="department" ><span class="ident-number1">1.</span>部门：
 				<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
 				班组：<input style="width:21%" readonly="true" value="${WoWt.maintOrgName }"/>
 			</td>
@@ -19,6 +20,7 @@
 		<tr>
 			<td colspan="3">
 				2.工作负责人(监护人)：<input  readonly="true" value="${WoWt.workLeaderName }"/>
+				电话：<input  readonly="true" value="${WoWt.mobile}"/>
 			</td>
 		</tr>			
 		<tr class="work01">
@@ -34,7 +36,7 @@
 			</tr>					
 		</c:forEach>
 		<tr  class="work01">
-			<td  colspan="3" style="position:relative;"><span class="ident-number1">4.</span>工作任务：
+			<td  colspan="3" style="position:relative;"><span class="ident-number1">4.</span>工作内容：
 				<input id="dangerContent1"  readonly="true" value="${fn:escapeXml(content[0])}"/><!-- value="${content[0]}" -->
 				
 			</td>
@@ -47,7 +49,21 @@
 			</tr>					
 		</c:forEach>
 		<tr>
-			<td colspan="3" ><span class="ident-number1">5.</span>作业安全措施：</td>
+			<td colspan="2"><span class="ident-number1">5.</span>作业安全措施：</td>	
+			<td style="text-align: center;">
+			   风险等级：
+			  <c:forEach begin="0" end="3" var="dict" items="${riskGradeCodeList}">
+					<label >
+						<c:if test="${dict.remarks=='1' }">
+							<input disabled="disabled"  type="checkbox" name="check" checked="checked" >
+						</c:if>
+						<c:if test="${dict.remarks!='1' }">
+							<input disabled="disabled"  type="checkbox" name="check">
+						</c:if>
+						${dict.label }
+					</label>
+				</c:forEach>
+			</td>			
 		</tr>
 	</tbody>
 	</table>
@@ -194,30 +210,38 @@ function loadDangerInfo()
                 * */
                let html = '';
                let num = Math.floor((pageHeight - height-$(".dangerContent:last").prevAll(".pageHeader:first").height()) / $(".table01 tbody tr")[3].clientHeight);
-               if(num > 0)
+              /*  if(num > 0)---2021-08-03注释
                {
             	   html += '<tr class="firstblanktr">';
                    html += '<td></td><td></td>';
-                   html += '<td></td><td></td>';
-                /*    html += '<td></td><td></td>'; */
+                   html += '<td></td><td></td>';               
                    html += '</tr>';
             	   $(".dangerContent:last").find(".tfoot:last").before(html);
             	   html = '';
             	   num = Math.floor((pageHeight - height-$(".dangerContent:last").prevAll(".pageHeader:first").height()) / $(".firstblanktr:last").height());
-               }
-               for (let i = 0; i < num; i++) {
+               } 
+                for (let i = 0; i < num; i++) {
                    html += '<tr>';
                    html += '<td></td>';
                    html += '<td></td>';
                    html += '<td></td>';
-                   html += '<td></td>';
-                  /*  html += '<td></td>';
-                   html += '<td></td>'; */
+                   html += '<td></td>';                 
                    html += '</tr>';
-               }
+               }            
                $(".dangerContent:last").find(".tfoot:last").before(html);   
                if(num > 0){//添加以下空白印章           	          
                    $(".dangerContent:last").find(".invar:last").append('<img id="#yxkb" src="${ctxStatic}/wo/icon/yxkb_yf.bmp" style="position: absolute;left:120px;margin:auto;top:' + (height-185)+ 'px">'); 
+               } */
+               if(data.length<=0){
+            	   for (let i = 0; i < 5; i++) {
+                       html += '<tr>';
+                       html += '<td></td>';
+                       html += '<td></td>';
+                       html += '<td></td>';
+                       html += '<td></td>';                 
+                       html += '</tr>';
+                   }             
+                   $(".dangerContent:last").find(".tfoot:last").before(html);     
                }
                
            }

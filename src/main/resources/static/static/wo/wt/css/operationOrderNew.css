@@ -80,7 +80,7 @@ body{
 
 .dangerContent header h2 {
     font-weight: 400;
-    position: absolute;
+    /* position: absolute; */
     font-size:14px;
 /*     right: 0; */
 }
@@ -92,6 +92,10 @@ body{
 }
 .dangerContent header h2 span{
     border-bottom: 1px solid #333;
+    display: inline-block;
+    font-weight: 600;
+    text-align: left;
+    width:200px;
 }
 .dangerContent .invar,.dangerContent .invarLine{
 	position:relative;

@@ -338,7 +338,22 @@
 		        </div><!--fit-->
 
 	    </div>
-
+	<div title="说明" id="tabForm"  style="border: 0px;"  >
+		<p><b>配置说明</b>：目前内置的变量有：actionName ,objId,cuId,内置变量使用 &#36{objId} ,目前内置函数：date,内置方法使用 [date()]</p>
+		<p><b>动作类型</b>：目前可以用的有写入、sql、java方法</p>
+		<p><b>事件类型</b>：目前可以用的有任务创建后、任务完成后、流程启动后、流程结束后</p>
+		<p><b>执行顺序</b>：在同时有多个配置满足条件时，按照执行顺序从小到大开始执行</p>
+		<p><b>流程定义key</b>：从流程定义处获取</p>
+		<p><b>对象获取方式</b>：如果已经注入spring选择 spring，否则选择java反射</p>
+		<p><b>节点id</b>：从流程定义处获取</p>
+		<p><b>执行条件</b>：满足条件时才会执行，例如 &#36{actionName}=='agree'</p>
+		<p><b>执行表达式</b>：java方法时起作用，类全路径的名称.方法名称 例如com.ims.et.contract.service.Impl.EtTerminationServiceImpl.updateTerminationStatus，如果是spring方式获取，可以是类名.方法名，例如：EtTerminationServiceImpl.updateTerminationStatus</p>
+		<p><b>执行表达式参数</b>：java方法时起作用,例如 ：string;;string;;string  多个参数之间用双分号隔离</p>
+		<p><b>执行表达式参数值</b>：java方法时起作用，例如：&#36{objId};;&#36{cuId};;&#36{actionName}，多个参数间用双分号隔离</p>
+		
+		
+		
+	</div>
    </div>
 
 <sys:toolbarfooter></sys:toolbarfooter>

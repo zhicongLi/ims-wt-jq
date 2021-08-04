@@ -173,7 +173,7 @@
 			<tr class="fire05">
 				<td id="content"  class="widthValue" colspan="2" style="position:relative;">				 	
                		<span class="ident-number1">5.</span>动火工作内容（必要时可附页绘图说明）：<input readonly="true" id="content1" value="${fn:escapeXml(contentList[0])}"/><!-- value="${contentList[0]}" -->
-					<c:if test="${WoWt.status =='10' }">
+					<%-- <c:if test="${WoWt.status =='10' }">
 			        <img src="${ctxStatic}/static/wo/icon/yzj_yf.png" alt="" style="position: absolute;right:0px;margin:auto;top:0px">
 			        </c:if>
 			        <c:if test="${WoWt.status =='8' }">
@@ -181,7 +181,7 @@
 			        </c:if>
 			        <c:if test="${WoWt.status =='30' }">
 			        <img src="${ctxStatic}/static/wo/icon/bhg.bmp" alt="" style="position: absolute;right:0px;margin:auto;top:0px">
-			   	    </c:if>
+			   	    </c:if> --%>
 				</td>
 			</tr>
 			<c:forEach begin="1" end="${fn:length(contentList)-1}" var="i">
@@ -239,7 +239,7 @@
 					</td>					
 				</tr>
 			</c:forEach>
-			<c:if test="${10>fn:length(yxSmMap)}">
+			<%-- <c:if test="${10>fn:length(yxSmMap)}">
 				<c:forEach begin="1" end="${11- fn:length(yxSmMap)}" varStatus="status">
 					<tr>
 						<td  colspan="2" style="position: relative;">							
@@ -259,7 +259,15 @@
 						</td>										
 					</tr>
 				</c:forEach>
-			</c:if>
+			</c:if> --%>
+			<c:if test="${0 == fn:length(yxSmMap)}">
+				<tr>
+					<td class="table03-l" colspan="2" >
+					  1.无
+					</td>					
+				</tr>
+			</c:if>	
+			
 												
 			<tr >
 				<td class="widthValue" colspan="2"><span class="ident-number1">8.</span>动火部门应采取的安全措施：</td>				
@@ -271,7 +279,7 @@
 					</td>					
 				</tr>
 			</c:forEach>
-			<c:if test="${10>fn:length(dh1SmMap)}">
+			<%-- <c:if test="${10>fn:length(dh1SmMap)}">
 				<c:forEach begin="1" end="${11- fn:length(dh1SmMap)}" varStatus="status">
 					<tr>
 						<td  colspan="2" style="position: relative;">							
@@ -291,7 +299,15 @@
 						</td>										
 					</tr>
 				</c:forEach>
-			</c:if>						
+			</c:if>	 --%>
+			<c:if test="${0 == fn:length(dh1SmMap)}">
+				<tr>
+					<td class="table03-l" colspan="2" >
+					  1.无
+					</td>					
+				</tr>
+			</c:if>	
+										
 		</table>
 		<table>
 			<tr class="date02">							

@@ -163,7 +163,7 @@
 			    // masterKeyField:"id",
 				dataUrl:"${ctx}/ims-iam-ext/pg/pgSpec/data",
 				getUrl:"${ctx}/ims-iam-ext/pg/pgSpec/get",
-				saveUrl:"${ctx}/ims-iam-extpg/pgSpec/save",
+				saveUrl:"${ctx}/ims-iam-ext/pg/pgSpec/save",
 				removeUrl:"${ctx}/ims-iam-ext/pg/pgSpec/remove",
 				exportUrl:"${ctx}/ims-iam-ext/pg/pgSpec/export",
 				initInsertUrl:"${ctx}/ims-iam-ext/pg/pgSpec/initInsert",
