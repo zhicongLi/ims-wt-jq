@@ -377,6 +377,7 @@ AA.prototype.setEdit=function(newSecList){
 
 AA.prototype.flowAction=function(){
 	var newSecList = new Array();
+	debugger;
 	for(var i = 0;i<this.flowSecList.length;i++){
 		var sec = this.flowSecList[i];
 		var seccList = sec.seccList;
@@ -388,7 +389,7 @@ AA.prototype.flowAction=function(){
 				/*if(secc.condGroup=='1'){//普通验证
 					continue;
 				}*/
-				if(secc.valueMethod=='1'||secc.valueMethod=='2'){//后端获取，jsget获取，已经验证
+				if(secc.valueMethod=='1'||secc.valueMethod=='2'||secc.valueMethod=='4'){//后端获取，jsget获取，流程返回 已经验证
 					continue;
 				}
 				var expr = secc.condExpr;
