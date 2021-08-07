@@ -658,6 +658,10 @@ function onBpmButtonClick(buttonId) {
 	  mini.alert("请先保存再提交流程！");
 	  return;
     }else{
+   	  var b = editControl.flowAction(); //提交前验证
+      if(!b){
+        return;
+      }
       var workLeader = null;  
       if(wtType=="2"||wtType=="5"||wtType=="6"){
     	  workLeader = mini.get("workLeader").getValue(); 

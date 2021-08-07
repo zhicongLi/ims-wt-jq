@@ -203,9 +203,13 @@
 									 showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp"
 								>
 									<input class="mini-hidden" name="id" id="id"/>
+									<!-- 发现人所属公司 -->
+									<input class="mini-hidden" name="reportByCompany" id="reportByCompany"/>
+									<!-- 专业编码 -->
+									<input class="mini-hidden" name="specCode" id="specCode"/>
 									<table border="0" cellpadding="3" cellspacing="3" >
 										<tr>
-											<td style="text-align:right;">缺陷单号：</td>
+											<td style="text-align:right;letter-spacing: 3px;">缺陷单号：</td>
 											<td>
 											   <input name="code" id="code"  style="width:200px"  class="mini-textbox"  vtype = ""  required="false" readonly="readonly"/>
 											</td>
@@ -216,7 +220,7 @@
 											<td style="text-align:right;">所属专业：</td>																		
 											<td colspan="3">
 											  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false" allowInput="false" width="200px"
-												onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
+												onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=1',850,500,'id,name,code','specId,specName,specCode')" />
 											</td>											
 											
 										</tr>
@@ -244,7 +248,7 @@
 									 showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">									
 									<table border="0" cellpadding="3" cellspacing="3" >
 										<tr>
-											<td style="text-align:right;">发现人：</td>
+											<td style="text-align:right;letter-spacing: 7px;">发现人：</td>
 											<td>
 											   <input name="reportBy" id="reportBy"class="mini-buttonedit"  vtype = "" required="false" style="width:200px" allowInput="false" textName="reportByName" readonly="readonly"
 											    onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','reportBy,reportByName')" />
@@ -271,10 +275,10 @@
 									 showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">									 
 									<table border="0" cellpadding="3" cellspacing="3" >
 										<tr>
-											<td style="text-align:right;">接收人：</td>
+											<td style="text-align:right;letter-spacing: 7px;">接收人：</td>
 											<td>
 											   <input name="reception" id="reception"class="mini-buttonedit"  vtype = "" required="false" style="width:200px" allowInput="false" textName="receptionName" 
-											    onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList&likeParentId=1&orgId=2001',850,500,'id,name','reception,receptionName')" onvaluechanged="update(this)"/>
+											    onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/sysMisUserList&likeParentId=1&orgId=2000',850,500,'id,name','reception,receptionName')" onvaluechanged="update(this)"/>
 											</td>
 											<td style="text-align:right;">接收时间：</td>
 											<td>
@@ -303,7 +307,7 @@
 											   <input name="leader" id="leader"class="mini-buttonedit"  vtype = "" required="false" style="width:200px" allowInput="false" textName="leaderName" 
 											   onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','leader,leaderName')" />
 											</td>											
-											<td style="text-align:right;">消缺完成时间：</td>		
+											<td style="text-align:right;">完成时间：</td>		
 											<td colspan="5">
 											   <input name="finishDate" id="finishDate" style="width:200px" class="mini-datepicker" showTime="true"  vtype = "" format="yyyy-MM-dd HH:mm:ss"  required="false" allowInput="false" />
 											</td>																						
@@ -311,14 +315,14 @@
 										<tr>
 											<td style="text-align:right;">消缺内容：</td>
 											<td  colspan="7">
-											   <input name="finishRes" id="finishRes" class="mini-textarea"  vtype = "" style="width: 100%"  required="false" />
+											   <input name="finishRes" id="finishRes" class="mini-textarea"  vtype = "" style="width: 160%"  required="false" />
 											</td>
 
 										</tr>
 										<tr>
 											<td style="text-align:right;">采取措施：</td>
 											<td colspan="7">
-												<input name="finishMeasures" id="finishMeasures" class="mini-textarea"  required="false" width="100%"/>
+												<input name="finishMeasures" id="finishMeasures" class="mini-textarea"  required="false" width="160%"/>
 											</td>
 										</tr>
 									</table>
@@ -328,7 +332,7 @@
 									 showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
 									<table border="0" cellpadding="3" cellspacing="3" >
 										<tr>
-											<td style="text-align:right;">验收人：</td>
+											<td style="text-align:right;letter-spacing: 7px;">验收人：</td>
 											<td>
 											   <input name="checkBy2" id="checkBy2" class="mini-buttonedit"  vtype = "" required="false" style="width:200px" allowInput="false" textName="checkByName2"
 											   	onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','checkBy2,checkByName2')" />
@@ -341,7 +345,7 @@
 										<tr>
 											<td style="text-align:right;">验收意见：</td>
 											<td colspan="7">
-											   <input name="checkNote2" id="checkNote2" class="mini-textarea" style="width: 100%"  required="false" />
+											   <input name="checkNote2" id="checkNote2" class="mini-textarea" style="width: 160%"  required="false" />
 											</td>
 										</tr>
 
@@ -352,7 +356,7 @@
 									 showCollapseButton="true" onbuttonclick="onPanelButtonClick" name="_panel_exp">
 									<table border="0" cellpadding="3" cellspacing="3" >																			
 										<tr>
-											<td style="text-align:right;">验收人：</td>		
+											<td style="text-align:right;letter-spacing: 7px;">验收人：</td>		
 											<td>
 											   <input style="width:200px"  name="checkBy1" id="checkBy1" class="mini-buttonedit"  vtype = "" required="false" width="180px" allowInput="false" textName="checkByName1"
 											   	onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/misUserList',850,500,'id,name','checkBy1,checkByName1')" />
@@ -365,7 +369,7 @@
 										<tr>
 											<td style="text-align:right;">验收意见：</td>
 											<td  colspan="7">
-											   <input name="checkNote1" id="checkNote1" class="mini-textarea"  required="false" style="width:100%"/>
+											   <input name="checkNote1" id="checkNote1" class="mini-textarea"  required="false" style="width:160%"/>
 											</td>
 										</tr>
 									</table>
@@ -383,17 +387,25 @@
 
 	    </div>
 
+    <div title="附件" id="tabWoProcessList"   style="border: 0px;"  >  
+	     <sys:toolbargriddoc girdId="dgTestSub1" permissionEdit="wo:woDefect:edit" objKeyField="id" objDescrField="name" objType="woDefect"></sys:toolbargriddoc>
+         <div class="mini-fit">
+             <sys:griddoc girdId="dgTestSub1"></sys:griddoc>
+         </div>				
+	</div> 
 </div>
 <!-- 新流程方式引入 flowKey对应流程Key -->
 <sys:workflow flowKey="woDefect"></sys:workflow>
 <sys:toolbarfooter></sys:toolbarfooter>
 <sys:excelframe></sys:excelframe>
+<sys:docAttach girdId="dgTestSub1"></sys:docAttach>
 
 <script type="text/javascript">
 
 	initBase(
 			{   id:"datagridMain",
 			    objId:"WoDefect",
+			    masterKeyField : "id",
 				dataUrl:"${ctx}/wo-wt/wo/woDefect/data",
 				getUrl:"${ctx}/wo-wt/wo/woDefect/get",
 				saveUrl:"${ctx}/wo-wt/wo/woDefect/save",
@@ -409,8 +421,25 @@
 	       );
 
 	initChilds( "#editform", "tabsMain" ,
-                      [
-	                   ]
+	                    [
+	                  	  {//文档附件 
+	                            id:"dgTestSub1",
+	                            cascade:true,
+	                            //fileTypes:"*.*",
+	                            folder:"woDefect",                           
+	                            FKLinks: [
+	                                {FK: "objKey", masterKeyField: "id"},
+	                                {FK: "objType", masterKeyField: "(\"woDefect\")"}
+	                            ],
+	                            cascadeNoClone: true,
+	                            dataUrl:"${ctx}/ims-ext/dm/dmDoc/data",
+	                            getUrl:"${ctx}/ims-ext/dm/dmDoc/get",
+	                            saveUrl:"${ctx}/ims-ext/dm/dmDoc/save",
+	                            removeUrl:"${ctx}/ims-ext/dm/dmDoc/remove",
+	                            exportUrl:"${ctx}/ims-ext/dm/dmDoc/export",
+	                            onDocActionRenderer:onDocActionRenderer
+	                        } 
+	                  ]
 	);
 
 	initQb( "#builder","pnlQuery", "tabsQuery", "txtSQL","btnAdvSearch",
@@ -783,7 +812,7 @@
    }
    
    //编辑权限控制
-  // editControl.loadEditList('woDefect'); 
+   editControl.loadEditList('woDefect'); 
    
    
   
@@ -850,15 +879,23 @@ function onBpmButtonClick(buttonId) {
     if(isSave==true){
 	  mini.alert("请先保存再提交流程！");
 	  return;
-    }else{
-      editControl.flowAction();	//提交前验证
-      var reception =  mini.get("reception").getValue();     
-      var receptionName =  mini.get("reception").getText();        
+    }else{     
+      var b = editControl.flowAction(); //提交前验证
+      if(!b){
+       return;
+      }
+      debugger;
+      //发现人所属公司
+      var reportByCompany =  mini.get("reportByCompany").getValue();  
+      //专业编号
+      var specCode =  mini.get("specCode").getValue(); 
+      //alert(reportByCompany+"----"+specCode);
       var data = {
         eventName: 'parentClickButton',
         alias: buttonId,
         flowVariables: {//定义流程变量                  
-          "reception": reception || '',//接收人
+          "reportByCompany": reportByCompany || '',//发现人所属公司
+          "specCode": specCode || ''//专业编号
          },
         data: {}
       };

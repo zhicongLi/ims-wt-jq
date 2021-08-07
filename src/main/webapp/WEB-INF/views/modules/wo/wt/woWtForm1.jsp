@@ -340,7 +340,7 @@
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
 										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="400">已拉断路器（开关）和隔离开关（刀闸）（注明编号）<br /> 备注：本列由工作许可人（值班员）填写 
-											<input property="editor" class="mini-textarea" style="width: 100%;" />
+											<input property="editor" class="mini-checkbox" style="width: 100%;" />
 										</div>
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
