@@ -44,9 +44,9 @@
 								<input id="defectLevel-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_defect_level" multiSelect="true" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 							</div>							
 							<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="100" 	>专业
-								<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=2"/>
+								<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=1&pageSize=100"/>
 								<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
-									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=2"
+									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=1&pageSize=100"
 								/>
 							</div>
 							<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="100" sortField="a.status">状态
@@ -153,13 +153,13 @@
 									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
 								/>
 							</div>
-							<div name="checkDate2"  field="checkDate2" vtype="" dateFormat="yyyy-MM-dd HH:mm:ss" headerAlign="center" allowSort="true" width="100" >点检验收时间
+							<div name="checkDate2"  field="checkDate2" vtype="" dateFormat="yyyy-MM-dd HH:mm:ss" headerAlign="center" allowSort="true" width="150" >点检验收时间
 								<input property="editor" class="mini-textbox"  style="width:100%;"  />
 								<input id="checkDate2-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
 									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
 								/>
 							</div>
-							<div name="checkNote2"  field="checkNote2" vtype=""  headerAlign="center" allowSort="true" width="100" >点检验收意见
+							<div name="checkNote2"  field="checkNote2" vtype=""  headerAlign="center" allowSort="true" width="200" >点检验收意见
 								<input property="editor" class="mini-textbox"  style="width:100%;"  />
 								<input id="checkNote2-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
 									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
@@ -850,20 +850,14 @@ function update(Obj){
           success: function (data) {       	  
           	var o = mini.decode(data);
              if(Obj.id=="reportBy"){
-            	 mini.get("reportOrg").setValue(o.teamId);
-	            // mini.get("reportOrgName").setValue(o.teamName);
-	             mini.get("reportOrg").setText(o.teamName);
-	             
-	             mini.get("reportDept").setValue(o.deptId);
-	            // mini.get("reportDeptName").setValue(o.deptName);
+            	 mini.get("reportOrg").setValue(o.teamId);	            
+	             mini.get("reportOrg").setText(o.teamName);	             
+	             mini.get("reportDept").setValue(o.deptId);	           
 	             mini.get("reportDept").setText(o.deptName);
             }else if(Obj.id=="reception"){
-            	 mini.get("receptionOrg").setValue(o.teamId);
-	            // mini.get("receptionOrgName").setValue(o.teamName);
-	             mini.get("receptionOrg").setText(o.teamName);
-	             
-	             mini.get("receptionDept").setValue(o.deptId);
-	            // mini.get("receptionDeptName").setValue(o.deptName);
+            	 mini.get("receptionOrg").setValue(o.teamId);	            
+	             mini.get("receptionOrg").setText(o.teamName);	             
+	             mini.get("receptionDept").setValue(o.deptId);	           
 	             mini.get("receptionDept").setText(o.deptName);
            } 
           },
@@ -883,13 +877,11 @@ function onBpmButtonClick(buttonId) {
       var b = editControl.flowAction(); //提交前验证
       if(!b){
        return;
-      }
-      debugger;
+      }     
       //发现人所属公司
       var reportByCompany =  mini.get("reportByCompany").getValue();  
       //专业编号
-      var specCode =  mini.get("specCode").getValue(); 
-      //alert(reportByCompany+"----"+specCode);
+      var specCode =  mini.get("specCode").getValue();      
       var data = {
         eventName: 'parentClickButton',
         alias: buttonId,
