@@ -339,7 +339,7 @@
 
 	    </div>
 	<div title="说明" id="tabForm"  style="border: 0px;"  >
-		<p><b>配置说明</b>：目前内置的变量有：actionName ,objId,cuId,内置变量使用 &#36{objId} ,目前内置函数：date,内置方法使用 [date()]</p>
+		<p><b>配置说明</b>：目前内置的变量有：actionName ,objId,cuId,opinion,cuName内置变量使用 &#36{objId} ,目前内置函数：date,内置方法使用 [date()]</p>
 		<p><b>动作类型</b>：目前可以用的有写入、sql、java方法</p>
 		<p><b>事件类型</b>：目前可以用的有任务创建后、任务完成后、流程启动后、流程结束后</p>
 		<p><b>执行顺序</b>：在同时有多个配置满足条件时，按照执行顺序从小到大开始执行</p>
