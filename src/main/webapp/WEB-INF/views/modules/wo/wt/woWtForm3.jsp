@@ -35,12 +35,16 @@
 						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
 							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
 							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
-								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
-							/>
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">工作内容 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>
+						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+							<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+							<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
 						</div>
 						<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="100" sortField="a.status">状态
 							<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" /> 
@@ -247,12 +251,12 @@
 									<td style="text-align:right;">专业：</td>									
 									<td>
 									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false"  allowInput="false" width="200px"
-										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
 									</td>
 									<td style="text-align:right;">班组：</td>									
 									<td>
 									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="200px" allowInput="false" readonly="readonly"
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=sys/sysOrgList&classId=0',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>								
 								  </tr>
 								  <tr>
@@ -335,9 +339,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">运行人员执行的安全措施
 										    <input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32"> 安措类型
 										    <input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -366,9 +371,10 @@
 											<input property="editor" class="mini-textarea" style="width: 100%;" /> 
 											<input id="descr3-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChangedChild('gridWoWtSm4')" showClose="true" oncloseclick="onChildFilterClose(this,'gridWoWtSm4')" />
 										</div>									    								
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 									</div>
 								</div>
 							</div>
@@ -392,9 +398,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">工作负责人安全措施
 										    <input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 									</div>
 								</div>
 							</div>
@@ -872,7 +879,7 @@
 	    </div>
 		
 	    <!-- 加载热控保护措施票 -->
-	    <%@ include file="/WEB-INF/views/modules/wo/wt/woWtRkMeasureForm.jsp"%>
+	   <%--  <%@ include file="/WEB-INF/views/modules/wo/wt/woWtRkMeasureForm.jsp"%> --%>
 	</div>
 
     <!-- 新流程方式引入 -->
@@ -883,7 +890,6 @@
 	<!-- 对应加载的方法（加载，新增。。。） -->
 	<jsp:include page="permit.jsp"></jsp:include>
 	<jsp:include page="attachTab.jsp" flush="true" />
-	<%-- <script type="text/javascript" src="${ctxStatic}/common/exportSelectFieldFile.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 	<script type="text/javascript">
 		initBase({
 			id : "datagridMain",
@@ -901,6 +907,7 @@
             onBeforeSaveCheck: onBeforeSaveCheck,
             onBeforeSaveForm : onBeforeSaveForm,
             onBeforeInsertRecord:onBeforeInsertRecord
+           
 		});
 
 		initChilds(
@@ -994,7 +1001,7 @@
 						cascadeVisible : true,
 						tabsId : "tabsMain",
 						tabName : "tabWoTaskSafeMeasureList",
-						dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data",
+						dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data?wtType=1",
 						getUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/get",
 						saveUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/save",
 						removeUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/remove",
@@ -1055,7 +1062,7 @@
         				tabsId : "tabsMain",
         				tabName : "tabWoWt5",	
         				dataUrl : "${ctx}/wo-wt/wo/woWt/data?baseQuery=(a.wt_type='5' or a.wt_type='6')"				
-                    },
+                    }/* ,
                     {//热控保护措施票
 						id : "#formWoWtRkMeasure",
 						objId : "WoWtRkMeasure",
@@ -1104,7 +1111,7 @@
 						removeUrl : "${ctx}/wo-wt/wo/woWtSm/remove",
 						exportUrl : "${ctx}/wo-wt/wo/woWtSm/export",
 						initInsertUrl : "${ctx}/wo-wt/wo/woWtSm/initInsert?typeId=17"
-					}
+					} */
 				]);
 
 		initQb("#builder", "pnlQuery", "tabsQuery", "txtSQL", "btnAdvSearch",
@@ -1183,165 +1190,35 @@
 			"buttonId":'repairRail',
 			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
 			"name":'检修围栏'
-		  });  
+		  }); 
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue1',
+			"functionStr":"updFieldValue('gridWoWtsm13','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm13", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue2',
+			"functionStr":"updFieldValue('gridWoWtsm4','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm4", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue3',
+			"functionStr":"updFieldValue('gridWoWtsm','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
 		  		 
 	    }
 	  
-	    
-	    function newFileRow(gridId,objKeyField,objDescrField,objType) {		 
-	        var errMassage = "请先保存后上传附件！";	        
-	        var grid = mini.get("datagridMain");
-	        var rowId;     
-	        if(typeof(grid.getSelected())!="undefined"){
-	       	 rowId= grid.getSelected().id;
-	        }else{
-	       	 rowId=mini.get("id").value;
-	        }	    
-	         if(!rowId){
-	             showMessageBox("错误",errMassage,"error");
-	             return;
-	         }	
-	         /* var userInfoJson = getCurrUserInfo(false);
-	    	  var userInfo = mini.decode(userInfoJson);
-	    	  var userInfoId = userInfo.id;	  
-	    	  var userInfoOrg = userInfo.orgId; */
-	         
-	    	  /* if(userInfoId!="1"&&userInfoOrg!="1962"){
-	       	  showMessageBox("错误","只有政工部人员可以新建附件！","error");   
-	       	  return;
-	         }  */
-	         var edit_file = mini.get("file");
-	         if(edit_file == null && edit_file == undefined ){
-	             renderFileHtml();
-	         }
-	         
-	         var editFileWindow = mini.get("editWindow1");
-	         var form = new mini.Form("#editform1");     
-	         var newFileRow = {objKey:rowId,objDescr:objDescrField,objType:objType,folder:objType,fileGrid:gridId};
-	         editFileWindow.show();
-	         form.reset();
-	         form.setData(newFileRow);
-	    }
+	   
 
-	    /*  function onActionRendererForFile(e) {
-	        var gridTemp = e.sender;
-	        var record = e.record;
-	        var uid = record._uid;
-	        var rowIndex = e.rowIndex;
-	        
-	        //var del  = '<a class="Delete_Button"   href="javascript:delFileRow(\'' + uid + '\')" ><i class="icon-remove" data-tooltip="删除" data-placement="top"></i></a>';
-	        var del  = ' <a class="Delete_Button" href="javascript:delFileRow(\''+gridTemp.id+'\',\'' + uid + '\')"><i class="icon-remove" data-tooltip="删除" data-placement="top"></i></a>'; 
-	        var down = '| <a class="Edit_Button" href="http://192.168.0.166:9001'+record.docPath+ '"  download="'+record.docFileName+'"><i class="icon-download" data-tooltip="下载" data-placement="top"></i></a>';
-	        var view = '| <a class="Edit_Button" href="http://192.168.0.166:9001'+record.docPath+ '" target="_blank" preview="'+record.docFileName+'"><i class="icon-collapse" data-tooltip="查看" data-placement="top"></i></a>';
-	        return del+"&nbsp;&nbsp;&nbsp;"+down+"&nbsp;&nbsp;&nbsp;" + view;
-	    } */
-
-
-
-	     
-	     function delFileRow(gridId,row_uid) {
-	        var fileGrid = mini.get(gridId);
-	        var row = fileGrid.getSelected();	 
-	    	//当前登录者
-	    	var currUserId  = _currUser_.id  
-	    	if(row.createBy!=currUserId){
-	    	  mini.alert("无权删除他人上传附件！","警告");
-	    	  return;
-	    	}
-	        //var row = fileGrid.getRowByUID(row_uid);
-	        if (row) {
-	            if (confirm("确定删除此记录？")) {
-	                fileGrid.loading("删除中，请稍后......");
-	                //grid.removeRow (row, true);
-	                $.ajax({
-	                    url: "${ctx}/ims-ext/dm/dmDoc/remove?id=" + row.id,
-	                    success: function (text) {
-	                        fileGrid.reload();
-	                    },
-	                    error: function (jqXHR, textStatus, errorThrown) {
-	                        alert(jqXHR.responseText);
-	                    }
-	                });
-	            }
-	        }
-	    }
-
-	    function renderFileHtml(){
-	        var textbox=new mini.HtmlFile();
-	        textbox.set({id:"file",name:"file",width:"250"});
-	        textbox.on("fileselect",onfileselect);
-	        textbox.render("file_td");
-	    } 
-
-	    function saveData(row_uid) {
-	        var editFileWindow = mini.get("editWindow1");
-	        var fileGrid = mini.get("fileGrid").getValue();//对应子项附件
-	        var fileUploadGrid = mini.get(fileGrid);
-	        var form = new mini.Form("#editform1");
-
-	        var o = form.getData();
-	        showMessageBox(null,"加载中，请稍后......","loading");
-	        var json = mini.encode([o]);
-	        json = mini.decode(json);
-	        var docFileName=mini.get("docFileName").value;
-	        var suffix =docFileName.substring(docFileName.lastIndexOf(".")+1);
-	        var inputFile = $("#file > input:file")[0];
-	        $.ajaxFileUpload({
-	            type : "POST",
-	            url : '${ctx}/ims-ext/dm/dmDoc/save', //用于文件上传的服务器端请求地址
-	            fileElementId : inputFile, //文件上传域的ID
-	            data : json[0], //附加的额外参数
-	            dataType : 'text', //返回值类型 一般设置为json
-	            success : function(data, status) { //服务器成功响应处理函数
-
-	                data = eval('(' + data + ')');
-
-	                if (data.status == 'success') {
-	                    form.reset();
-	                    showTipM("success", "提示", data.message);
-	                    //var viewFileType = mini.get("viewFileType").getValue();
-	                    hideMessageBox();
-	                   // viewFuJian(viewFileType);
-	                    editFileWindow.hide();
-	                    fileUploadGrid.reload();
-	                } else {
-	                    hideMessageBox( );
-	                    editFileWindow.hide();
-	                    fileUploadGrid.reload();
-	                    alert("上传错误！"+data.message);
-	                }
-	            },
-	            error: function (jqXHR, textStatus, errorThrown) {
-	                var callback=function (action) {
-	                    viewErrorDetail(jqXHR.responseText);
-	                }
-	                var buttonsTemp=["ok","详细"];
-	                showMessageBox("错误",o.message,"error",null,callback,buttonsTemp);
-	            },
-	            complete: function () {
-	                var filez = mini.get("file");
-	                filez.destroy();
-	            }
-	        });
-	     }
-	      
-
-	    function cancelRow(){
-	       var editFileWindow = mini.get("editWindow1");
-	       editFileWindow.hide();
-
-	    } 
-
-	    function onfileselect(e){
-	         var docFileName = mini.get("docFileName");
-	         var filePath = e.sender.getValue()
-	         var fileName = extractFileName(filePath);
-	         docFileName.setValue(fileName);
-	    }
-	    
-	  
         //加载页面编辑权限
-	   // editControl.loadEditList('woWt3')  
+	    editControl.loadEditList('woWt3')  
 </script>
 </body>
 </html>

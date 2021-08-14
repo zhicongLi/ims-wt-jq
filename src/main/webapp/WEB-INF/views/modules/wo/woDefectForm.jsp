@@ -44,9 +44,9 @@
 								<input id="defectLevel-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_defect_level" multiSelect="true" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 							</div>							
 							<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="100" 	>专业
-								<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=1&pageSize=100"/>
+								<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&baseFilter=a.group_id='1' and a.code in ('1001','1002','1004','1006','1007','1008')&pageSize=100"/>
 								<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
-									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?groupId=1&pageSize=100"
+									   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&baseFilter=a.group_id='1' and a.code in ('1001','1002','1004','1006','1007','1008')&pageSize=100"
 								/>
 							</div>
 							<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="100" sortField="a.status">状态
@@ -218,10 +218,17 @@
 											   <input name="defectLevel" id="defectLevel" class="mini-combobox" style="width:200px" allowInput="" valueFromSelect="false" required="false" valueField="value" textField="label"   url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_defect_level" />
 											</td>
 											<td style="text-align:right;">所属专业：</td>																		
-											<td colspan="3">
+											<%-- <td colspan="3">
 											  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false" allowInput="false" width="200px"
 												onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=1',850,500,'id,name,code','specId,specName,specCode')" />
-											</td>											
+											</td>  --%>
+											<td colspan="3">
+											  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false" allowInput="false" width="200px"
+												onbuttonclick="selectSpec" />
+											</td> 
+											<!-- <td>
+											   <input name="specId" id="specId" class="mini-combobox" vtype = ""  required="false" onvaluechanged="changeSpec" valueField="id"  textField="text" data='[{"id":"0","text":"个人"},{"id":"1","text":"班组"}]'/>
+											</td> -->											
 											
 										</tr>
 										<tr>											
@@ -874,10 +881,12 @@ function onBpmButtonClick(buttonId) {
 	  mini.alert("请先保存再提交流程！");
 	  return;
     }else{     
-      var b = editControl.flowAction(); //提交前验证
-      if(!b){
-       return;
-      }     
+      if(buttonId=="agree"){//同意
+       	var b = editControl.flowAction(); //提交前验证		
+   		if(!b){
+   	        return;
+   	    }
+      }    
       //发现人所属公司
       var reportByCompany =  mini.get("reportByCompany").getValue();  
       //专业编号
@@ -895,6 +904,19 @@ function onBpmButtonClick(buttonId) {
       popBox(); 
     } 
  } 
+ 
+ 
+//选择专业(只展示对应岗位有专业的)
+function selectSpec() {
+
+	popLov(
+		this,
+		'选择专业',
+		false,
+		true,
+		"${ctxRoot}/form?view=pg/pgSpecList&baseFilter=a.group_id='1' and a.code in ('1001','1002','1004','1006','1007','1008')",
+		800, 500, 'id,name,code','specId,specName,specCode');
+}		
 </script>
 </body>
 </html>

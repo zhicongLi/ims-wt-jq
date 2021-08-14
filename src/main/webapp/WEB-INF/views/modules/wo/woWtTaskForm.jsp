@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<div id="tabsMain" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;" onactivechanged="mainTabActivechanged">
+<div id="tabsMain" class="mini-tabs" activeIndex="0" plain="false" style="width:100%;height:100%;" ><!-- onactivechanged="mainTabActivechanged" -->
 	<div title="列表" id="tabList"  style="border: 0px;"  >
              <sys:toolbargridmain objId="WoWtTask" permissionEdit="wo:woWtTask:edit"></sys:toolbargridmain>
              <sys:searchadv></sys:searchadv>
@@ -29,13 +29,18 @@
 								<input property="editor" class="mini-textbox"  style="width:100%;" />
 								<input id="id-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 							</div>
-							<div name="wtCode"  field="wtCode" vtype=""  headerAlign="center" allowSort="true" width="120" >编号
+							<div name="wtCode"  field="wtCode" vtype=""  headerAlign="center" allowSort="true" width="100" >编号
 								<input property="editor" class="mini-textbox"  style="width:100%;"  />
 								<input id="wtCode-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"  onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 							</div>
 							<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="40"sortField="a.status">状态 
 								<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_status" /> 
 								<input id="status-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_status" multiSelect="true" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+							</div>
+							<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+								<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+								<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
+								onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
 							</div>
 							<div name="orgName"  field="orgName" vtype=""  headerAlign="center" allowSort="true" width="64" >部门
 								<input property="editor" class="mini-textbox"  style="width:100%;"  />
@@ -73,7 +78,7 @@
 								<input property="editor" class="mini-textbox"  style="width:100%;"  />
 								<input id="location-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 							</div>
-							<div name="content"  field="content" vtype=""  headerAlign="center" allowSort="true" width="100" >工作内容
+							<div name="content"  field="content" vtype=""  headerAlign="center" allowSort="true" width="200" >工作内容
 								<input property="editor" class="mini-textarea" style="width:100%;"  />
 								<input id="content-Filter" name="mini-column-filter"  property="filter" class="mini-textbox" style="width:100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 							</div>
@@ -221,13 +226,13 @@
 									</td>
 									<td style="text-align:right;">专业：</td>									
 									<td>
-									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false"  width="200px"
-										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
+									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false" allowInput="false" width="200px"
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
 									</td>
 									<td style="text-align:right;">班组：</td>									
 									<td>
 									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="200px" allowInput="false" readonly="readonly"
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=sys/sysOrgList&classId=0',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>								
 								  </tr>
 								  <tr>
@@ -253,7 +258,7 @@
 								  <tr>
 									<td style="text-align:right;">专职监护人监护：</td>
 									<td colspan="5">
-									  <input name="isTutelage" id="isTutelage" class="mini-CheckBox" onvaluechanged="updateIsTutelage"  vtype="" required="false" width="100%" />
+									  <input name="isTutelage" id="isTutelage" class="mini-CheckBox"  vtype="" required="false" width="100%" /><!-- onvaluechanged="updateIsTutelage"  -->
 									</td>
 								  </tr>
 								  <tr>
@@ -475,8 +480,8 @@
 				onAfterNewRecord:addNewReword,
 	            onAfterLoadRecord: onAfterLoadRecord,          
 	            onBeforeSaveCheck: onBeforeSaveCheck,
-	            onBeforeSaveForm : onBeforeSaveForm,
-	            onAfterLoadAllChild:onAfterLoadAllChild
+	            onBeforeSaveForm : onBeforeSaveForm
+	            
 			 }
 	       );
 
@@ -845,6 +850,23 @@
 	 
    $(function(){
 	 addButton();
+	 $.ajax({//获取新建权限
+       url: "${ctx}/wo-wt/wo/woWt/permit",
+       data:{wtType:"7"},
+       type:"post",
+       success: function (text) {  	             	
+      	 var data = mini.decode(text);
+      	 var addCan = data.addCan;
+      	 if(addCan=="1"){
+      		// setGridReadOnly("datagridMain","0",{			       
+ 		       // addCan:"1"
+ 			   // });	 
+      		mini.get("_tbGrid_add").setEnabled(true);
+      	 }else{           		
+      		mini.get("_tbGrid_add").setEnabled(false);
+      	 }
+       }
+     });
    }); 
    
    
@@ -860,15 +882,10 @@
    function onAfterLoadRecord(o) {	   	    	
        wfAfterLoad(o);//加载流程
        editControl.afterLoad(o);//页面编辑权限控制	 
-       updateIsTutelage();
+       //updateIsTutelage();
    }
    
-   function onAfterLoadAllChild(){
-	  /*  var editForm = new mini.Form("#editform");
-       var editFormData = editForm.getData();
-		var formWoWtWorkSafe = new mini.Form("#formWoWtWorkSafe");
-		formWoWtWorkSafe.setData(editFormData); */
-   }
+  
    
    //选择用户（分页多选）
    function popLovJson1(e) {           
@@ -924,7 +941,7 @@
 	  return true;
    }
    //编辑权限控制
-  // editControl.loadEditList('woWtTask'); 
+   editControl.loadEditList('woWtTask'); 
    
    
   
@@ -942,104 +959,6 @@
 	
  }
  
-//流程按钮响应事件
-/* function onBpmButtonClick(buttonId) {  
- 	debugger;     		  
-       var data = {
-         eventName: 'parentClickButton',
-         alias: buttonId,
-         flowVariables: {//定义流程变量                  
-           "abc": '2' || '',//工作负责人 
-          },//隐患名称
-         data: {}
-       };
-       sendBpmMsg(data);
-       popBox(); 
-      
-  }   */
-  
-  
-
- /*  function onDocActionRenderer(e) {
-	    var s=null;
-	    var gridTemp = e.sender;
-	    var record = e.record;
-	    var uid = record._uid;
-	    var rowIndex = e.rowIndex;
-	    var docFileName=record.docFileName;
-	    var gridAttr= getGridSelfAttrByGridId(gridTemp.id );
-	     var preview="";
-	    var coDocEdit="";
-	    //alert(gridTemp.id);
-	    //http://192.168.0.167:8012/onlinePreview
-	    if(objIsNotNull(rootDocPreviewUrl)){
-	       var previewURL= rootDocPreviewUrl+"?url="+encodeURIComponent(rootDocUrl+record.docPath);
-	       preview  = ' <a class="Edit_Button"  id="__doc_action_preview" target="_blank" href="'+previewURL+ '"><i class="fa fa-eye" data-tooltip="预览" data-placement="top"></i>预览</a>';
-
-	    }
-	    if( objIsNotNull(gridAttr.allowDocPreview)&& gridAttr.allowDocPreview=='0'){
-	        preview='';
-	    }
-
-	    if( objIsNotNull(gridAttr.allowDocCoEdit)&& gridAttr.allowDocCoEdit=='1'){
-	        if(checkIsOfficeDoc(extractFileExt(docFileName)) ) {
-	            var coDocEditURL = BASE_URL_DOC_CO_EDIT + "&docPath=" + encodeURIComponent(record.docPath);
-
-	            if(useMicroServices){
-	                if(objIsNotNull(_iamCode)){
-	                    coDocEditURL=contactUrlParamValue(coDocEditURL,'iamCode',_iamCode);
-	                }
-	            }
-	            coDocEdit = ' <a class="Edit_Button"  id="__doc_action_coEdit" target="_blank" href="' + coDocEditURL + '"><i class="fa fa-user-edit" data-tooltip="协同编辑" data-placement="top"></i>协同编辑</a>';
-	        }
-
-	    }
-	    var edit = '<a class="Edit_Button" id="__doc_action_edit" href="javascript:docAttachEdit(\''+gridTemp.id+'\',\'' + record.id + '\')"><i class="fa fa-edit" data-tooltip="编辑" data-placement="top"></i>编辑</a>' ;
-	    var down = ' <a class="Edit_Button"  id="__doc_action_down" target="_blank" href="'+ rootDocUrl+record.docPath+ '"  download="'+record.docFileName+'"><i class="fa fa-download" data-tooltip="下载" data-placement="top"></i>下载</a>';
-	    var del  = ' <a class="Delete_Button"  id="__doc_action_del" href="javascript:docAttachDelRow(\''+gridTemp.id+'\',\'' + uid + '\')"><i class="far fa-trash-alt" data-tooltip="删除" data-placement="top"></i>删除</a>';
-	    if(!checkPermissionRemove()){
-	        del='';
-	    }
-	    if(!checkPermissionEdit()){
-	        edit='';
-	    }
-
-	     s = edit+ down +preview+coDocEdit+ del ;
-
-
-
-	    return s;
-	} */
-
- 
-
-
-
-
-function onfileselect(e){
-     var docFileName = mini.get("docFileName");
-     var filePath = e.sender.getValue()
-     var fileName = extractFileName(filePath);
-     docFileName.setValue(fileName);
-}
-
-function mainTabActivechanged(e){	
-	 var tabs = mini.get("tabsMain").getTabs();
-     var id=mini.get("id").getValue();	//任务设备ID
-     if(e.tab.title == "作业安全措施票"){
-    	 var wtId =mini.get("wtId").getValue();
-    	 /* if(wtId==null ||wtId==""){
-    		 var editForm = new mini.Form("#editform");
-    	     var editFormData = editForm.getData();
-    	     var formWoWtWorkSafe = new mini.Form("#formWoWtWorkSafe");
-    		 formWoWtWorkSafe.setData(editFormData);
-    	 } */
-    	/*  var editForm = new mini.Form("#editform");
-	     var editFormData = editForm.getData();
-	     var formWoWtWorkSafe = new mini.Form("#formWoWtWorkSafe");
-		 formWoWtWorkSafe.setData(editFormData); */
-     }
-}
 
 //控制专职监护编辑
 function updateIsTutelage(){
@@ -1055,9 +974,37 @@ function updateIsTutelage(){
 		mini.get("tutelageAddress").setEnabled(false);
 		mini.get("tutelageContent").setEnabled(false);
 	} 
-	
-    
+	  
 }
+
+//流程按钮响应事件
+function onBpmButtonClick(buttonId) {  
+ 
+    var isSave =  checkDataChanged();//获取页面是否保存明细数据，true:未保存   false：已保存
+    if(isSave==true){
+	  mini.alert("请先保存再提交流程！");
+	  return;
+    }else{     
+      
+      if(buttonId=="agree"){//同意
+     	var b = editControl.flowAction(); //提交前验证		
+  		if(!b){
+  	        return;
+  	    }
+      }
+      var data = {
+        eventName: 'parentClickButton',
+        alias: buttonId,
+        /* flowVariables: {//定义流程变量                  
+          "reportByCompany": reportByCompany || '',//发现人所属公司
+          "specCode": specCode || ''//专业编号
+         }, */
+        data: {}
+      };
+      sendBpmMsg(data);
+      popBox(); 
+    } 
+ } 
 </script>
 </body>
 </html>

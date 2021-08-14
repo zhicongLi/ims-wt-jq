@@ -41,12 +41,16 @@
 						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
 							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
 							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
-								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
-							/>
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">动火工作内容 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>
+						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+							<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+							<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
 						</div>
 						<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="false" width="100" sortField="a.status">状态 
 							<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/wo-wt/sys/dict/listDataStr?type=wo_wt_status" /> 
@@ -132,7 +136,7 @@
 							<input class="mini-hidden" name="procInsId" id="procInsId" />
 						    <input class="mini-hidden" name="wtType" id="wtType" /> 
 						    <input class="mini-hidden" name="updateDate" id="updateDate" /> 
-						    <input class="mini-hidden" name="workLeaderName" id="workLeaderName" />
+						    <input class="mini-hidden" name="workLeader" id="workLeader" />			
 							<input class="mini-hidden" name="maintOrgName" id="maintOrgName" />
 							<input class="mini-hidden" name="orgName" id="orgName" /> 
 							<input class="mini-hidden" name="pcSigner" id="pcSigner" />							
@@ -206,12 +210,12 @@
 									<td style="text-align:right;">班组：</td>
 									<td >
 									  <input width="200px" name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="150px" allowInput="false"  readonly="readonly"
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctx}/pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=sys/sysOrgList&classId=0',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>
 									<td style="text-align:right;">专业：</td>
 									<td>
 									  <input width="200px" name="specId" id="specId" textName="specName" class="mini-buttonedit" vtype="" required="false" allowInput="false"
-										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
 									</td>									
 									<%-- <td>机组:</td>
 									<td>
@@ -313,9 +317,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="800" sortField="a.descr" allowCellWrap="true">运行部门应采取的安全措施 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="400">已执行（√）
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="400">已执行（√）
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 									</div>
 								</div>
 							</div>
@@ -338,9 +343,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="800" sortField="a.descr" allowCellWrap="true">动火部门应采取的安全措施
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="400">已执行（√）
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="400">已执行（√）
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 									</div>
 								</div>
 							</div>
@@ -379,7 +385,7 @@
 									<td style="text-align:right;">动火部门负责人或技术负责人签名：</td>
 									<td >										
 									  <input name="woWtFire.appDeptLeader" id="woWtFire.appDeptLeaderName_" textName="woWtFire.appDeptLeaderName"
-									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','5')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="200px"/>
+									    onbuttonclick="sign_('woWtFire.appDeptLeaderName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="200px"/>
 									</td>
 									<td >
 									  <input name="woWtFire.appDeptLeaderTime" id="woWtFire.appDeptLeaderTime" class="mini-datepicker" showTime="true" vtype="" allowInput="false" format="yyyy-MM-dd HH:mm:ss" required="false" width="200px"/>
@@ -403,16 +409,9 @@
 									</td>
 									<td style="text-align:right;">运行许可人：</td>
 									<td colspan="3">										
-									  <input name="permitBy" id="permitByName_" textName="permitByName" onvaluechanged="padWorkLeader" onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="200px"/>									    									     
+									  <input name="permitBy" id="permitByName_" textName="permitByName"  onbuttonclick="sign_('permitByName_','3')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" width="200px"/>									    									     
 									</td>
-								</tr>								
-								<tr style="display: none;">
-									<td>检修负责人签名：</td>
-									<td style="text-align: left;">
-									  <input name="smDutyPrincipal" id="smDutyPrincipalName_" textName="smDutyPrincipalName"
-										onbuttonclick="sign_('smDutyPrincipalName_','99')" allowInput="false" class="mini-buttonedit defSign_" vtype="" required="false" />
-									</td>
-								</tr> 
+								</tr>																
 								<tr>
 									<td colspan="6">应配备的消防设施和采取的消防措施、安全措施已符合要求。可燃性、易爆气体含量或粉尘浓度合格。</td>
 								</tr>
@@ -682,6 +681,7 @@
 	<jsp:include page="permit.jsp"></jsp:include>
 	<jsp:include page="attachTab.jsp" flush="true" />	
 	<script type="text/javascript">
+	
 		initBase({
 			id : "datagridMain",
 			objId : "WoWt",
@@ -691,9 +691,7 @@
 			initInsertUrl : "${ctx}/wo-wt/wo/woWt/initInsert?wtType=${param.wtType}&isStandard=${param.isStandard}&mainTicketId=${param.mainTicketId}&correspondingNumber=${param.correspondingNumber}&sourceType=1",
 			saveUrl : "${ctx}/wo-wt/wo/woWt/save",
 			removeUrl : "${ctx}/wo-wt/wo/woWt/remove",
-			exportUrl : "${ctx}/wo-wt/wo/woWt/export",
-			addCan :'0',
-			cloneCan :'0',
+			exportUrl : "${ctx}/wo-wt/wo/woWt/export",			
 			onBeforeSaveForm : onBeforeSaveForm,
 			onAfterNewRecord:addNewReword,
             onAfterLoadRecord: onAfterLoadRecord,          
@@ -871,11 +869,25 @@
 			/* "gridId":"gridSmCheckQuestion", *//* 对应具体的列表，默认给明细 */
 			"name":'打印预览'
 		  });
-		  sysToolBar_.addButtonOption({
+		 /*  sysToolBar_.addButtonOption({
 			"buttonId":'linkMainTicket',
-			"functionStr":'linkMainTicket',/* 对应按钮的点击事件 */			
+			"functionStr":'linkMainTicket',		
 			"name":'关联主票'
-	      });
+	      }); */
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue1',
+			"functionStr":"updFieldValue('gridWoWtsm','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue2',
+			"functionStr":"updFieldValue('gridWoWtsm6','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm6", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
 		  /* sysToolBar_.addButtonOption({
 			"buttonId":'repairRail',
 			"functionStr":'repairRail',		
@@ -892,6 +904,7 @@
 	   		return;
 	   	  }	
 	   	  var mainTicketId = mini.get("mainTicketId").getValue();
+	      var iamCode = iamCodeValue();
 	      //如果主票id为空，则说明该东湖票没有关联主票
 		  if (mainTicketId == null || mainTicketId == "") {
 			/* var url = "${ctxRoot}/form?view=wo/woWtLov&addCan=0&baseFilter=a.status<>'10' and  a.status<>'8' and a.wt_type <> '5' and a.wt_type<>'6' and a.wt_type<>'8'";		
@@ -935,6 +948,7 @@
 				},
 				type : "post",
 				success : function(text) {
+					debugger;
 					var o = mini.decode(text);				
 					if (o != null) {
 						newTabPage(
@@ -943,7 +957,7 @@
 										+ o.wtType
 										+ '&border=1&action=view&id='
 										+ o.id
-										+ '&showList=0&showTree=0&showForm=1',true);
+										+ '&showList=0&showTree=0&showForm=1&iamCode'+iamCode,true);
 					} else {
 					}
 				}
@@ -961,7 +975,7 @@
 	  }
 	    
 	  //加载页面编辑权限
-	    //editControl.loadEditList('woWt6')
+	  editControl.loadEditList('woWt6')
 </script>
 </body>
 </html>

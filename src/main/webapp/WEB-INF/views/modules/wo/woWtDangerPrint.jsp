@@ -13,8 +13,8 @@
 	   <tbody>	  
 		<tr>
 			<td colspan="3" class="department" ><span class="ident-number1">1.</span>部门：
-				<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
-				班组：<input style="width:21%" readonly="true" value="${WoWt.maintOrgName }"/>
+				<input  readonly="true" value="${WoWt.orgName }"/>
+				班组：<input  readonly="true" value="${WoWt.maintOrgName }"/>
 			</td>
 		</tr>
 		<tr>
@@ -144,7 +144,7 @@ function loadDangerInfo()
                 str += '<td>' + ((typeof(data[i].riskGradeName)!="undefined")?data[i].riskGradeName:"") + '</td>'; */
                 str += '<td>' + ((typeof(data[i].measureName)!="undefined")?data[i].measureName:"") + '</td>';
                 str += '</tr>';
-                let height = $(".dangerContent:last")[0].clientHeight-171;
+                let height = $(".dangerContent:last")[0].clientHeight-120;
                
                 //let pageHeight = A4 - 23;
                 //alert(height+" :: " + pageHeight);
@@ -210,7 +210,8 @@ function loadDangerInfo()
                 * */
                let html = '';
                let num = Math.floor((pageHeight - height-$(".dangerContent:last").prevAll(".pageHeader:first").height()) / $(".table01 tbody tr")[3].clientHeight);
-              /*  if(num > 0)---2021-08-03注释
+               //注释
+              /*  if(num > 0)
                {
             	   html += '<tr class="firstblanktr">';
                    html += '<td></td><td></td>';
@@ -228,11 +229,12 @@ function loadDangerInfo()
                    html += '<td></td>';                 
                    html += '</tr>';
                }            
-               $(".dangerContent:last").find(".tfoot:last").before(html);   
+               $(".dangerContent:last").find(".tfoot:last").before(html); 
                if(num > 0){//添加以下空白印章           	          
                    $(".dangerContent:last").find(".invar:last").append('<img id="#yxkb" src="${ctxStatic}/wo/icon/yxkb_yf.bmp" style="position: absolute;left:120px;margin:auto;top:' + (height-185)+ 'px">'); 
-               } */
-               if(data.length<=0){
+               } */ 
+               
+              if(data.length<=0){
             	   for (let i = 0; i < 5; i++) {
                        html += '<tr>';
                        html += '<td></td>';
@@ -242,10 +244,10 @@ function loadDangerInfo()
                        html += '</tr>';
                    }             
                    $(".dangerContent:last").find(".tfoot:last").before(html);     
-               }
+               } 
                
            }
-           //mergeRow(0,0,0,true);
+          
            mergeRow();
    	       setPageBreak($("#wowtFirstTable"),"wowt");//主票面
        },

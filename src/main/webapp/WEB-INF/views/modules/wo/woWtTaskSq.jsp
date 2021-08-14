@@ -92,8 +92,8 @@
 	   <tbody>	  
 		<tr>
 			<td><span class="ident-number1">1.</span>
-			      部门：<input style="width:18%"  readonly="true" value="${WoWtTask.orgName}"/>
-			      班组：<input style="width:12%" readonly="true" value="${WoWtTask.maintOrgName}"/>				
+			      部门：<input  readonly="true" value="${WoWtTask.orgName}"/>
+			      班组：<input  readonly="true" value="${WoWtTask.maintOrgName}"/>				
 			</td>
 		</tr>
 		<tr>
@@ -176,10 +176,34 @@
 	    <tr>
 		    <td>7．应注意的事项及采取的作业安全措施：</td>		    
 	    </tr>
-	    <tr style="min-height:200px!important; height:200px;vertical-align:top">
+	    <%-- <tr style="min-height:200px!important; height:200px;vertical-align:top">
 		    <td >${WoWtTask.descr}</td> 	
 		        
-	    </tr>	   
+	    </tr> --%>	
+	   <%--  <c:if test="${fn:length(conditionAqList) > 0}">
+			<c:forEach begin="0" end="${fn:length(conditionAqList)-1}" var="i" varStatus="status">
+				<tr class="daozhadixian">
+					<td><input  readonly="true" value="${fn:escapeXml(conditionAqList[i])}"/></td>
+				</tr>
+			</c:forEach> 
+		</c:if> 
+		<c:if test="${0 == fn:length(conditionAqList)}">				
+			<tr class="daozhadixian" colspan="2">
+				<td><input  readonly="true" value="1.无"/></td>
+			</tr>				
+		</c:if> --%>  
+		<c:forEach items="${aqMap}" var="i" varStatus="status">
+			<tr >					
+				<td>
+					${ status.index + 1}.${i.value[0]}
+				</td>					
+			</tr>
+		</c:forEach> 
+		<c:if test="${0 == fn:length(aqMap)}">
+			<tr style="min-height:200px!important; height:200px;vertical-align:top">
+		       <td ></td> 			        
+	        </tr>
+		</c:if>	
 	    <tr>
 		    <td>交底人：<input size="10" readonly="true" value=""/></td>		    
 	    </tr>

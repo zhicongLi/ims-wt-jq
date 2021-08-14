@@ -108,8 +108,8 @@
 	  <tbody>	  
 		<tr>
 			<td colspan="2" class="department"><span class="ident-number1">1.</span>部门：
-				<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
-				班组：<input style="width:21%" readonly="true" value="${WoWt.maintOrgName }"/>
+				<input   readonly="true" value="${WoWt.orgName }"/>
+				班组：<input  readonly="true" value="${WoWt.maintOrgName }"/>
 			</td>
 			<td></td>
 		</tr>
@@ -505,16 +505,23 @@
         </tr>	  
 		<tr class="date01">
 			<td colspan="2"><span class="ident-number2">11.</span>确认本工作票上述各项内容，许可开始工作时间：
-				<input readonly="true" />年
+				<!-- <input readonly="true" />年
 				<input readonly="true" />月
 				<input readonly="true" />日
 				<input readonly="true"  />时
-				<input readonly="true"  />分 				
+				<input readonly="true"  />分  -->
+				<input style="width: 40px;"  readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+	            <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+	            <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+	            <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+	            <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分				
 			</td>
 		</tr>
 		<tr>			
-			<td >工作许可人： <input size="10" readonly="true"  value=""/></td>
-			<td >工作负责人： <input size="10" readonly="true"  value=""/></td>
+			<!-- <td >工作许可人： <input size="10" readonly="true"  value=""/></td>
+			<td >工作负责人： <input size="10" readonly="true"  value=""/></td> -->
+			<td >工作许可人： <input size="10" readonly="true"  value="${WoWt.permitByName}"/></td>
+			<td >工作负责人： <input size="10" readonly="true"  value="${WoWt.workLeaderSignName}"/></td>
 		</tr>
 		<tr class="date01">
 			<td colspan="2" style="line-height: 30px;"><san class="ident-number2">12.</san>工作负责人变更：自					  
@@ -566,14 +573,14 @@
 		</tr>
 		<tr>
 			<td >值长（或运行值班负责人）：
-			   <input size="10" readonly="true" value="${woWtDelayList[0].dutyLeaderName }" />
+			   <input size="10" readonly="true" value="${woWtDelayList[0].permitByName }" />
 			</td>
 			<td>	          
-	           <input style="width: 40px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
-	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].dutyLeaderTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
+	           <input style="width: 40px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].permitByTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].permitByTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].permitByTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].permitByTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+	           <input style="width: 20px;text-align:center;" readonly="true"  placeholder="<fmt:parseDate value='${woWtDelayList[0].permitByTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分
            </td>
 		</tr>
 		<tr>
@@ -688,7 +695,7 @@
 			</tr>
 		  </c:forEach>
 		</c:if>				
-		</table>	 
+	</table>	 
 </div>
 <input type="hidden" id="wtCode"  value="${WoWt.wtCode}">
 <!-- 危险点预控措施 -->

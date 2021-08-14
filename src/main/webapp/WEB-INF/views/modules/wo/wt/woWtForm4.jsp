@@ -35,12 +35,16 @@
 						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
 							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
 							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
-								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
-							/>
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">工作内容 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+						</div>
+						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+							<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+							<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
 						</div>
 						<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="100" sortField="a.status">状态
 							<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" /> 
@@ -248,12 +252,12 @@
 									<td style="text-align:right;">专业：</td>									
 									<td>
 									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false" allowInput="false" width="200px"
-										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
 									</td>
 									<td style="text-align:right;">班组：</td>									
 									<td>
 									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="200px" allowInput="false"  readonly="readonly"
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=sys/sysOrgList&classId=0',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>								
 								  </tr>
 								  <tr>
@@ -330,9 +334,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">应断开下列断路器、隔离开关和熔断器等，并在操作把手（按钮）上设置“禁止合闸，有人工作”警告牌:
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -355,9 +360,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">应关闭下列截门、挡板（闸板），并挂“禁止操作，有人工作”警告牌：
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -380,9 +386,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">应开启下列阀门、挡板（闸板），使燃烧室、管道、容器内余汽、水、油、灰、烟排放尽，并将温度降至规程规定值：
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -405,9 +412,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">应将下列截门停电、加锁，并挂“禁止操作，有人工作”警告牌：
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -432,9 +440,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">其他安全措施：
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" allowCellWrap="true" headerAlign="center" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" allowCellWrap="true" headerAlign="center" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="true" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -485,9 +494,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="600" allowCellWrap="true">运行值班人员补充安全措施： 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" allowCellWrap="true" headerAlign="center" allowSort="false" width="200">措施执行情况： 
+										<!-- <div name="execRes" field="execRes" vtype="" allowCellWrap="true" headerAlign="center" allowSort="false" width="200">措施执行情况： 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32">安措类型
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -548,6 +558,10 @@
 						      <table class="formtable">
 						        <tr>
 									<td style="text-align:right;">变更后工作负责人：</td>
+									<%-- <td>
+									  <input style="width: 200px;" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit" allowInput="false"
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />
+									</td> --%>
 									<td>
 									  <input style="width: 200px;" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit" allowInput="false"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />
@@ -1112,7 +1126,7 @@
 						cascadeVisible : true,
 						tabsId : "tabsMain",
 						tabName : "tabWoTaskSafeMeasureList",
-						dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data",
+						dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data?wtType=1",
 						getUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/get",
 						saveUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/save",
 						removeUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/remove",
@@ -1236,46 +1250,62 @@
 		  }); 
 		  
 		  sysToolBar_.addButtonOption({
-			"buttonId":'createWoWt5',
-			"functionStr":'createWoWt5',/* 对应按钮的点击事件 */			
-			"name":'一级动火工作票'
-		  });  
+			"buttonId":'repairRail',
+			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
+			"name":'检修围栏'
+		  }); 
+		  				  		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue1',
+			"functionStr":"updFieldValue('gridWoWtsm9','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm9", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue2',
+			"functionStr":"updFieldValue('gridWoWtsm10','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm10", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue3',
+			"functionStr":"updFieldValue('gridWoWtsm11','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm11", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue4',
+			"functionStr":"updFieldValue('gridWoWtsm12','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm12", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue5',
+			"functionStr":"updFieldValue('gridWoWtsm14','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm14", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue6',
+			"functionStr":"updFieldValue('gridWoWtsm4','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm4", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+			  	  
 		  	  
 	    }
 		  
 	
 	   	
-	   //流程按钮响应事件
-       function onBpmButtonClick(buttonId) {    	   
-    	   var isSave =  checkDataChanged();//获取页面是否保存明细数据，true:未保存   false：已保存
-    	   if(isSave==true){
-    		 mini.alert("请先保存再提交流程！");
-    		 return;
-    	   }else{
-   		     var workLeader = null;   		    
-   			 if (mini.get("woWtLC.nowWorkLeader").getValue() != null&& mini.get("woWtLC.nowWorkLeader").getValue() != "") {
-   				workLeader = mini.get("woWtLC.nowWorkLeader").getValue();				
-   			  } else {
-   				workLeader = mini.get("workLeader").getValue();				
-   			  }
-    		 var data = {
-               eventName: 'parentClickButton',
-               alias: buttonId,
-               flowVariables: {//定义流程变量                  
-                   "workLeader": workLeader || '',//工作负责人 
-               },//隐患名称
-               data: {}
-             };
-             sendBpmMsg(data);
-             popBox(); 
-    	   }
-        	                     
-        } 
-	   
-   
+	  
 	  
         //加载页面编辑权限
-	    //editControl.loadEditList('woWt4')
+	    editControl.loadEditList('woWt4')
 </script>
 </body>
 </html>

@@ -5,7 +5,15 @@
 <script type="text/javascript">
 window.onload = function(){			
    addButton();//加载按钮
-   /* var wtType = ${param.wtType};//工作票类型
+   isAddCan();//是否可新建工作票
+   //设置表格边框样式
+   $('.formtable').attr({"cellpadding":"0","cellspacing":"1","border":"0","bgColor":"#333"});
+    
+}
+
+//工作票新建权限
+function isAddCan(){
+   var wtType = ${param.wtType};//工作票类型
    $.ajax({//获取新建权限
        url: "${ctx}/wo-wt/wo/woWt/permit",
        data:{wtType:wtType},
@@ -22,10 +30,7 @@ window.onload = function(){
       		mini.get("_tbGrid_add").setEnabled(false);
       	 }
        }
-     }); */
-     //设置表格边框样式
-     $('.formtable').attr({"cellpadding":"0","cellspacing":"1","border":"0","bgColor":"#333"});
-    
+     }); 
 }
 
 //延期、变更负责人只能一次
@@ -34,6 +39,7 @@ function updateDelayAndLeaderChange(){
 	var isLeaderChange = null; //变更负责人
 	var isDelay = null; //延期
 	isDelay = mini.get("woWtDelay.isDelay").getValue();
+	var status = mini.get("status").getValue();
     if(wtType=="1"||wtType=="3"||wtType=="4"){
     	isLeaderChange = mini.get("woWtLC.isLeaderChange").getValue(); 
     	if(isLeaderChange=="1"){
@@ -61,6 +67,7 @@ function updateDelayAndLeaderChange(){
     		mini.get("woWtDelay.permitByName1_").setEnabled(true);   
     		mini.get("woWtDelay.permitByTime").setEnabled(true);     		
     	}
+    	
     	
     }else if(wtType=="2"){
     	
@@ -231,12 +238,13 @@ function addNewReword(o){
 
 function onAfterLoadRecord(o) {	   
    wfAfterLoad(o);
-   editControl.afterLoad(o);//页面编辑权限控制	
-   updateDelayAndLeaderChange(); //控制延期、变更负责人编辑控制权限
+   editControl.afterLoad(o);//页面编辑权限控制	   
+   //updateDelayAndLeaderChange(); //控制延期、变更负责人编辑控制权限
+  
    //updateIsTutelage();//控制专职监护编辑控制
 }
-    
-//editControl.loadEditList('woWt');
+   
+
     
 //打印预览
 function print(){
@@ -552,8 +560,7 @@ function createWoWt5(){
      mini.alert("当前状态无法新建动火票！");
 	 return;
    }
-	    
-      
+       
    $.ajax({
      url : "${ctx}/wo-wt/wo/woWt/data2",
      data : {
@@ -566,8 +573,23 @@ function createWoWt5(){
 	   if (data.length>0) {		
 		  mini.alert("您有未完结的动火票无法开具新票！");
 		  return;
-	   } else {		  
-		  newTabPage('新建一级动火工作票',woWtNewTabPageUrl+"/form?view=wo/wt/woWtForm5&action=new&showList=0&wtType=5&isStandard=1&mainTicketId="+id+"&correspondingNumber="+serialNumber+"&iamCode="+iamCode,true); 		
+	   } else {	
+		   $.ajax({//获取新建权限
+		       url: "${ctx}/wo-wt/wo/woWt/permit",
+		       data:{wtType:"5"},
+		       type:"post",
+		       success: function (text) {  	             	
+		      	 var data = mini.decode(text);
+		      	 var addCan = data.addCan;
+		      	 if(addCan=="1"){
+		      		newTabPage('新建一级动火工作票',woWtNewTabPageUrl+"/form?view=wo/wt/woWtForm5&action=new&showList=0&wtType=5&isStandard=1&mainTicketId="+id+"&correspondingNumber="+serialNumber+"&iamCode="+iamCode,true); 		
+		      	 }else{           		
+		      		mini.alert("您没有新建一级动火工作票权限！");
+		      		return false;
+		      	 }
+		       }
+		    });     
+		 
        }
 	 }
    }); 
@@ -591,11 +613,12 @@ function createWoWt6(){
 	 return;
    }
    
+   
    $.ajax({
      url : "${ctx}/wo-wt/wo/woWt/data2",
      data : {
 	  mainTicketId : id,
-	  wtType:"5"
+	  wtType:"6"
      },
      type : "post",
      success : function(text) {	    	
@@ -603,8 +626,23 @@ function createWoWt6(){
 	   if (data.length>0) {		
 		  mini.alert("您有未完结的动火票无法开具新票！");
 		  return;
-	   } else {		  
-		   newTabPage('新建一级动火工作票',woWtNewTabPageUrl+"/form?view=wo/wt/woWtForm6&action=new&showList=0&wtType=6&isStandard=1&mainTicketId="+id+"&correspondingNumber="+serialNumber+"&iamCode="+iamCode,true); 
+	   } else {	
+		   $.ajax({//获取新建权限
+		       url: "${ctx}/wo-wt/wo/woWt/permit",
+		       data:{wtType:"6"},
+		       type:"post",
+		       success: function (text) {  	             	
+		      	 var data = mini.decode(text);
+		      	 var addCan = data.addCan;
+		      	 if(addCan=="1"){
+		      		newTabPage('新建二级动火工作票',woWtNewTabPageUrl+"/form?view=wo/wt/woWtForm6&action=new&showList=0&wtType=6&isStandard=1&mainTicketId="+id+"&correspondingNumber="+serialNumber+"&iamCode="+iamCode,true); 
+		      	 }else{           		
+		      		mini.alert("您没有新建二级动火工作票权限！");
+		      		return false;
+		      	 }
+		       }
+		   }); 
+		   
        }
 	 }
    });
@@ -658,10 +696,14 @@ function onBpmButtonClick(buttonId) {
 	  mini.alert("请先保存再提交流程！");
 	  return;
     }else{
-   	  var b = editControl.flowAction(); //提交前验证
-      if(!b){
-        return;
-      }
+   	       	 
+   	 if(buttonId=="agree"){//同意
+   		var b = editControl.flowAction(); //提交前验证		
+		if(!b){
+	        return;
+	    }
+   	 }
+      
       var workLeader = null;  
       if(wtType=="2"||wtType=="5"||wtType=="6"){
     	  workLeader = mini.get("workLeader").getValue(); 
@@ -741,5 +783,21 @@ function onBeforeInsertRecord(){
 			throw "aaaa";
         }
     });  	    	    
+}
+
+//填充指定值到指定字段(安措全部执行)
+function updFieldValue(gridId,fieldName,fieldValue)
+{
+	var gridTemp = mini.get(gridId);
+	var rows = gridTemp.getData();
+	var obj = {};
+	if(objIsNotNull(fieldName))
+	{
+		obj[fieldName] = fieldValue;
+		for(var i = 0;i < rows.length;i++)
+		{
+			gridTemp.updateRow(rows[i],obj);
+		}
+	}
 }
 </script>

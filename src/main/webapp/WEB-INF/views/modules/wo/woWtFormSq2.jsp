@@ -90,19 +90,19 @@
 	    <h1>电气第二种工作票</h1>
 	    <h2 >编号:<span>${WoWt.wtCode}</span></h2>	  
 	</header>
-		<table class="table01" id="wowtFirstTable">	
+	<table class="table01" id="wowtFirstTable">	
 	   <tbody>	  
 		<tr>
 			<td colspan="2" class="department"><span class="ident-number1">1.</span>部门：
 				<c:choose>
 					<c:when test="${not empty WoWt.safetyGuardian }">
-						<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
-						班组：<input style="width:12%" readonly="true" value="${WoWt.maintOrgName }"/>
+						<input  readonly="true" value="${WoWt.orgName }"/>
+						班组：<input  readonly="true" value="${WoWt.maintOrgName }"/>
 						安全监护人：<input style="width:11%" readonly="true" value="${WoWt.safetyGuardian }"/>						
 					</c:when>
 					<c:otherwise>
-						<input style="width:18%"  readonly="true" value="${WoWt.orgName }"/>
-						班组：<input style="width:21%" readonly="true" value="${WoWt.maintOrgName }"/>						
+						<input  readonly="true" value="${WoWt.orgName }"/>
+						班组：<input  readonly="true" value="${WoWt.maintOrgName }"/>						
 					</c:otherwise>
 				</c:choose>
 			</td>
@@ -205,7 +205,12 @@
 		                工作条件（停电或不停电，或邻近及保留带电设备名称）：
 		     </td>
 		</tr>
-		<tr class="daozhadixian">
+		<tr >
+			<td  colspan="3">
+			  <input readonly="true"  value="${WoWt.descr}" style="width:100%;"/>
+			</td>
+		</tr>
+		<%-- <tr class="daozhadixian">
 			<td id=""  class="widthValue" colspan="3">
 			  <input readonly="true"  value="${fn:escapeXml(conditionSmList[0])}"/>
 			</td>
@@ -216,7 +221,7 @@
 					<input  readonly="true" value="${fn:escapeXml(conditionSmList[i-1])}"/>
 				</td>
 			</tr>
-		</c:forEach>
+		</c:forEach> --%>
 		<%-- <tr>
            	<td colspan="3"><span class="ident-number1">8.</span>安全措施（注意事项）：
                  <input  style="width:465px;float: right" id="zlSm1" readonly="true" value="${fn:escapeXml(zlSmList[0])}"/>
@@ -229,53 +234,32 @@
 				</td>
 			</tr>
 		</c:forEach> --%>
+       
+              
         <tr>
            	<td id="condition"  class="widthValue" colspan="3">
            	  <span class="ident-number1">8.</span>安全措施（注意事项）：                 
             </td>
-		</tr>
-		<c:if test="${fn:length(conditionAqList) > 0}">
-			<c:forEach begin="0" end="${fn:length(conditionAqList)-1}" var="i" varStatus="status">
-				<tr class="daozhadixian">
-					<td><input  readonly="true" value="${fn:escapeXml(conditionAqList[i])}"/></td>
-				</tr>
-			</c:forEach> 
-		</c:if> 
-		<c:if test="${0 == fn:length(conditionAqList)}">				
-			<tr class="daozhadixian" colspan="2">
-				<td><input  readonly="true" value="1.无"/></td>
-			</tr>				
-		</c:if>
-		<%-- <c:if test="${2>fn:length(conditionAqList)}">
-			<c:forEach begin="1" end="${3-fn:length(conditionAqList)}" varStatus="status">
-				<tr class="daozhadixian">
-					<td style="position: relative;">
-						<c:choose>
-							<c:when test="${fn:length(conditionAqList)==0}">
-								<c:if test="${status.first}">
-									<input  readonly="true" value="1.无"/>										
-								</c:if>
-							</c:when>								
-						</c:choose>
-					</td>						
-				</tr>
-			</c:forEach>
-		</c:if>  --%>
-		<%-- <tr class="daozhadixian">
-			<td id=""  class="widthValue" colspan="3">
-			  <input id="zlSm1" readonly="true"  value="${fn:escapeXml(zlSmList[0])}"/>
-			</td>
-		</tr>
-		<c:forEach begin="2" end="${fn:length(zlSmList)}" var="i">
-			<tr class="ident1 work02 daozhadixian">
-				<td colspan="3">
-					<input  readonly="true" value="${fn:escapeXml(zlSmList[i-1])}"/>
-				</td>
+		</tr>		
+		    
+		<c:forEach items="${aqMap}" var="i" varStatus="status">
+			<tr >					
+				<td colspan="3" style="border-bottom:1px solid #000">
+					${ status.index + 1}.${i.value[0]}					
+				</td>		
 			</tr>
-		</c:forEach> --%>
+		</c:forEach>
+		<c:if test="${0 == fn:length(aqMap)}">				
+			<tr  >
+				<td colspan="3" style="border-bottom:1px solid #000">1.无</td>
+			</tr>				
+		</c:if> 
+			
 	   </tbody>
-       </table>						 										 
-		<table >
+       </table>	
+       			
+       			      					 										 
+	   <table >
 			<tr>
 				<td colspan="2"><san class="ident-number1">9.</san>工作票签发：</td>
 			</tr>
@@ -306,14 +290,13 @@
                 <span class="ident-number2">10.</span>
                 	补充安全措施（工作许可人填写）：
 			</tr>						
-			<c:if test="${fn:length(conditionBcList) > 0}">
+			<%-- <c:if test="${fn:length(conditionBcList) > 0}">
 				<c:forEach begin="0" end="${fn:length(conditionBcList)-1}" var="i" varStatus="status">
 					<tr class="daozhadixian">
 						<td><input  readonly="true" value="${fn:escapeXml(conditionBcList[i])}"/></td>
 					</tr>
 				</c:forEach> 
-			</c:if> 
-			
+			</c:if> 			
 			<c:if test="${2>fn:length(conditionBcList)}">
 				<c:forEach begin="1" end="${3-fn:length(conditionBcList)}" varStatus="status">
 					<tr class="daozhadixian">
@@ -328,41 +311,46 @@
 						</td>						
 					</tr>
 				</c:forEach>
-			</c:if> 
-			
-			<%-- <c:forEach items="${bcMap}" var="i" varStatus="status">
-				<tr class="daozhadixian" colspan="2">
-					<td class="table03-l" >						 
-						<input  readonly="true" value="${status.index + 1}.${i.value[0]}"/>
-					</td>
-					
+			</c:if> --%> 
+			    
+			<c:forEach items="${bcMap}" var="i" varStatus="status">
+				<tr>					
+					<td colspan="3" style="border-bottom:1px solid #000">
+						${ status.index + 1}.${i.value[0]}					
+					</td>		
 				</tr>
 			</c:forEach>
 			<c:if test="${0 == fn:length(bcMap)}">				
-				<tr class="daozhadixian" colspan="2">
-					<td><input  readonly="true" value="1.无"/></td>
+				<tr >
+					<td colspan="3" style="border-bottom:1px solid #000">1.无</td>
 				</tr>				
-			</c:if> --%>
-			
-			
+			</c:if> 
+											
 			</table>
 			<table>
 			<tr class="date01">
 				<td colspan="3"><san class="ident-number2">11.</san>确认本工作票上述各项内容， 许可开始工作时间：					   
-		           	<input readonly="true" />年
+		           	<!-- <input readonly="true" />年
 					<input readonly="true" />月
 					<input readonly="true" />日
 					<input readonly="true"  />时
-					<input readonly="true"  />分 
+					<input readonly="true"  />分  -->
+					<input style="width: 40px;"  readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+	                <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+	                <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+	                <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+	                <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分				
 				</td>
 			</tr>
 	         <tr>
-	         	<td >工作负责人：
+	         	<!-- <td >工作负责人：
 	        		<input size="10" readonly="true" />
 	        	</td>
 	        	<td >工作许可人：
 	        		<input size="10" readonly="true" />
-	        	</td>
+	        	</td> -->
+	        	<td >工作许可人： <input size="10" readonly="true"  value="${WoWt.permitByName}"/></td>
+			<td >工作负责人： <input size="10" readonly="true"  value="${WoWt.workLeaderSignName}"/></td>
 	        </tr>
 	       	<tr class="date01">
 				<td colspan="2">

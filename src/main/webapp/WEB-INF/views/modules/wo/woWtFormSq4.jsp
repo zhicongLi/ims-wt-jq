@@ -87,7 +87,7 @@
 			<c:otherwise>
 				<button  onclick="javascript:printWoOt()">打印</button>
  			</c:otherwise> 
-		</c:choose> 
+		</c:choose> 		
 	</div>
    	<div class="pageHeader"></div> 
 	<!-- 危险点预控措施 -->
@@ -106,8 +106,8 @@
 		    <tr style="height: 20px;"></tr>
 			<tr >				
 				<td  colspan="3"><span class="ident-number1">1.</span>部门：
-					<input size="25" readonly="true" value="${WoWt.orgName}"/>
-					班组：<input size="20" readonly="true" value="${WoWt.maintOrgName}"/>					
+					<input readonly="true" value="${WoWt.orgName}"/>
+					班组：<input readonly="true" value="${WoWt.maintOrgName}"/>					
 				</td>
 			</tr>	
 			<tr>
@@ -218,11 +218,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						<c:if test="${WoWt.status =='10' }">
-						${i.value[3]}
-						</c:if>
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(ydMap)}">
@@ -276,11 +272,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						<c:if test="${WoWt.status =='10' }">
-						${i.value[3]}
-						</c:if>
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(ygMap)}">
@@ -320,8 +312,7 @@
 					<td class="table03-l" colspan="2" >
 					  1.无
 					</td>
-					<td class="table03-s" >
-					</td>
+					<td class="table03-s" >√</td>
 				</tr>
 			</c:if>	
 							
@@ -334,11 +325,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						<c:if test="${WoWt.status =='10' }">
-						${i.value[3]}
-						</c:if>
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(ykMap)}">
@@ -393,11 +380,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						<c:if test="${WoWt.status =='10' }">
-						${i.value[3]}
-						</c:if>
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(ytMap)}">
@@ -452,11 +435,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						<c:if test="${WoWt.status =='10' }">
-						${i.value[3]}
-						</c:if>
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(qtMap)}">
@@ -544,9 +523,7 @@
 					<td colspan="2">
 						${ status.index + 1}.${i.value[0]}
 					</td>
-					<td>
-						${i.value[3]}
-					</td>
+					<td>√</td>
 				</tr>
 			</c:forEach>
 			<%-- <c:if test="${10>fn:length(bcMap)}">
@@ -620,21 +597,19 @@
 		           <input readonly="true"  placeholder="<fmt:formatDate value='${WoWt.permitStartTime}' pattern='dd' />"/>日
 		           <input readonly="true"   placeholder="<fmt:formatDate value='${WoWt.permitStartTime}' pattern='HH' />"/>时
 		           <input readonly="true"  placeholder="<fmt:formatDate value='${WoWt.permitStartTime}' pattern='mm' />"/>分 --%>
-	           	   <input readonly="true" />年
-				   <input readonly="true" />月
-				   <input readonly="true" />日
-				   <input readonly="true"  />时
-				   <input readonly="true"  />分	   	 
+	           	   <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+		           <input readonly="true"  placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分   	 
 	        	</td>
 	        </tr>
 	         <tr>
-	            <td>工作许可人：
-	        		<%-- <input size="10" readonly="true" value='${WoWt.permitByName}'/> --%>
-	        		<input size="10" readonly="true" value=""/>
+	            <td>
+	                           工作许可人：<input size="10" readonly="true" value='${WoWt.permitByName}'/>	        		
 	        	</td>
-	            <td style="border-left:0pt;">工作负责人：
-	        		<%-- <input size="10" readonly="true" value='${WoWt.workLeaderSignName}'/> --%>
-	        		<input size="10" readonly="true" value=""/>
+	            <td style="border-left:0pt;">
+	                             工作负责人：<input size="10" readonly="true" value='${WoWt.workLeaderSignName}'/> 	        		
 	        	</td>	        	        	
 	        </tr>	      
 	        <tr class="date01">

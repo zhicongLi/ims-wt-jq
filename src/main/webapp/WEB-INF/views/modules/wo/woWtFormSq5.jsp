@@ -99,10 +99,10 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="pageHeader"></div>
+	<%-- <div class="pageHeader"></div>
      <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
 	<div class="pageFooter"></div> 
-	<div class="pageBreak"></div>
+	<div class="pageBreak"></div> --%>
 	<div class="pageHeader"></div> 
 	<div class="print-content">		
 		<header class="host header">
@@ -133,8 +133,8 @@
 		    <tr style="height: 20px;"></tr>
 			<tr >				
 				<td  colspan="2"><span class="ident-number1">1.</span>部门：
-					<input size="25" readonly="true" value="${WoWt.orgName}"/>
-					班组：<input size="20" readonly="true" value="${WoWt.maintOrgName}"/>					
+					<input  readonly="true" value="${WoWt.orgName}"/>
+					班组：<input  readonly="true" value="${WoWt.maintOrgName}"/>					
 				</td>
 			</tr>		
 			<tr>
@@ -372,15 +372,19 @@
 			</tr>
 			<tr class="middletd">			
 				<td class="ident2">运行许可动火时间：					   	          
-	           	   <input readonly="true" />年
+	           	   <!-- <input readonly="true" />年
 				   <input readonly="true" />月
 				   <input readonly="true" />日
 				   <input readonly="true"  />时
-				   <input readonly="true"  />分	
+				   <input readonly="true"  />分	 -->
+				   <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		           <input readonly="true" placeholder="<fmt:parseDate value='${WoWt.permitStartTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分   	 
 				</td>
-				<td> 运行许可人：
-					<%-- <input size="10" readonly="true" value="${WoWt.permitByName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td> 
+				      运行许可人：<input size="10" readonly="true" value="${WoWt.permitByName}"/> 					
 				</td>
 			</tr>
 			<tr >
@@ -418,50 +422,37 @@
 		</table>							
 		<table>
 			<tr>
-				<td class="middletd">动火执行人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeExecByName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td class="middletd">
+				       动火执行人：<input size="10" readonly="true" value="${woWtFire.safeExecByName}"/> 					
 				</td>
-				<td> 消防监护人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeFiremanByName}"/> --%>
-					<input size="10" readonly="true" value=""/>
-					动火工作负责人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeWorkLeaderName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td>
+				       消防监护人：<input size="10" readonly="true" value="${woWtFire.safeFiremanByName}"/>					
+					动火工作负责人：<input size="10" readonly="true" value="${woWtFire.safeWorkLeaderName}"/> 					
 				</td>				
 			</tr> 
 			<tr class="middletd">
-				<td>动火部门负责人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeDeptLeaderName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td>
+				       动火部门负责人：<input size="10" readonly="true" value="${woWtFire.safeDeptLeaderName}"/> 					
 				</td>
-				<td colspan="2">消防管理部门负责人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.endsfDeptLeaderName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td colspan="2">
+				       消防管理部门负责人：<input size="10" readonly="true" value="${woWtFire.endsfDeptLeaderName}"/>					
 				</td>				
 			</tr> 
 			<tr class="middletd">
-				<td>安监部门负责人：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeCompSafeHealthName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td>
+				       安监部门负责人：<input size="10" readonly="true" value="${woWtFire.safeCompSafeHealthName}"/> 			
 				</td>
-				<td colspan="2">分管安全生产的领导或总工程师：
-					<%-- <input size="10" readonly="true" value="${woWtFire.safeCompProcLeaderName}"/> --%>
-					<input size="10" readonly="true" value=""/>
+				<td colspan="2">
+				       分管安全生产的领导或总工程师：<input size="10" readonly="true" value="${woWtFire.safeCompProcLeaderName}"/> 					
 				</td>				
 			</tr>
 			<tr class="middletd">			
-				<td class="ident2" colspan="3">允许动火时间：
-					   <%-- <input style="width:40px;" readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='yyyy' />"/>年
-			           <input readonly="true"  placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='MM' />"/>月
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='dd' />"/>日
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='HH' />"/>时
-			           <input readonly="true" placeholder="<fmt:formatDate value='${woWtFire.safeFireTime}' pattern='mm' />"/>分 --%>
-			           <input style="width:40px;" readonly="true" />年
-			           <input readonly="true"  />月
-			           <input readonly="true" />日
-			           <input readonly="true" />时
-			           <input readonly="true" />分
+				<td class="ident2" colspan="3">允许动火时间：					   
+			        <input style="width:40px;" readonly="true" placeholder="<fmt:parseDate value='${woWtFire.safeFireTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='yyyy'  type='date'/>"/>年
+		            <input readonly="true"  placeholder="<fmt:parseDate value='${woWtFire.safeFireTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='MM'  type='date'/>"/>月
+		            <input readonly="true" placeholder="<fmt:parseDate value='${woWtFire.safeFireTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='dd'  type='date'/>"/>日
+		            <input readonly="true" placeholder="<fmt:parseDate value='${woWtFire.safeFireTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='HH'  type='date'/>"/>时
+		            <input readonly="true" placeholder="<fmt:parseDate value='${woWtFire.safeFireTime}' var='date' pattern='yyyy-MM-dd HH:mm' type='date'/><fmt:formatDate value='${date}' pattern='mm'  type='date'/>"/>分   	 
 				</td>				
 			</tr>
 		</table>
@@ -558,30 +549,32 @@
 		</c:forEach> 
 		</table> --%>
 		<table class="table09">		
-		<tr>
-			<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">15.</span>备注：</td>
-		</tr>		
-		<tr class="daozhadixian">
-		    <td id=""  class="widthValue" colspan="3">
-			  <input id="remark1" readonly="true"  value="${fn:escapeXml(remarks[0])}"/>
-			</td>
-		</tr>	
-		<c:if test="${fn:length(remarks)==1}">
-		  <tr class="ident1 work02 daozhadixian">
-				<td colspan="3"><input readonly="true" value="" /></td>
-			</tr>
-		</c:if>		  		
-		<c:if test="${fn:length(remarks)>1}">
-		  <c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
-			<tr class="ident1 work02 daozhadixian">
-				<td colspan="3"><input readonly="true"
-					value="${fn:escapeXml(remarks[i])}" /></td>
-			</tr>
-		  </c:forEach>
-		</c:if>		 	
-		</table>	
+			<tr>
+				<td id="remark"  class="widthValue" colspan="3"><span class="ident-number2">15.</span>备注：</td>
+			</tr>		
+			<tr class="daozhadixian">
+			    <td id=""  class="widthValue" colspan="3">
+				  <input id="remark1" readonly="true"  value="${fn:escapeXml(remarks[0])}"/>
+				</td>
+			</tr>	
+			<c:if test="${fn:length(remarks)==1}">
+			  <tr class="daozhadixian">
+					<td colspan="3"><input readonly="true" value="" /></td>
+				</tr>
+			</c:if>		  		
+			<c:if test="${fn:length(remarks)>1}">
+			  <c:forEach begin="1" end="${fn:length(remarks)-1}" var="i">
+				<tr class="daozhadixian">
+					<td colspan="3"><input readonly="true"
+						value="${fn:escapeXml(remarks[i])}" /></td>
+				</tr>
+			  </c:forEach>
+			</c:if>				
+		</table>
+	
 	</div>
 	<input type="hidden" id="wtCode"  value="${WoWt.wtCode}">
+   
 </body>
 <script type="text/javascript">
 //const A4 = 1100;
@@ -593,7 +586,8 @@ window.onload = function(){
 	setRow1Content("dangerContent1","工作内容:占");
 	setRow1Content("dangerLocation1","工作地点:占");
 	setRow1Content("remark1","备注:占");
-    loadDangerInfo();		    
+    //loadDangerInfo();	
+        
 } 
 </script>
 </html>

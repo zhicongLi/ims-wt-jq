@@ -52,7 +52,7 @@
 					
 				<td style="text-align:right;">风险等级</td>
 				<td>
-				   <div id="riskGradeCode" name="riskGradeCode"  property="editor" textName="riskGradeName" class="mini-radiobuttonlist" repeatItems="3" repeatLayout="table"  textField="label" valueField=value 
+				   <div id="riskGradeCode" name="riskGradeCode"  property="editor" textName="riskGradeName" class="mini-radiobuttonlist" repeatItems="3" repeatLayout="table"  textField="label"  valueField=value  
 					 url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_task_risk_type" >
 				  </div> 				  				
 				</td>

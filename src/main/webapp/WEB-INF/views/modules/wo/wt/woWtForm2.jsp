@@ -34,23 +34,27 @@
 						<div name="sourceType"  field="sourceType" vtype=""  headerAlign="center" type="comboboxcolumn"  allowSort="true" width="100" >票来源
 							<input property="editor" class="mini-combobox"  valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"  />
 							<input id="sourceType-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="value" textField="label"  url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_sourceType"   style="width:100%;"
-								   onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"
-							/>
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)"/>
 						</div>
 						<div name="content" field="content" vtype="" headerAlign="center" allowSort="true" width="300">工作内容 
 							<input property="editor" class="mini-textbox"style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
 								onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
+						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+							<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+							<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
+						</div>
 						<div name="status" field="status" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="false" width="80" sortField="a.status">状态 
 							<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" /> 
 							<input id="status-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label" multiSelect="true"
-								url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+							url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_wt_status" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>						
 						<div name="orgName" field="orgName" vtype="" headerAlign="center" allowSort="true" width="300">部门 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
 						<div name="wtType" field="wtType" vtype="" headerAlign="center" type="comboboxcolumn" allowSort="false" width="145" visible="false" hideable="true">类型 
 							<input property="editor" class="mini-combobox" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=wo_user_wt_type" style="width: 100%;" /> 
@@ -59,7 +63,7 @@
 						<div name="specName" field="specName" vtype="" headerAlign="center" allowSort="true" width="300">专业
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;"
-								onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
+							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>								
 						<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="true" width="100" hideable="true" visible="false">描述 
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
@@ -288,12 +292,12 @@
 									<td style="text-align:right;">专业：</td>									
 									<td>
 									  <input name="specId" id="specId" textName="specName" class="mini-buttonedit"  required="false"  allowInput="false" width="200px"
-										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList',850,500,'id,name','specId,specName')" />
+										onbuttonclick="popLov(this,'选择专业',false,true,'${ctxRoot}/form?view=pg/pgSpecList&groupId=2',850,500,'id,name','specId,specName')" />
 									</td>
 									<td style="text-align:right;">班组：</td>									
 									<td>
 									  <input name="maintOrg" id="maintOrg" textName="maintOrgName" class="mini-buttonedit" vtype="" required="false" width="200px" allowInput="false"  readonly="readonly"
-										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=pg/pgClassInfo/lov?orgType=2',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
+										onbuttonclick="popLov(this,'请选择班组',false,true,'${ctxRoot}/form?view=sys/sysOrgList&classId=0',850,500,'orgId,orgName','maintOrg,maintOrgName')" />
 									</td>								
 								  </tr>
 								  <tr>
@@ -353,8 +357,11 @@
 								  </tr>																								
 								  <tr>
 									<td style="text-align:right;">工作条件：</td>
-									<td colspan="5">
+									<!-- <td colspan="5">
 									  <input name="workCondition.descr" id="workCondition.descr" class="mini-textarea" vtype="" required="false" width="75%" />（停电或不停电，或邻近及保留带电设备名称）
+									</td> -->
+									<td colspan="5">
+									  <input name="descr" id="descr" class="mini-textarea" vtype="" required="false" width="75%" />（停电或不停电，或邻近及保留带电设备名称）
 									</td>
 								</tr>
 							  </table>
@@ -376,9 +383,10 @@
 										<div name="descr" field="descr" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="600">安全措施(注意事项)
 										    <input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true" allowSort="false" width="32"> 安措类型
 										    <input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
@@ -431,12 +439,13 @@
 										<div name="typeId" field="typeId" vtype="" headerAlign="center" visible="false" hideable="true"allowSort="false" width="32">安措类型 
 											<input property="editor" class="mini-textbox" style="width: 100%;" />
 										</div>
-										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="800" allowCellWrap="true">补充安全措施 
+										<div name="descr" field="descr" vtype="" headerAlign="center" allowSort="false" width="600" allowCellWrap="true">补充安全措施 
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
 										</div>
-										<div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
+										<!-- <div name="execRes" field="execRes" vtype="" headerAlign="center" allowCellWrap="true" allowSort="false" width="200">已执行(√)
 											<input property="editor" class="mini-textarea" style="width: 100%;" />
-										</div>
+										</div> -->
+										<div type="checkboxcolumn" name="execRes" field="execRes" trueValue="1" falseValue="0" width="60" headerAlign="center">已执行（√）</div>        
 									</div>
 								</div>
 							</div>
@@ -757,7 +766,7 @@
 	    </div>
          
          <!-- 加载继电保护措施票 -->
-	    <%@ include file="/WEB-INF/views/modules/wo/wt/woWtJdMeasureForm.jsp"%>
+	   <%--  <%@ include file="/WEB-INF/views/modules/wo/wt/woWtJdMeasureForm.jsp"%> --%>
     </div>
     <!-- 新流程方式引入 -->
 	<sys:workflow flowKey="woWt2"></sys:workflow>
@@ -830,7 +839,7 @@
 					cascadeVisible : true,
 					tabsId : "tabsMain",
 					tabName : "tabWoTaskSafeMeasureList",
-					dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data",
+					dataUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/data?wtType=1",
 					getUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/get",
 					saveUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/save",
 					removeUrl:"${ctx}/wo-wt/wo/woWtWorkSafe/remove",
@@ -896,7 +905,7 @@
 					dataUrl : "${ctx}/wo-wt/wo/woWt/data?baseQuery=(a.wt_type='5' or a.wt_type='6')"				
 				});
 				
-				childs.push({//继电保护措施票
+				/* childs.push({//继电保护措施票
 					id : "#formWoWtJdMeasure",
 					objId : "WoWtJdMeasure",
 					FK : "wtId",
@@ -944,7 +953,7 @@
 					removeUrl : "${ctx}/wo-wt/wo/woWtSm/remove",
 					exportUrl : "${ctx}/wo-wt/wo/woWtSm/export",
 					initInsertUrl : "${ctx}/wo-wt/wo/woWtSm/initInsert?typeId=19"
-				});
+				}); */
 			/***********加载附票子表结束**************/
 			console.log(childs);
 			return childs;
@@ -1056,15 +1065,30 @@
 			"buttonId":'repairRail',
 			"functionStr":'repairRail',/* 对应按钮的点击事件 */			
 			"name":'检修围栏'
-		  });  		  		 
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue1',
+			"functionStr":"updFieldValue('gridWoWtsm5','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm5", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
+		  
+		  sysToolBar_.addButtonOption({
+			"buttonId":'updFieldValue2',
+			"functionStr":"updFieldValue('gridWoWtsm4','execRes','1')",/* 对应按钮的点击事件 */
+			"gridId":"gridWoWtsm4", /* 对应具体的列表，默认给明细 */
+			"name":'全部执行'
+		  });
 	    }
 	  	    
 	    
 	    	   	    	  
         
        //加载页面编辑权限
-	  //editControl.loadEditList('woWt2')
-		  
+	   editControl.loadEditList('woWt2')
+		
 </script>
+
 </body>
 </html>
