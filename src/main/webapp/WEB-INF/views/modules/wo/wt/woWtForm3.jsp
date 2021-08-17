@@ -41,7 +41,7 @@
 							<input property="editor" class="mini-textbox" style="width: 100%;" /> 
 							<input id="content-Filter" name="mini-column-filter" property="filter" class="mini-textbox" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 						</div>
-						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="64" >专业
+						<div name="specId"  field="specId" vtype=""  headerAlign="center" align="center" allowSort="false" type="comboboxcolumn" width="100" >专业
 							<input property="editor" class="mini-combobox"  style="width:100%;" valueField="id" textField="name" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
 							<input id="specId-Filter" name="mini-column-filter"  property="filter" class="mini-combobox" multiSelect="true" valueField="id" textField="name"   style="width:100%;"
 							onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" url="${ctx}/ims-iam-ext/pg/pgSpec/data?&groupId=2&pageSize=100"/>
@@ -485,9 +485,13 @@
 						      <table class="formtable">
 						        <tr>
 									<td style="text-align:right;">变更后工作负责人：</td>
-									<td>
+									<%-- <td>
 									  <input style="width: 200px;" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit" allowInput="false"
 										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=wo/woWtLeaderChangeNewWorKLeaderList&addCan=0&wtType=${param.wtType}&qualType=1',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />
+									</td> --%>
+									<td>
+									  <input style="width: 200px;" name="woWtLC.nowWorkLeader" id="woWtLC.nowWorkLeader" required="false" textName="woWtLC.nowWorkLeaderName" class="mini-buttonedit" allowInput="false"
+										onbuttonclick="popLov(this,'选择人员',false,true,'${ctxRoot}/form?view=/sys/sysMisUserList&likeParentId=1&orgId=2000',850,500,'id,name','woWtLC.nowWorkLeader,woWtLC.nowWorkLeaderName')" />
 									</td>
 									<td style="text-align:right;">变更时间：</td>
 									<td colspan="3">
@@ -806,6 +810,10 @@
 									<input id="fenceDesc-Filter" name="mini-column-filter"  property="filter" class="mini-textbox"   style="width:100%;"
 										   onvaluechanged="onFilterChangedChild(this,'gridSmElectronicFence')" showClose="true" oncloseclick="onFilterChangedChild(this,'gridOmLogTeam')"
 									/>
+								</div>
+								<div name="fenceSta" field="fenceSta" vtype="" type="comboboxcolumn" headerAlign="center" allowSort="true" width="100" >围栏状态
+									<input property="editor" class="mini-combobox" style="width: 100%;" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=fence_sta" /> 
+									<input id="fenceSta-Filter" name="mini-column-filter" property="filter" class="mini-combobox" valueField="value" textField="label" url="${ctx}/ims-ext/sys/dict/listDataStr?type=fence_sta" multiSelect="true" style="width: 100%;" onvaluechanged="onFilterChanged" showClose="true" oncloseclick="onFilterClose(this)" />
 								</div>																	
 								<div name="wtId"  field="wtId" vtype=""  headerAlign="center" allowSort="true" width="64" visible="false" hideable="true">关联工作票id
 									<input property="editor" class="mini-textbox"  style="width:100%;"  />

@@ -689,7 +689,8 @@ function beforeAddButton(buttonId,buttonList){
    return isAdd;
 }
 //流程按钮响应事件
-function onBpmButtonClick(buttonId) {  
+function onBpmButtonClick(buttonId) { 
+	
     var wtType = mini.get("wtType").getValue();
     var isSave =  checkDataChanged();//获取页面是否保存明细数据，true:未保存   false：已保存
     if(isSave==true){
@@ -729,7 +730,7 @@ function onBpmButtonClick(buttonId) {
     		  buttonId="agree"; 
     	  }
       }
-		  
+            		  
       var data = {
         eventName: 'parentClickButton',
         alias: buttonId,

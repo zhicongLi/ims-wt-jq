@@ -886,17 +886,22 @@ function onBpmButtonClick(buttonId) {
    		if(!b){
    	        return;
    	    }
-      }    
+      }     
       //发现人所属公司
       var reportByCompany =  mini.get("reportByCompany").getValue();  
       //专业编号
-      var specCode =  mini.get("specCode").getValue();      
+      var specCode =  mini.get("specCode").getValue();    
+      //接收人
+      var reception = mini.get("reception").getValue(); 
+      var receptionName = mini.get("reception").getText(); 
+      
       var data = {
         eventName: 'parentClickButton',
         alias: buttonId,
         flowVariables: {//定义流程变量                  
           "reportByCompany": reportByCompany || '',//发现人所属公司
-          "specCode": specCode || ''//专业编号
+          "specCode": specCode || '',//专业编号
+          "reception":reception || ''
          },
         data: {}
       };

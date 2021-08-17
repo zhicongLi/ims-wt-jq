@@ -99,10 +99,10 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div class="pageHeader"></div> 
+	<%-- <div class="pageHeader"></div> 
     <%@ include file="/WEB-INF/views/modules/wo/woWtDangerPrint.jsp"%>
 	<div class="pageFooter"></div>
-	<div class="pageBreak"></div>
+	<div class="pageBreak"></div> --%>
 	<div class="pageHeader"></div> 
 	<div class="print-content">		
 		<header class="host header">
