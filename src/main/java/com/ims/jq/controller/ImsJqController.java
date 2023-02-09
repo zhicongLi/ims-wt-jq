@@ -93,11 +93,12 @@ public class ImsJqController {
         String docDownloadUrl = Global.getConfig("doc.download.url");
         String docPreviewUrl = Global.getConfig("doc.preview.url");
         String docOnlineEditUrl = Global.getConfig("doc.online.edit.url");
+        String reportUrl = Global.getConfig("reportUrl");
         //电子围栏路径
         String smElectronicFenceUrl = Global.getConfig("smElectronicFenceUrl");
         //newTabPage路径
         String woWtNewTabPageUrl = Global.getConfig("woWtNewTabPageUrl");
-        
+
         String ctx = "http://"+gatewayIp+":"+gatewayPort;
         if(StringUtils.isNotBlank(serviceApiName)){
             ctx += "/"+serviceApiName;
@@ -111,6 +112,7 @@ public class ImsJqController {
         model.addAttribute("rootDocOnlineEditUrl", docOnlineEditUrl);
         model.addAttribute("smElectronicFenceUrl", smElectronicFenceUrl);
         model.addAttribute("woWtNewTabPageUrl", woWtNewTabPageUrl);
+        model.addAttribute("reportUrl",reportUrl);
     }
     @RequestMapping(value = "/form")
     public String form(String view, Model model) {
@@ -118,19 +120,19 @@ public class ImsJqController {
         this.handleCtx(model);
         return view;
     }
-    
+
     //获取后台接口数据用于工作票打印预览
     @RequestMapping(value = "/form2")
-    public String form2(String view, Model model,String id,String wtType,String iamCode) {      	      
+    public String form2(String view, Model model,String id,String wtType,String iamCode) {
     	model = imsJqService.findWoWt(id,wtType,iamCode, model);
     	 this.handleCtx(model);
     	//System.out.println(model);
         return view;
     }
-    
+
   //获取后台接口数据用于工作票打印预览
     @RequestMapping(value = "/form3")
-    public String form3(String view, Model model,String id,String iamCode) {      	      
+    public String form3(String view, Model model,String id,String iamCode) {
     	model = imsJqService.findWoWtTask(id,iamCode, model);
     	 this.handleCtx(model);
     	//System.out.println(model);
